@@ -1,0 +1,7 @@
+.body-wrap {
+    margin-left: var(--sidebar-width);
+    width: calc(100% - var(--sidebar-width));
+}
+.content {
+    margin-top: var(--header-height);
+}

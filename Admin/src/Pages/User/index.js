@@ -1,0 +1,10 @@
+function User() {
+    return (
+      <div>
+        Quản lý thành viên
+      </div>
+    );
+  }
+  
+  export default User;
+  
