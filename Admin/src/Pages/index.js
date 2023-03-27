@@ -3,6 +3,7 @@ import Product from "./Product";
 import Infor from "./Infor";
 import Order from "./Order";
 import Service from "./Service";
+import Comment from "./Comment";
 function Dashboard() {
     return (
       <div>
@@ -16,5 +17,6 @@ export {
   Product,
   Infor,
   Order,
-  Service
+  Service,
+  Comment
 }

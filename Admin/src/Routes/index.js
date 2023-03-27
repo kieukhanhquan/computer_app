@@ -4,7 +4,8 @@ import {
     Service,
     Order,
     Infor,
-    Product     } from "../Pages/index";
+    Product,
+    Comment     } from "../Pages/index";
 import Dashboard from "../Pages/index";
 
 export const routes = [
@@ -25,5 +26,8 @@ export const routes = [
     },
     {
         path: '/infor',  component: Infor, layout: MainLayout
+    },
+    {
+        path: '/comment',  component: Comment, layout: MainLayout
     }
 ]
