@@ -1,6 +1,6 @@
 @import url('normalize.css');
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;700&display=swap');
-
+@import 'rsuite/dist/rsuite.css';
 :root {
     --text-color: #333;
     --header-height: 70px ;
@@ -22,9 +22,6 @@ img{
     border-radius: 50%;
     border: #333;
 }
-
-@media all and (max-width: 576px) {  
-    :root {        
-        --sidebar-width:70px;
-    };
+a{
+    text-decoration: none;
 }
