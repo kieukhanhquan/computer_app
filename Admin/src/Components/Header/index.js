@@ -13,14 +13,14 @@ import { Whisper, Avatar, Popover } from 'rsuite';
 
 
 import { Link } from "react-router-dom"
-
-function Header(){
+function Header() {
     const location = useLocation()
-    const [icons, setIcon] =  useState(<MenuIcon/>)
+    const [icons, setIcon] = useState(<MenuIcon />)
     const [title, setTitle] = useState("")
     const [showMenu, setShowMenu] = useState(false);
+    const [showLayout, setShowLayout] = useState(false);
     useLayoutEffect(() => {
-        switch(location.pathname){
+        switch (location.pathname) {
             case '/':
                 setTitle("TRANG CHỦ")
                 break
@@ -35,7 +35,7 @@ function Header(){
             case '/product':
                 setIcon(<DetailIcon />)
                 setTitle("QUẢN LÝ SẢN PHẨM")
-                break     
+                break
             case '/service':
                 setIcon(<TagNumberIcon />)
                 setTitle("QUẢN LÝ DỊCH VỤ")
@@ -59,40 +59,67 @@ function Header(){
             } else {
                 setShowMenu(false)
             }
+            if (window.innerWidth < '400') {
+                document.documentElement.style.setProperty('--header-height', '130px')
+                setShowLayout(true)
+            } else {
+                document.documentElement.style.setProperty('--header-height', '70px')
+                setShowLayout(false)
+            }
         }
         window.addEventListener('resize', handleResize)
     })
+    const tab = () => {
+        return (
+            <div>
+                <Dropdown icon={icons}>
+                    <Dropdown.Item icon={<PeoplesIcon />} as={Link} to="/user" >Quản lý thành viên</Dropdown.Item>
+                    <Dropdown.Item icon={<DashboardIcon />} as={Link} to="/order">Quản lý đơn hàng</Dropdown.Item>
+                    <Dropdown.Item icon={< DetailIcon />} as={Link} to="/product">Quản lý sản phẩm</Dropdown.Item>
+                    <Dropdown.Item icon={<  TagNumberIcon />} as={Link} to="/service">Quản lý dịch vụ</Dropdown.Item>
+                    <Dropdown.Item icon={<MessageIcon />} as={Link} to="/comment">Quản lý bình luạn</Dropdown.Item>
+                    <Dropdown.Item icon={<GearCircleIcon />} as={Link} to="/infor">Quản lý chung</Dropdown.Item>
+                </Dropdown>
+            </div>
+        )
+    }
+    const avatar = () => {
+        return (
+            <Whisper
+            placement="bottomEnd"
+            trigger="click"
+            speaker={
+                <Popover>
+                    <Dropdown.Menu>
+                        <Dropdown.Item as={Link} to="/">Xem thông tin</Dropdown.Item>
+                        <Dropdown.Item as={Link} to="/" >Đăng xuất</Dropdown.Item>
+                    </Dropdown.Menu>
+                </Popover>
+            }>
+            <Avatar circle src={logo} alt="log" />
+        </Whisper>
+        )
+    }
     return (
         <Fragment>
-            <div className="position-fixed shadow-sm d-flex justify-content-between align-items-center py-2 px-4 bg-white"
-                style={{ backgroundColor: "white", height: "var(--header-height)", width:"calc(100% - var(--sidebar-width))"}}>
-                    {showMenu && <div>
-                        <Dropdown icon={icons}>
-                            <Dropdown.Item icon={<PeoplesIcon />} as={Link} to="/user" >Quản lý thành viên</Dropdown.Item>
-                            <Dropdown.Item icon={<DashboardIcon />} as={Link} to="/order">Quản lý đơn hàng</Dropdown.Item>
-                            <Dropdown.Item icon={< DetailIcon/>} as={Link} to="/product">Quản lý sản phẩm</Dropdown.Item>
-                            <Dropdown.Item icon={<  TagNumberIcon/>} as={Link} to="/service">Quản lý dịch vụ</Dropdown.Item>
-                            <Dropdown.Item icon={<MessageIcon />} as={Link} to="/comment">Quản lý bình luạn</Dropdown.Item>
-                            <Dropdown.Item icon={<GearCircleIcon/>} as={Link} to="/infor">Quản lý chung</Dropdown.Item>
-                        </Dropdown>
-                    </div>}
-                     <span className="fs-4 fw-bold p-3">
-                        {title}
-                    </span>
-                    <Whisper       
-                        placement="bottomEnd"
-                        trigger="click"
-                        speaker={
-                        <Popover>
-                            <Dropdown.Menu>
-                                <Dropdown.Item as={Link} to="/">Xem thông tin</Dropdown.Item>
-                                <Dropdown.Item as={Link} to="/" >Đăng xuất</Dropdown.Item>
-                            </Dropdown.Menu>
-                        </Popover>
-                        }>
-                        <Avatar circle src={logo} alt=""/>
-                    </Whisper>
-            </div>
+            {!showLayout && <div className="header-bar position-fixed shadow-sm d-flex justify-content-between align-items-center py-2 px-4 bg-white"
+                style={{ backgroundColor: "white", height: "var(--header-height)", width: "calc(100% - var(--sidebar-width))" }}>
+                {showMenu && tab()}
+                <span className="fs-4 fw-bold p-3">
+                    {title}
+                </span>
+                {avatar()}
+            </div>}
+            {showLayout && <div className="header-bar position-fixed flex-column shadow-sm d-flex justify-content-between align-items-center py-2 px-4 bg-white"
+                style={{ backgroundColor: "white", height: "var(--header-height)", width: "calc(100% - var(--sidebar-width))" }}>
+                <div className="d-flex justify-content-around align-items-center px-2 w-100">
+                    {showMenu && tab()}
+                    {avatar()}
+                </div>
+                <span className="fs-4 fw-bold p-3">
+                    {title}
+                </span>
+            </div>}
         </Fragment>
     )
 }

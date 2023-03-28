@@ -1,4 +1,5 @@
 import { Fragment, useState, useLayoutEffect } from "react"
+import { useLocation } from "react-router-dom"
 import React from "react"
 import { Link } from "react-router-dom"
 import PeoplesIcon from '@rsuite/icons/Peoples'
@@ -10,6 +11,7 @@ import TagNumberIcon from '@rsuite/icons/TagNumber'
 import DetailIcon from '@rsuite/icons/Detail';
 
 function Sidebar() {
+    const location = useLocation()
     const [expanded, setExpanded] = useState(true)
     const [status, setStatus] = useState('250px')
     const [activeKey, setActiveKey] = useState('1')
@@ -36,6 +38,29 @@ function Sidebar() {
         }
         window.addEventListener('resize', handleResize)
     })
+        useLayoutEffect(() => {
+        switch(location.pathname){
+            case '/user':
+                setActiveKey('1')
+                break
+            case '/order':
+                setActiveKey('2')
+                break
+            case '/product':
+                setActiveKey('3')
+                break     
+            case '/service':
+                setActiveKey('4')
+                break
+            case '/infor':
+                setActiveKey('5')
+                break
+            case '/comment':
+                setActiveKey('6')
+                break
+            default:
+                setActiveKey('1')        }
+    }, [location]);
     const [showMenu, setShowMenu] = useState(true);
     return (
         <Fragment>
