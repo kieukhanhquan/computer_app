@@ -4,6 +4,11 @@ import Infor from "./Infor";
 import Order from "./Order";
 import Service from "./Service";
 import Comment from "./Comment";
+import Login from "./Login";
+import Register from "./Register";
+import Phone from "./Forget/phone";
+import Reset
+ from "./Forget/reset";
 function Dashboard() {
     return (
       <div>
@@ -18,5 +23,9 @@ export {
   Infor,
   Order,
   Service,
-  Comment
+  Comment,
+  Login,
+  Register,
+  Phone,
+  Reset
 }

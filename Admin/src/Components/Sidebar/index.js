@@ -26,7 +26,7 @@ function Sidebar() {
     }
     useLayoutEffect(() => {
         function handleResize(){
-            if (window.innerWidth < '576') {
+            if (window.innerWidth < '1000') {
                 document.documentElement.style.setProperty('--sidebar-width', '0px')
                 setShowMenu(false)
             } else {
