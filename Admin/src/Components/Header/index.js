@@ -54,7 +54,7 @@ function Header(){
     }, [location]);
     useLayoutEffect(() => {
         function handleResize(){
-            if (window.innerWidth < '576') {
+            if (window.innerWidth < '1000') {
                 setShowMenu(true)
             } else {
                 setShowMenu(false)
