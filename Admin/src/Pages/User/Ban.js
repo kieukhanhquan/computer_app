@@ -1,34 +1,43 @@
 import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
+import { BsFillPersonXFill, BsFillPersonPlusFill } from "react-icons/bs";
 
-const AddClient = () => {
+const BanClient = ({ user }) => {
     const [show, setShow] = useState(false);
 
     const handleClose = () => {
         setShow(false)
     };
     const handleShow = () => setShow(true);
-
+    console.log(user.status)
     return (
         <>
+            {user.status == "Hoạt động" ?
+                <div className="col-4 text-success" data-bs-toggle="tooltip" title="Cấm" style={{ cursor: "pointer" }}>
+                    <button className="bg-white" onClick={handleShow}>   <BsFillPersonPlusFill size={20} /> </button>
+                </div>
+                :
+                <div className="col-4 text-danger" data-bs-toggle="tooltip" title="Bỏ cấm" style={{ cursor: "pointer" }}>
+                    <button className="bg-white" onClick={handleShow}>  <BsFillPersonXFill size={20} /> </button>
+                </div>
 
-            <button className="btn btn-primary rounded-pill ms-3" onClick={handleShow}>Thêm  +</button>
+            }
             <Modal show={show} onHide={handleClose}>
                 <form>
                     <Modal.Header >
                         <Modal.Title>Thêm khách hàng</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                        <p className='mb-3 fw-bold'>Vui lòng cung cấp các thông tin sau</p>
+                        <p className='mb-3 fw-bold'>Chỉnh sửa thông tin cho {user.username}</p>
                         <div className='d-flex justify-content-between'>
                             <div className='mb-3' style={{ width: "48%" }}>
-                                <label for='user' className='form-label' style={{ color: "#6B7280" }}>Tên tài khoản</label>
-                                <input type='text' className='form-control' id='user' name='user' placeholder='Tên tài khoản' />
+                                <label for='userID' className='form-label' style={{ color: "#6B7280" }}>Mã thành viên</label>
+                                <input type='userID' className='form-control' id='userID' name='userID' value={user.id} disabled />
                             </div>
                             <div className='mb-3' style={{ width: "48%" }}>
-                                <label for='password' className='form-label' style={{ color: "#6B7280" }}>Mật khẩu</label>
-                                <input type='text' className='form-control' id='password' name='password' placeholder='Mật khẩu' />
+                                <label for='username' className='form-label' style={{ color: "#6B7280" }}>Tên tài khoản</label>
+                                <input type='text' className='form-control' id='username' name='username' value={user.username} disabled />
                             </div>
                         </div>
                         <div className='d-flex justify-content-between'>
@@ -77,4 +86,4 @@ const AddClient = () => {
     );
 }
 
-export default AddClient
+export default BanClient

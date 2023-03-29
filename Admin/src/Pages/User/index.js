@@ -1,39 +1,137 @@
 import { BsPencilSquare, BsFillPersonXFill, BsFillPersonPlusFill } from "react-icons/bs";
+import ResponsivePagination from 'react-responsive-pagination';
 import Client from "../../Assets/Client.png"
+import ModifyClient from "./Modify";
 import AddClient from "./AddClient";
 import { useState } from "react";
+import BanClient from "./Ban";
 
-
-let data = [{
-    avatar: Client, id: 1, fullname: "Arlene McCoy", birth: "26/9/2003", grade: 50,
+let dataAll = [{
+    avatar: Client, id: 1, username: "qwerryi", fullname: "Arlene McCoy", birth: "26/9/2003", grade: 50,
     phone: "01234456789", email: "nguyenqwedv123@gmail.com", status: "Hoạt động"
 },
 {
-    avatar: Client, id: 2, fullname: "Arlene McCoy", birth: "26/9/2003", grade: 50,
+    avatar: Client, id: 2, username: "qwerryi", fullname: "Arlene McCoy", birth: "26/9/2003", grade: 50,
     phone: "01234456789", email: "nguyenqwedv123@gmail.com", status: "Hoạt động"
 },
 {
-    avatar: Client, id: 3, fullname: "Arlene McCoy", birth: "26/9/2003", grade: 50,
+    avatar: Client, id: 3, username: "qwerryi", fullname: "Arlene McCoy", birth: "26/9/2003", grade: 50,
     phone: "01234456789", email: "nguyenqwedv123@gmail.com", status: "Hoạt động"
 },
 {
-    avatar: Client, id: 4, fullname: "Arlene McCoy", birth: "26/9/2003", grade: 50,
+    avatar: Client, id: 4, username: "qwerryi", fullname: "Arlene McCoy", birth: "26/9/2003", grade: 50,
     phone: "01234456789", email: "nguyenqwedv123@gmail.com", status: "Cấm"
-}
+},
+{
+    avatar: Client, id: 5, username: "qwerryi", fullname: "Arlene McCoy", birth: "26/9/2003", grade: 50,
+    phone: "01234456789", email: "nguyenqwedv123@gmail.com", status: "Hoạt động"
+},
+{
+    avatar: Client, id: 6, username: "qwerryi", fullname: "Arlene McCoy", birth: "26/9/2003", grade: 50,
+    phone: "01234456789", email: "nguyenqwedv123@gmail.com", status: "Hoạt động"
+},
+{
+    avatar: Client, id: 7, username: "qwerryi", fullname: "Arlene McCoy", birth: "26/9/2003", grade: 50,
+    phone: "01234456789", email: "nguyenqwedv123@gmail.com", status: "Hoạt động"
+},
+{
+    avatar: Client, id: 8, username: "qwerryi", fullname: "Arlene McCoy", birth: "26/9/2003", grade: 50,
+    phone: "01234456789", email: "nguyenqwedv123@gmail.com", status: "Cấm"
+},
+{
+    avatar: Client, id: 9, username: "qwerryi", fullname: "Arlene McCoy", birth: "26/9/2003", grade: 50,
+    phone: "01234456789", email: "nguyenqwedv123@gmail.com", status: "Hoạt động"
+},
+{
+    avatar: Client, id: 10, username: "qwerryi", fullname: "Arlene McCoy", birth: "26/9/2003", grade: 50,
+    phone: "01234456789", email: "nguyenqwedv123@gmail.com", status: "Cấm"
+},
+{
+    avatar: Client, id: 11, username: "qwerryi", fullname: "Arlene McCoy", birth: "26/9/2003", grade: 50,
+    phone: "01234456789", email: "nguyenqwedv123@gmail.com", status: "Hoạt động"
+},
+{
+    avatar: Client, id: 12, username: "qwerryi", fullname: "Arlene McCoy", birth: "26/9/2003", grade: 50,
+    phone: "01234456789", email: "nguyenqwedv123@gmail.com", status: "Hoạt động"
+},
+{
+    avatar: Client, id: 13, username: "qwerryi", fullname: "Arlene McCoy", birth: "26/9/2003", grade: 50,
+    phone: "01234456789", email: "nguyenqwedv123@gmail.com", status: "Hoạt động"
+},
+{
+    avatar: Client, id: 14, username: "qwerryi", fullname: "Arlene McCoy", birth: "26/9/2003", grade: 50,
+    phone: "01234456789", email: "nguyenqwedv123@gmail.com", status: "Cấm"
+},
+{
+    avatar: Client, id: 14, username: "qwerryi", fullname: "Arlene McCoy", birth: "26/9/2003", grade: 50,
+    phone: "01234456789", email: "nguyenqwedv123@gmail.com", status: "Cấm"
+},
+{
+    avatar: Client, id: 1, username: "qwerryi", fullname: "Arlene McCoy", birth: "26/9/2003", grade: 50,
+    phone: "01234456789", email: "nguyenqwedv123@gmail.com", status: "Hoạt động"
+},
+{
+    avatar: Client, id: 2, username: "qwerryi", fullname: "Arlene McCoy", birth: "26/9/2003", grade: 50,
+    phone: "01234456789", email: "nguyenqwedv123@gmail.com", status: "Hoạt động"
+},
+{
+    avatar: Client, id: 3, username: "qwerryi", fullname: "Arlene McCoy", birth: "26/9/2003", grade: 50,
+    phone: "01234456789", email: "nguyenqwedv123@gmail.com", status: "Hoạt động"
+},
+{
+    avatar: Client, id: 4, username: "qwerryi", fullname: "Arlene McCoy", birth: "26/9/2003", grade: 50,
+    phone: "01234456789", email: "nguyenqwedv123@gmail.com", status: "Cấm"
+},
+{
+    avatar: Client, id: 5, username: "qwerryi", fullname: "Arlene McCoy", birth: "26/9/2003", grade: 50,
+    phone: "01234456789", email: "nguyenqwedv123@gmail.com", status: "Hoạt động"
+},
+{
+    avatar: Client, id: 6, username: "qwerryi", fullname: "Arlene McCoy", birth: "26/9/2003", grade: 50,
+    phone: "01234456789", email: "nguyenqwedv123@gmail.com", status: "Hoạt động"
+},
+{
+    avatar: Client, id: 2, username: "qwerryi", fullname: "Arlene McCoy", birth: "26/9/2003", grade: 50,
+    phone: "01234456789", email: "nguyenqwedv123@gmail.com", status: "Hoạt động"
+},
+{
+    avatar: Client, id: 3, username: "qwerryi", fullname: "Arlene McCoy", birth: "26/9/2003", grade: 50,
+    phone: "01234456789", email: "nguyenqwedv123@gmail.com", status: "Hoạt động"
+},
+{
+    avatar: Client, id: 4, username: "qwerryi", fullname: "Arlene McCoy", birth: "26/9/2003", grade: 50,
+    phone: "01234456789", email: "nguyenqwedv123@gmail.com", status: "Cấm"
+},
+{
+    avatar: Client, id: 5, username: "qwerryi", fullname: "Arlene McCoy", birth: "26/9/2003", grade: 50,
+    phone: "01234456789", email: "nguyenqwedv123@gmail.com", status: "Hoạt động"
+},
+{
+    avatar: Client, id: 6, username: "qwerryi", fullname: "Arlene McCoy", birth: "26/9/2003", grade: 50,
+    phone: "01234456789", email: "nguyenqwedv123@gmail.com", status: "Hoạt động"
+},
 ]
 
 
 const User = () => {
+    const [itemOffset, SetOffset] = useState({ offset: 0, current: 0 })
+    const itemPerPage = 7
+    const endOffset = itemOffset.offset + itemPerPage
+    const data = dataAll.slice(itemOffset.offset, endOffset)
+    const countPage = Math.ceil(dataAll.length / itemPerPage)
 
-    const Add = () => {
-     setPlace(<AddClient status={true}/>)
-}
+    const handelPagination = (event) => {
+        const newOffset = ((event - 1) * itemPerPage) % dataAll.length  //event start from 1
+        SetOffset({ offset: newOffset, current: (event) })
+    }
+    console.log("Add")
+
     const [placeAdd, setPlace] = useState(null);
 
     return (
         <>
-        {placeAdd}
-            <div className='container-fluid p-3 '>
+            {placeAdd}
+            <div className='container-fluid p-3'  >
                 <form className="d-flex justify-content-center mt-3">
                     <div className="mb-3" style={{ width: "30%" }}>
                         <input type="text" className=" form-control " placeholder="Tìm kiếm theo tên" name="search" />
@@ -43,11 +141,11 @@ const User = () => {
                 <div className="row">
                     <div className="mb-4 col-md-9">
                         <div className="row">
-                            <p className="ms-2 col-1 mt-2">All({data.length})</p>
+                            <p className="ms-2 col-1 mt-2">All({dataAll.length})</p>
                             <div className="col-6">
-                                <button className="btn btn-primary rounded-pill ms-3" onClick={Add}>Thêm  +</button>
+                                {<AddClient />}
                                 <button className="btn btn-danger rounded-pill ms-4">Xóa  -</button>
-                                
+
                             </div>
                         </div>
                     </div>
@@ -64,7 +162,7 @@ const User = () => {
                 <div className='table-responsive-lg '>
                     <table className='table '>
                         <thead>
-                            <tr>
+                            <tr >
                                 <th><input type="checkbox"></input></th>
                                 <th>Ảnh</th>
                                 <th>Mã thành viên</th>
@@ -78,7 +176,7 @@ const User = () => {
 
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody style={{ color: "#6C757D" }}>
                             {
                                 data.map((item) => {
                                     return (
@@ -98,15 +196,9 @@ const User = () => {
                                                 <td>
                                                     <div className="row pt-2">
                                                         <div className="col-4 text-primary" data-bs-toggle="tooltip" title="Chỉnh sửa" style={{ cursor: "pointer" }}>
-                                                            <BsPencilSquare size={20} />
+                                                            {<ModifyClient user={item} />}
                                                         </div>
-                                                        {item.status == "Hoạt động" ?
-                                                            <div className="col-4 text-danger" data-bs-toggle="tooltip" title="Cấm" style={{ cursor: "pointer" }}>
-                                                                <BsFillPersonXFill size={20} />
-                                                            </div>
-                                                            : <div className="col-4 text-success" data-bs-toggle="tooltip" title="Bỏ cấm" style={{ cursor: "pointer" }}>
-                                                                <BsFillPersonPlusFill size={20} />
-                                                            </div>
+                                                        {<BanClient user={item} />
                                                         }
                                                     </div>
                                                 </td>
@@ -119,8 +211,23 @@ const User = () => {
                         </tbody>
                     </table>
                 </div>
+                <div className=" position-block py-1  row" style={{ bottom: "0px" }}>
+                    <p className="col-sm-6 mt-2" style={{ color: "#6C757D" }}>Hiển thị {data.length} trong tổng số {dataAll.length} thành viên</p>
+                    <div className="col-sm-6 d-flex justify-content-end">
+                        {
+                            <ResponsivePagination
+                                current={itemOffset.current}
+                                total={countPage}
+                                onPageChange={handelPagination}
+
+                            />
+                        }
+                    </div>
+                </div>
+
             </div>
-                            
+
+
         </>
     )
 }
