@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { routes } from "./Routes/index";
 import { Fragment } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import "bootstrap/dist/js/bootstrap.min.js";
 
 function App() {
   return (
