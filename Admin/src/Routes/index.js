@@ -13,6 +13,7 @@ import {
     Reset
 } from "../Pages/index";
 import Dashboard from "../Pages/index";
+import OrderDetail from "../Pages/Order/orderDetail";
 
 export const routes = [
     {
@@ -32,6 +33,9 @@ export const routes = [
     },
     {
         path: '/order',  component: Order, layout: MainLayout
+    },
+    {
+        path: '/order/:id', component: OrderDetail, layout: MainLayout
     },
     {
         path: '/product',  component: Product, layout: MainLayout

@@ -59,7 +59,14 @@ function Sidebar() {
                 setActiveKey('6')
                 break
             default:
-                setActiveKey('1')        }
+                let regex = /\/order\/*/
+                let pathURL = location.pathname
+                let validPath = pathURL.match(regex)
+                if (validPath !=null) {
+                    setActiveKey('2')
+                }
+                else {
+                setActiveKey('1') }       }
     }, [location]);
     const [showMenu, setShowMenu] = useState(true);
     return (

@@ -49,7 +49,16 @@ function Header() {
                 setTitle("QUẢN LÝ BÌNH LUẬN")
                 break
             default:
+                let regex = /\/order\/*/
+                let pathURL = location.pathname
+                let validPath = pathURL.match(regex)
+                if (validPath !=null) {
+                    let id = pathURL.split('/')
+                    setTitle(`THÔNG TIN ĐƠN HÀNG #${id[2]}`)
+                }
+                else {
                 setTitle("TRANG CHỦ")
+                }
         }
     }, [location]);
     useLayoutEffect(() => {

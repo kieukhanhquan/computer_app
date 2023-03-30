@@ -18,7 +18,7 @@ const ModifyClient = ({ user }) => {
             <Modal show={show} onHide={handleClose}>
                 <form>
                     <Modal.Header >
-                        <Modal.Title>Chỉnh sửa thông tin cho {user.username}</Modal.Title>
+                        <Modal.Title>Chỉnh sửa thông tin cho {user.id}</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
                         <div className='d-flex justify-content-between'>
@@ -34,31 +34,31 @@ const ModifyClient = ({ user }) => {
                         <div className='d-flex justify-content-between'>
                             <div className='mb-3' style={{ width: "48%" }}>
                                 <label for='fname' className='form-label' style={{ color: "#6B7280" }}>Họ và tên</label>
-                                <input type='text' className='form-control' id='fname' name='fname' placeholder='Họ' />
+                                <input type='text' className='form-control' id='fname' name='fname' value="Arlene" />
                             </div>
                             <div className='mb-3' style={{ width: "48%" }}>
                                 <label></label>
-                                <input type='text' className='form-control mt-2' id='lname' name='lname' placeholder='Tên' />
+                                <input type='text' className='form-control mt-2' id='lname' name='lname' value="McCoy" />
                             </div>
                         </div>
                         <div className='d-flex justify-content-between'>
                             <div className='mb-3' style={{ width: "48%" }}>
                                 <label for='birth' className='form-label' style={{ color: "#6B7280" }}>Ngày sinh</label>
-                                <input type='date' className='form-control' id='birth' name='birth' placeholder='Year/Month/Day' />
+                                <input type='text' className='form-control' id='birth' name='birth' value={user.birth} />
                             </div>
                             <div className='mb-3' style={{ width: "48%" }}>
                                 <label for='phone' className='form-label' style={{ color: "#6B7280" }}>Số điện thoại</label>
-                                <input type='text' className='form-control' id='phones' name='phone' placeholder='Số điện thoại' />
+                                <input type='text' className='form-control' id='phones' name='phone' value={user.phone} />
                             </div>
                         </div>
                         <div className='d-flex justify-content-between'>
                             <div className='mb-3' style={{ width: "48%" }}>
                                 <label for='email' className='form-label' style={{ color: "#6B7280" }}>Email</label>
-                                <input type='text' className='form-control' id='email' name='email' placeholder='Email' />
+                                <input type='text' className='form-control' id='email' name='email' value={user.email} />
                             </div>
                             <div className='mb-3' style={{ width: "48%" }}>
                                 <label for='image' className='form-label' style={{ color: "#6B7280" }}>Ảnh đại diện</label>
-                                <input type='text' className='form-control' id='image' name='image' placeholder='URL' />
+                                <input type='text' className='form-control' id='image' name='image' value={user.avatar} />
                             </div>
                         </div>
                     </Modal.Body>

@@ -5,6 +5,7 @@ import ModifyClient from "./Modify";
 import AddClient from "./AddClient";
 import { useState } from "react";
 import BanClient from "./Ban";
+import Delete from "./Delete";
 
 let dataAll = [{
     avatar: Client, id: 1, username: "qwerryi", fullname: "Arlene McCoy", birth: "26/9/2003", grade: 50,
@@ -124,13 +125,11 @@ const User = () => {
         const newOffset = ((event - 1) * itemPerPage) % dataAll.length  //event start from 1
         SetOffset({ offset: newOffset, current: (event) })
     }
-    console.log("Add")
 
-    const [placeAdd, setPlace] = useState(null);
 
     return (
         <>
-            {placeAdd}
+
             <div className='container-fluid p-3'  >
                 <form className="d-flex justify-content-center mt-3">
                     <div className="mb-3" style={{ width: "30%" }}>
@@ -141,10 +140,10 @@ const User = () => {
                 <div className="row">
                     <div className="mb-4 col-md-9">
                         <div className="row">
-                            <p className="ms-2 col-1 mt-2">All({dataAll.length})</p>
-                            <div className="col-6">
+                            <p className="ms-2 col-sm-1 mt-2 mb-4 me-3">All({dataAll.length})</p>
+                            <div className="col-sm-6">
                                 {<AddClient />}
-                                <button className="btn btn-danger rounded-pill ms-4">Xóa  -</button>
+                               {<Delete id={2}/>}
 
                             </div>
                         </div>
