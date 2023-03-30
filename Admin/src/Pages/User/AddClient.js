@@ -13,7 +13,7 @@ const AddClient = () => {
     return (
         <>
 
-            <button className="btn btn-primary rounded-pill ms-3" onClick={handleShow}>Thêm  +</button>
+            <button className="btn btn-primary rounded-pill " onClick={handleShow}>Thêm  +</button>
             <Modal show={show} onHide={handleClose}>
                 <form>
                     <Modal.Header >
