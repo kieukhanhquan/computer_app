@@ -135,7 +135,7 @@ const Product = () => {
         </div>
         <div className="position-relative row flex-row w-100 justify-content-between align-items-center m-0" id="device">
           <div className="table-responsive-lg">
-            <table className="table">
+            <table className="table table-hover">
               <thead>
                 <tr>
                   <th>
@@ -156,7 +156,7 @@ const Product = () => {
                 {
                   data.map((product) => {
                     return (
-                      <tr>
+                      <tr className="align-middle">
                         <td>
                           <input className="form-check-input" type="checkbox" value="" name="checkItem" id={product.id} />
                         </td>
