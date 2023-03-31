@@ -6,7 +6,7 @@ const Login = () => {
     const handelLogin = (event) => {
         event.preventDefault()
         event.target.reset()
-        navigate("/user")
+        navigate("/statistic")
     }
 
     return (
