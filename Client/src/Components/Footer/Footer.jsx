@@ -37,7 +37,7 @@ function Footer () {
                             </li>
                             <li className="footer__list-item">
                                 <EmailIcon fontSize="2em"/>
-                                <span className="footer__list-item_link">quan.kieukhanh@hcmut<br />.edu.vn</span>
+                                <span className="footer__list-item_link">kieukhanhquan@gmail.com</span>
                             </li>
                             <li className="footer__list-item">
                                 <LocationIcon fontSize="2em" />
