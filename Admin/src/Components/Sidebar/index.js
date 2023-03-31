@@ -39,6 +39,12 @@ function Sidebar() {
         window.addEventListener('resize', handleResize)
     })
         useLayoutEffect(() => {
+        if (document.documentElement.style.getPropertyValue('--sidebar-width') === '0px'){
+            setShowMenu(false)
+        }
+        if (document.documentElement.style.getPropertyValue('--sidebar-width') === '56px'){
+            setExpanded(false)
+        }
         switch(location.pathname){
             case '/user':
                 setActiveKey('1')
