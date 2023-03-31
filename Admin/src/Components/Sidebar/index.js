@@ -9,6 +9,7 @@ import GearCircleIcon from '@rsuite/icons/legacy/GearCircle'
 import MessageIcon from '@rsuite/icons/Message'
 import TagNumberIcon from '@rsuite/icons/TagNumber'
 import DetailIcon from '@rsuite/icons/Detail';
+import TrendIcon from '@rsuite/icons/Trend';
 
 function Sidebar() {
     const location = useLocation()
@@ -46,6 +47,9 @@ function Sidebar() {
             setExpanded(false)
         }
         switch(location.pathname){
+            case '/statistic':
+                setActiveKey('0')
+                break
             case '/user':
                 setActiveKey('1')
                 break
@@ -84,6 +88,9 @@ function Sidebar() {
                     <Sidenav.Toggle expanded={expanded} onToggle={expanded => { setExpanded(expanded); setWidth(setW(expanded)) }} />
                     <Sidenav.Body >
                         <Nav activeKey={activeKey} onSelect={setActiveKey}>
+                        <Nav.Item eventKey="0" icon={<TrendIcon />} as={Link} to="/statistic">
+                                Quản lý doanh thu
+                            </Nav.Item>
                             <Nav.Item eventKey="1" icon={<PeoplesIcon />} as={Link} to="/user">
                                 Quản lý thành viên
                             </Nav.Item>

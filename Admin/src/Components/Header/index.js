@@ -9,6 +9,7 @@ import MessageIcon from '@rsuite/icons/Message'
 import TagNumberIcon from '@rsuite/icons/TagNumber'
 import DetailIcon from '@rsuite/icons/Detail';
 import MenuIcon from '@rsuite/icons/Menu';
+import TrendIcon from '@rsuite/icons/Trend';
 import { Whisper, Avatar, Popover } from 'rsuite';
 
 
@@ -48,6 +49,10 @@ function Header() {
                 setIcon(<MessageIcon />)
                 setTitle("QUẢN LÝ BÌNH LUẬN")
                 break
+            case '/statistic':
+                setIcon(<TrendIcon />)
+                setTitle("QUẢN LÝ DOANH THU")
+                break
             default:
                 let regex = /\/order\/*/
                 let pathURL = location.pathname
@@ -82,6 +87,7 @@ function Header() {
         return (
             <div>
                 <Dropdown icon={icons}>
+                    <Dropdown.Item icon={<TrendIcon />} as={Link} to="/statistic" >Quản lý doanh thu</Dropdown.Item>
                     <Dropdown.Item icon={<PeoplesIcon />} as={Link} to="/user" >Quản lý thành viên</Dropdown.Item>
                     <Dropdown.Item icon={<DashboardIcon />} as={Link} to="/order">Quản lý đơn hàng</Dropdown.Item>
                     <Dropdown.Item icon={< DetailIcon />} as={Link} to="/product">Quản lý sản phẩm</Dropdown.Item>
