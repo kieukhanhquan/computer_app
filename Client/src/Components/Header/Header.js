@@ -44,7 +44,7 @@ function Header(){
                             <ShoppingCartIcon height= "90%"/>
                     </a>
                     <a href=""  className="route-icon">
-                            <FavoriteBorderIcon height= "90%"/>
+                            <FavoriteBorderIcon height= "90%" />
                     </a>
                 </div>
             </div>
