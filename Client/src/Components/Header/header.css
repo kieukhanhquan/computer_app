@@ -106,63 +106,6 @@
     display: flex;
     align-items: center;
 }
-.navbar__cart-icon
-{
-    margin-right: 6px;
-    font-size: 18px;
-    cursor: pointer;
-}
-.navbar__cart-link
-{
-    text-decoration: none;
-    color: #ffffff;
-    font-weight: 500;
-    font-size: 18px;
-}
-.navbar__login
-{
-    text-decoration: none;
-    color: #ffffff;
-    font-weight: 500;
-    font-size: 18px;
-}
-.navbar__account
-{
-    text-decoration: none;
-    color: var(--primary2-color);
-    font-weight: 500;
-    font-size: 18px;
-    margin-left: 40px;
-    display: flex;
-    min-width: 100px;
-    max-height: 120px;
-    display: flex;
-    align-items: center;
-}
-.navbar__account-avatar
-{
-    width: 30px;
-    height: 30px;
-    border-radius: 15px;
-    margin: 0 10px;
-}
-.navbar__social
-{
-    margin-left: 20px;
-}
-.navbar__social-icon_fb
-{
-    color: #4569ea;
-    font-size: 17px;
-    margin: 0 3px 0 3px;
-}
-.navbar__social-icon_insta
-{
-    color: #ff6b6b;
-    font-size: 17px;
-    margin: 0 3px 0 3px;
-}
-
 
 @media only screen and (max-width: 450px){
     .navbar__search
@@ -176,7 +119,7 @@
         min-width: 280px;
         
     }
-    .navbar__cart{
+    .categories{
         display: none;
     }
     .navbar__search
@@ -216,11 +159,12 @@
       
     }
     .navbar__search-icon {
-        color: #cacaca;
-        font-size: 18px;
-        position: absolute;
-        top: 7px;
-        left: -6px;
+        border:none;
+        background-color: transparent;
+        height: 100%;
+        width: 10%;
+        color:#ffffff;
+        cursor: pointer;
     }
 
  }

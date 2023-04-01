@@ -9,6 +9,8 @@ import GearCircleIcon from '@rsuite/icons/legacy/GearCircle'
 import MessageIcon from '@rsuite/icons/Message'
 import TagNumberIcon from '@rsuite/icons/TagNumber'
 import DetailIcon from '@rsuite/icons/Detail';
+import TrendIcon from '@rsuite/icons/Trend';
+import TextImageIcon from '@rsuite/icons/TextImage';
 
 function Sidebar() {
     const location = useLocation()
@@ -39,7 +41,16 @@ function Sidebar() {
         window.addEventListener('resize', handleResize)
     })
         useLayoutEffect(() => {
+        if (document.documentElement.style.getPropertyValue('--sidebar-width') === '0px'){
+            setShowMenu(false)
+        }
+        if (document.documentElement.style.getPropertyValue('--sidebar-width') === '56px'){
+            setExpanded(false)
+        }
         switch(location.pathname){
+            case '/statistic':
+                setActiveKey('0')
+                break
             case '/user':
                 setActiveKey('1')
                 break
@@ -57,6 +68,9 @@ function Sidebar() {
                 break
             case '/comment':
                 setActiveKey('6')
+                break
+            case '/news':
+                setActiveKey('7')
                 break
             default:
                 let regex = /\/order\/*/
@@ -78,6 +92,9 @@ function Sidebar() {
                     <Sidenav.Toggle expanded={expanded} onToggle={expanded => { setExpanded(expanded); setWidth(setW(expanded)) }} />
                     <Sidenav.Body >
                         <Nav activeKey={activeKey} onSelect={setActiveKey}>
+                        <Nav.Item eventKey="0" icon={<TrendIcon />} as={Link} to="/statistic">
+                                Quản lý doanh thu
+                            </Nav.Item>
                             <Nav.Item eventKey="1" icon={<PeoplesIcon />} as={Link} to="/user">
                                 Quản lý thành viên
                             </Nav.Item>
@@ -95,6 +112,9 @@ function Sidebar() {
                             </Nav.Item>
                             <Nav.Item eventKey="6" icon={<MessageIcon />} as={Link} to="/comment">
                                 Quản lý bình luận
+                            </Nav.Item>
+                            <Nav.Item eventKey="7" icon={<TextImageIcon />} as={Link} to="/news">
+                                Quản lý bài viết
                             </Nav.Item>
                         </Nav>
                     </Sidenav.Body>

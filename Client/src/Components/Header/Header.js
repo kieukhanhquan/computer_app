@@ -33,7 +33,7 @@ function Header(){
                 <form action="/search" method="get" className="navbar_search">
                     <input type="text" className="navbar__search-text" placeholder='Nhập từ khóa tìm kiếm' />
                     <button type="submit" className="navbar__search-icon">
-                        <SearchIcon height= "90%"/>
+                        <SearchIcon height= "90%" fontSize= "18px"/>
                     </button>
                 </form>
                 <div className="route_wrap">

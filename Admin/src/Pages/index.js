@@ -9,6 +9,8 @@ import Register from "./Register";
 import Phone from "./Forget/phone";
 import Reset
  from "./Forget/reset";
+ import Statistic  from "./Statistic";
+import News from "./News";
 function Dashboard() {
     return (
       <div>
@@ -27,5 +29,6 @@ export {
   Login,
   Register,
   Phone,
-  Reset
+  Reset, Statistic
+  ,News
 }

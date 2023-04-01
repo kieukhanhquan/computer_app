@@ -1,13 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import UserInfor from './Pages/UserInfor/UserInfor';
-
+import Header from "./Components/Header/Header"
+import Footer from "./Components/Footer/Footer"
+import Home from "./Pages/Home/Home"
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <UserInfor />
+  <React.StrictMode  >
+    <Header/>
+    <Home/>
+    <Footer />
   </React.StrictMode>
 );
 

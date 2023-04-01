@@ -10,7 +10,8 @@ import {
     Login,
     Register,
     Phone,
-    Reset
+    Reset, Statistic
+    , News
 } from "../Pages/index";
 import Dashboard from "../Pages/index";
 import OrderDetail from "../Pages/Order/orderDetail";
@@ -27,6 +28,9 @@ export const routes = [
     },
     {
         path: "/reset", component: Reset, layout: LoginLayout
+    },
+    {
+        path: '/statistic',  component: Statistic, layout: MainLayout
     },
     {
         path: '/user',  component: User, layout: MainLayout
@@ -48,5 +52,8 @@ export const routes = [
     },
     {
         path: '/comment',  component: Comment, layout: MainLayout
+    },
+    {
+        path: '/news',  component: News, layout: MainLayout
     }
 ]
