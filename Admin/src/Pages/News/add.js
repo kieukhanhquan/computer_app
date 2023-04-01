@@ -6,7 +6,7 @@ const AddNews = () => {
     const editorRef = useRef(null);
     return (
         <div className="modal fade" id="add" tabIndex="-1" role="dialog" aria-labelledby="title" aria-hidden="true">
-            <div className="modal-dialog modal-xl modal-dialog-centered  modal-dialog-scrollable" id="addnews" role="document" >
+            <div className="modal-dialog modal-xl modal-dialog-centered  modal-dialog-scrollable scroll-x" id="addnews" role="document" >
                 <div className="modal-content">
                     <div className="modal-header">
                         <h5 className="modal-title" id="title">
@@ -15,7 +15,7 @@ const AddNews = () => {
                         <button type="button" className="btn-close" aria-label="Close" data-bs-dismiss="modal"></button>
                     </div>
                     <form className="was-validated">
-                        <div className="modal-body">
+                        <div className="modal-body scroll-y">
                             <div className="row">
                                 <div className="form-group col">
                                     <label htmlFor="n_name" className="col-form-label">Tên bài viết</label>

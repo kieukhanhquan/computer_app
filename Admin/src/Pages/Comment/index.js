@@ -6,34 +6,35 @@ import DeleteComments from "./deleteMul";
 
 
 function createData(id, username, product_name, content, timestamp) {
-  return { id: id, username: username, product_name: product_name, content: content, timestamp:timestamp }
+  return { id: id, username: username, product_name: product_name, content: content, timestamp: timestamp }
 }
 const datas = [
   createData('c123', 'Nguyễn Văn A', 'Điện thoại C', 'Sản phẩm rất tốt', '16:45:24, February 24, 2023'),
-  createData('c124', 'Nguyễn Văn B', 'Điện thoại A', 'Sản phẩm rất tệ','16:45:24, February 24, 2023'),
-  createData('c125', 'Nguyễn Văn C', 'Điện thoại B', 'Sản phẩm tạm được','16:45:24, February 24, 2023'),
+  createData('c124', 'Nguyễn Văn B', 'Điện thoại A', 'Sản phẩm rất tệ', '16:45:24, February 24, 2023'),
+  createData('c125', 'Nguyễn Văn C', 'Điện thoại B', 'Sản phẩm tạm được', '16:45:24, February 24, 2023'),
   createData('c123', 'Nguyễn Văn A', 'Điện thoại C', 'Sản phẩm rất tốt', '16:45:24, February 24, 2023'),
-  createData('c124', 'Nguyễn Văn B', 'Điện thoại A', 'Sản phẩm rất tệ','16:45:24, February 24, 2023'),
-  createData('c125', 'Nguyễn Văn C', 'Điện thoại B', 'Sản phẩm tạm được','16:45:24, February 24, 2023'),
+  createData('c124', 'Nguyễn Văn B', 'Điện thoại A', 'Sản phẩm rất tệ', '16:45:24, February 24, 2023'),
+  createData('c125', 'Nguyễn Văn C', 'Điện thoại B', 'Sản phẩm tạm được', '16:45:24, February 24, 2023'),
   createData('c123', 'Nguyễn Văn A', 'Điện thoại C', 'Sản phẩm rất tốt', '16:45:24, February 24, 2023'),
-  createData('c124', 'Nguyễn Văn B', 'Điện thoại A', 'Sản phẩm rất tệ','16:45:24, February 24, 2023'),
-  createData('c125', 'Nguyễn Văn C', 'Điện thoại B', 'Sản phẩm tạm được','16:45:24, February 24, 2023'),
+  createData('c124', 'Nguyễn Văn B', 'Điện thoại A', 'Sản phẩm rất tệ', '16:45:24, February 24, 2023'),
+  createData('c125', 'Nguyễn Văn C', 'Điện thoại B', 'Sản phẩm tạm được', '16:45:24, February 24, 2023'),
   createData('c123', 'Nguyễn Văn A', 'Điện thoại C', 'Sản phẩm rất tốt', '16:45:24, February 24, 2023'),
-  createData('c124', 'Nguyễn Văn B', 'Điện thoại A', 'Sản phẩm rất tệ','16:45:24, February 24, 2023'),
-  createData('c125', 'Nguyễn Văn C', 'Điện thoại B', 'Sản phẩm tạm được','16:45:24, February 24, 2023'),
+  createData('c124', 'Nguyễn Văn B', 'Điện thoại A', 'Sản phẩm rất tệ', '16:45:24, February 24, 2023'),
+  createData('c125', 'Nguyễn Văn C', 'Điện thoại B', 'Sản phẩm tạm được', '16:45:24, February 24, 2023'),
   createData('c123', 'Nguyễn Văn A', 'Điện thoại C', 'Sản phẩm rất tốt', '16:45:24, February 24, 2023'),
-  createData('c124', 'Nguyễn Văn B', 'Điện thoại A', 'Sản phẩm rất tệ','16:45:24, February 24, 2023'),
-  createData('c125', 'Nguyễn Văn C', 'Điện thoại B', 'Sản phẩm tạm được','16:45:24, February 24, 2023'),
+  createData('c124', 'Nguyễn Văn B', 'Điện thoại A', 'Sản phẩm rất tệ', '16:45:24, February 24, 2023'),
+  createData('c125', 'Nguyễn Văn C', 'Điện thoại B', 'Sản phẩm tạm được', '16:45:24, February 24, 2023'),
   createData('c123', 'Nguyễn Văn A', 'Điện thoại C', 'Sản phẩm rất tốt', '16:45:24, February 24, 2023'),
-  createData('c124', 'Nguyễn Văn B', 'Điện thoại A', 'Sản phẩm rất tệ','16:45:24, February 24, 2023'),
-  createData('c125', 'Nguyễn Văn C', 'Điện thoại B', 'Sản phẩm tạm được','16:45:24, February 24, 2023'),
+  createData('c124', 'Nguyễn Văn B', 'Điện thoại A', 'Sản phẩm rất tệ', '16:45:24, February 24, 2023'),
+  createData('c125', 'Nguyễn Văn C', 'Điện thoại B', 'Sản phẩm tạm được', '16:45:24, February 24, 2023'),
   createData('c123', 'Nguyễn Văn A', 'Điện thoại C', 'Sản phẩm rất tốt', '16:45:24, February 24, 2023'),
-  createData('c124', 'Nguyễn Văn B', 'Điện thoại A', 'Sản phẩm rất tệ','16:45:24, February 24, 2023'),
-  createData('c125', 'Nguyễn Văn C', 'Điện thoại B', 'Sản phẩm tạm được','16:45:24, February 24, 2023'),
+  createData('c124', 'Nguyễn Văn B', 'Điện thoại A', 'Sản phẩm rất tệ', '16:45:24, February 24, 2023'),
+  createData('c125', 'Nguyễn Văn C', 'Điện thoại B', 'Sản phẩm tạm được', '16:45:24, February 24, 2023'),
 
 ];
 
 const Comment = () => {
+  const [def, SetDef] = useState({ id: "", username: "", product_name: "", content: "", timestamp: "" })
   const [itemOffset, SetOffset] = useState({ offset: 0, current: 0 })
   const itemPerPage = 7
   const endOffset = itemOffset.offset + itemPerPage
@@ -63,6 +64,7 @@ const Comment = () => {
   }
   return (
     <Fragment>
+
       <div className="container-fluid d-flex flex-column p-4 justify-content-center w-100 gap-2">
         <div className="row d-flex flex-sm-row flex-column w-100 justify-content-between align-items-center m-0 gap-1" id="top">
           <div className="col d-flex flex-row w-100 justify-content-md-start justify-content-center align-items-center gap-md-3 gap-2" id="top-left">
@@ -77,7 +79,10 @@ const Comment = () => {
           </div>
           <div className="col d-flex flex-row w-100 justify-content-md-end justify-content-center align-items-center" id="top-right">
             <div className="d-inline d-flex justify-content-center">
-              <input className="form-control rounded-5 input-bg-dark" type="text" placeholder="Tìm kiếm tên" aria-label="search" />
+              <div className="input-group d-flex px-5">
+                <input className="form-control" type="text" placeholder="Tìm kiếm tên" aria-label="search" />
+                <button className="btn btn-outline-primary" type="button">Tìm</button>
+              </div>
             </div>
           </div>
         </div>
@@ -111,9 +116,9 @@ const Comment = () => {
                         <td>{comment.content}</td>
                         <td>{comment.timestamp}</td>
                         <td>
-                          <div>{DeleteComment(comment)}</div>
+                          <div>{DeleteComment(def)}</div>
                           <button type="button" className="btn me-0 border-0"
-                            data-bs-toggle="modal" data-bs-target="#delete">
+                            data-bs-toggle="modal" onClick={() => { SetDef(comment) }} data-bs-target="#delete">
                             <RiDeleteBin6Fill size={25} style={{ color: "#dc3545" }} />
                           </button>
                         </td>
@@ -126,7 +131,7 @@ const Comment = () => {
           </div>
           <div className="row d-flex flex-sm-row flex-column w-100 justify-content-between align-items-center m-0 gap-1" id="bottome">
             <div className="col d-flex flex-row w-100 justify-content-md-start justify-content-center align-items-center gap-md-3 gap-2" id="bottom-left">
-                  <p style={{ color: "#6C757D" }}>Hiển thị {data.length} trong tổng số {datas.length} sản phẩm</p>
+              <p style={{ color: "#6C757D" }}>Hiển thị {data.length} trong tổng số {datas.length} bình luận</p>
             </div>
             <div className="col d-flex flex-row w-100 justify-content-md-end justify-content-center align-items-center" id="bottom-right">
               <ResponsivePagination

@@ -1,7 +1,7 @@
-.modal-dialog{
+.scroll-x{
     overflow-y: initial !important
 }
-.modal-body{
+.scroll-y{
     height: 600px;
     overflow-y: auto;
 }
