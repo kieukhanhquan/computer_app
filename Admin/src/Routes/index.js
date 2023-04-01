@@ -11,6 +11,7 @@ import {
     Register,
     Phone,
     Reset, Statistic
+    , News
 } from "../Pages/index";
 import Dashboard from "../Pages/index";
 import OrderDetail from "../Pages/Order/orderDetail";
@@ -51,5 +52,8 @@ export const routes = [
     },
     {
         path: '/comment',  component: Comment, layout: MainLayout
+    },
+    {
+        path: '/news',  component: News, layout: MainLayout
     }
 ]

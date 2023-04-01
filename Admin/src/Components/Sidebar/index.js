@@ -10,6 +10,7 @@ import MessageIcon from '@rsuite/icons/Message'
 import TagNumberIcon from '@rsuite/icons/TagNumber'
 import DetailIcon from '@rsuite/icons/Detail';
 import TrendIcon from '@rsuite/icons/Trend';
+import TextImageIcon from '@rsuite/icons/TextImage';
 
 function Sidebar() {
     const location = useLocation()
@@ -68,6 +69,9 @@ function Sidebar() {
             case '/comment':
                 setActiveKey('6')
                 break
+            case '/news':
+                setActiveKey('7')
+                break
             default:
                 let regex = /\/order\/*/
                 let pathURL = location.pathname
@@ -108,6 +112,9 @@ function Sidebar() {
                             </Nav.Item>
                             <Nav.Item eventKey="6" icon={<MessageIcon />} as={Link} to="/comment">
                                 Quản lý bình luận
+                            </Nav.Item>
+                            <Nav.Item eventKey="7" icon={<TextImageIcon />} as={Link} to="/news">
+                                Quản lý bài viết
                             </Nav.Item>
                         </Nav>
                     </Sidenav.Body>
