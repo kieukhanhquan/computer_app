@@ -14,7 +14,7 @@ function createData(img, name, id, company, price, quantity, sold, type, desc) {
   return { image: img, name: name, id: id, company: company, price: price, quantity: quantity, sold: sold, type: type, desc: desc }
 }
 const datas = [
-  createData("https://ps.w.org/user-avatar-reloaded/assets/icon-128x128.png?rev=2540745", 'Máy tính', 'PX123', 'DELL', 150000, 15, 5, 'Máy tính', "MÁY TÍNH XÁCH TAY"),
+  createData("https://ps.w.org/user-avatar-reloaded/assets/icon-128x128.png?rev=2540745", 'Máy tính1', 'PX123', 'DELL', 150000, 15, 5, 'Máy tính', "MÁY TÍNH XÁCH TAY"),
   createData("https://ps.w.org/user-avatar-reloaded/assets/icon-128x128.png?rev=2540745", 'Máy tính', 'PX123', 'DELL', 150000, 15, 5, 'Máy tính', "MÁY TÍNH XÁCH TAY"),
   createData("https://ps.w.org/user-avatar-reloaded/assets/icon-128x128.png?rev=2540745", 'Máy tính', 'PX123', 'DELL', 150000, 15, 5, 'Máy tính', "MÁY TÍNH XÁCH TAY"),
   createData("https://ps.w.org/user-avatar-reloaded/assets/icon-128x128.png?rev=2540745", 'Máy tính', 'PX123', 'DELL', 150000, 15, 5, 'Máy tính', "MÁY TÍNH XÁCH TAY"),
@@ -81,6 +81,7 @@ const datas = [
 ];
 
 const Product = () => {
+  const [def, SetDef] = useState({ img: "", name: "", id: "", company: "", price: "", quantity: "", sold: "", type: "", desc: "" })
   const [itemOffset, SetOffset] = useState({ offset: 0, current: 0 })
   const itemPerPage = 7
   const endOffset = itemOffset.offset + itemPerPage
@@ -129,7 +130,10 @@ const Product = () => {
           </div>
           <div className="col d-flex flex-row w-100 justify-content-md-end justify-content-center align-items-center" id="top-right">
             <div className="d-inline d-flex justify-content-center">
-              <input className="form-control rounded-5 input-bg-dark" type="text" placeholder="Tìm kiếm tên" aria-label="search" />
+              <div className="input-group d-flex px-5">
+                <input className="form-control" type="text" placeholder="Tìm kiếm tên" aria-label="search" />
+                <button className="btn btn-outline-primary" type="button">Tìm</button>
+              </div>
             </div>
           </div>
         </div>
@@ -172,15 +176,15 @@ const Product = () => {
                         <td>{product.type}</td>
                         <td>
                           <div>
-                            {UpdateProduct(product)}
-                            {RemoveProduct(product)}
+                            {UpdateProduct(def)}
+                            {RemoveProduct(def)}
                           </div>
                           <button type="button" className="btn me-1 border-0"
-                            data-bs-toggle="modal" data-bs-target="#update">
+                            data-bs-toggle="modal" onClick={() => { SetDef(product) }} data-bs-target="#update">
                             <BiEdit size={25} style={{ color: "#0d6efd" }} />
                           </button>
                           <button type="button" className="btn me-0 border-0"
-                            data-bs-toggle="modal" data-bs-target="#delete">
+                            data-bs-toggle="modal" onClick={() => { SetDef(product) }} data-bs-target="#delete">
                             <RiDeleteBin6Fill size={25} style={{ color: "#dc3545" }} />
                           </button>
                         </td>
@@ -193,7 +197,7 @@ const Product = () => {
           </div>
           <div className="row d-flex flex-sm-row flex-column w-100 justify-content-between align-items-center m-0 gap-1" id="bottome">
             <div className="col d-flex flex-row w-100 justify-content-md-start justify-content-center align-items-center gap-md-3 gap-2" id="bottom-left">
-                  <p style={{ color: "#6C757D" }}>Hiển thị {data.length} trong tổng số {datas.length} sản phẩm</p>
+              <p style={{ color: "#6C757D" }}>Hiển thị {data.length} trong tổng số {datas.length} sản phẩm</p>
             </div>
             <div className="col d-flex flex-row w-100 justify-content-md-end justify-content-center align-items-center" id="bottom-right">
               <ResponsivePagination

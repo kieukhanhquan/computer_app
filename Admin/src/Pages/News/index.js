@@ -10,7 +10,9 @@ function createData(id, title, type, author, date, content) {
     return { id: id, title: title, type: type, author: author, date: date, content:content}
 }
 const datas = [
-    createData('n123', 'Điện thoại thế hệ mới', 'Công nghệ', "Nguyễn Văn A", '20-11-2022', `<h1 class="title" style="text-align: center;">
+    createData('n123', 'Điện thoại thế hệ mới', 'Công nghệ', "Nguyễn Văn A", '20-11-2022', "<p><img style=\"display: block; margin-left: auto; margin-right: auto;\" src=\"https://img.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg?w=2000\" alt=\"Avatar Images - Free Download on Freepik\" width=\"330\" height=\"330\"></p>"),
+
+    createData('n123', 'Điện thoại thế hệ mới2', 'Công nghệ', "Nguyễn Văn A", '20-11-2022', `<h1 class="title" style="text-align: center;">
     <strong>Cảnh gi&aacute;c nạn giả danh xe &ocirc;m c&ocirc;ng nghệ để trộm cắp</strong></h1>
     <p style="text-align: justify;"><em><strong><span class="authors">MINH HẠNH</span></strong></em></p>
     <p style="text-align: justify;">Trước sự &ldquo;b&ugrave;ng nổ&rdquo; của&nbsp;
@@ -32,16 +34,7 @@ const datas = [
     biện ph&aacute;p mạnh để xử l&yacute; t&igrave;nh trạng n&agrave;y.</p>`),
     createData('n123', 'Điện thoại thế hệ mới', 'Công nghệ', "Nguyễn Văn A", '20-11-2022', `<h1 class="title" style="text-align: center;">
     <strong>Cảnh gi&aacute;c nạn giả danh xe &ocirc;m c&ocirc;ng nghệ để trộm cắp</strong></h1>
-    <p style="text-align: justify;"><em><strong><span class="authors">MINH HẠNH</span></strong></em></p>
-    <p style="text-align: justify;">Trước sự &ldquo;b&ugrave;ng nổ&rdquo; của&nbsp;
-    <a title="xe &ocirc;m c&ocirc;ng nghệ" href="https://laodong.vn/tags/xe-om-cong-nghe-626.ldo" 
-    target="_blank" rel="external noopener">xe &ocirc;m c&ocirc;ng nghệ</a>, nhiều đối tượng đ&atilde; 
-    mặc đồng phục giả t&agrave;i xế xe &ocirc;m c&ocirc;ng nghệ vi phạm ph&aacute;p luật. Để bảo đảm an 
-    to&agrave;n v&agrave; quyền lợi của<a title=" người ti&ecirc;u d&ugrave;ng" href="https://laodong.vn/tags/nguoi-tieu-dung-8553.ldo" 
-    target="_blank" rel="external noopener">&nbsp;người ti&ecirc;u d&ugrave;ng</a>, c&aacute;c cơ quan chức năng cần c&oacute; 
-    biện ph&aacute;p mạnh để xử l&yacute; t&igrave;nh trạng n&agrave;y.</p>`),
-    createData('n123', 'Điện thoại thế hệ mới', 'Công nghệ', "Nguyễn Văn A", '20-11-2022', `<h1 class="title" style="text-align: center;">
-    <strong>Cảnh gi&aacute;c nạn giả danh xe &ocirc;m c&ocirc;ng nghệ để trộm cắp</strong></h1>
+    <img src="https://www.w3schools.com/images/w3schools_green.jpg" alt="W3Schools.com">
     <p style="text-align: justify;"><em><strong><span class="authors">MINH HẠNH</span></strong></em></p>
     <p style="text-align: justify;">Trước sự &ldquo;b&ugrave;ng nổ&rdquo; của&nbsp;
     <a title="xe &ocirc;m c&ocirc;ng nghệ" href="https://laodong.vn/tags/xe-om-cong-nghe-626.ldo" 
@@ -53,6 +46,7 @@ const datas = [
 ];
 
 const News = () => {
+    const [def, SetDef] = useState({id: "", title: "", type:"", author:"", date:"", content:""})
     const [itemOffset, SetOffset] = useState({ offset: 0, current: 0 })
     const itemPerPage = 7
     const endOffset = itemOffset.offset + itemPerPage
@@ -82,7 +76,7 @@ const News = () => {
     return (
         <Fragment>
             <div className="container-fluid d-flex flex-column p-4 justify-content-center w-100 gap-2">
-                <div className="row d-flex flex-sm-row flex-column w-100 justify-content-between align-items-center m-0 gap-1" id="top">
+                <div className="row d-flex flex-sm-row flex-column w-100 justify-content-between align-items-center m-0 gap-2" id="top">
                     <div className="col d-flex flex-row w-100 justify-content-md-start justify-content-center align-items-center gap-md-3 gap-2" id="top-left">
                         <p className="d-inline fs-6">
                             All({datas.length})
@@ -99,8 +93,9 @@ const News = () => {
                         </div>
                     </div>
                     <div className="col d-flex flex-row w-100 justify-content-md-end justify-content-center align-items-center" id="top-right">
-                        <div className="d-inline d-flex justify-content-center">
-                            <input className="form-control rounded-5 input-bg-dark" type="text" placeholder="Tìm kiếm tên" aria-label="search" />
+                        <div className="input-group d-flex px-5">
+                            <input className="form-control" type="text" placeholder="Tìm kiếm tên" aria-label="search" />
+                            <button className="btn btn-outline-primary" type="button">Tìm</button>
                         </div>
                     </div>
                 </div>
@@ -134,16 +129,14 @@ const News = () => {
                                                 <td>{news.author}</td>
                                                 <td>{news.date}</td>
                                                 <td>
-                                                    <div>
-                                                        {DeleteNews(news)}
-                                                        {EditNews(news)}
-                                                    </div>
+                                                    {DeleteNews(def)}
+                                                    {EditNews(def)}
                                                     <button type="button" className="btn me-1 border-0"
-                                                        data-bs-toggle="modal" data-bs-target="#edit">
+                                                        data-bs-toggle="modal" onClick={()=>{SetDef(news)}} data-bs-target="#edit">
                                                         <BiEdit size={25} style={{ color: "#0d6efd" }} />
                                                     </button>
                                                     <button type="button" className="btn me-0 border-0"
-                                                        data-bs-toggle="modal" data-bs-target="#delete">
+                                                        data-bs-toggle="modal" onClick={()=>{SetDef(news)}} data-bs-target="#delete">
                                                         <RiDeleteBin6Fill size={25} style={{ color: "#dc3545" }} />
                                                     </button>
                                                 </td>
@@ -156,7 +149,7 @@ const News = () => {
                     </div>
                     <div className="row d-flex flex-sm-row flex-column w-100 justify-content-between align-items-center m-0 gap-1" id="bottome">
                         <div className="col d-flex flex-row w-100 justify-content-md-start justify-content-center align-items-center gap-md-3 gap-2" id="bottom-left">
-                            <p style={{ color: "#6C757D" }}>Hiển thị {data.length} trong tổng số {datas.length} sản phẩm</p>
+                            <p style={{ color: "#6C757D" }}>Hiển thị {data.length} trong tổng số {datas.length} bài viết</p>
                         </div>
                         <div className="col d-flex flex-row w-100 justify-content-md-end justify-content-center align-items-center" id="bottom-right">
                             <ResponsivePagination

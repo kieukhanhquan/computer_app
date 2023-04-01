@@ -1,13 +1,13 @@
 import React, { Fragment, useState } from "react"
 import { RiDeleteBin6Fill } from 'react-icons/ri'
 import ResponsivePagination from 'react-responsive-pagination';
-import {BiEdit} from 'react-icons/bi'
+import { BiEdit } from 'react-icons/bi'
 import AddVoucher from "./add";
 import EditVoucher from "./edit";
 import DeleteVoucher from "./delete";
 import DeleteVouchers from "./deletemul";
 function createData(id, name, value, rqm, tag) {
-  return { id: id, name: name, value: value,  rqm: rqm, tag: tag}
+  return { id: id, name: name, value: value, rqm: rqm, tag: tag }
 }
 const datas = [
   createData('c123', 'Voucher cơ bản', '10%', 500000, 'COBAN2023'),
@@ -25,6 +25,7 @@ const datas = [
 ];
 
 const Voucher = () => {
+  const [def, SetDef] = useState({ id: "", name: "", value: "", rqm: "", tag: "" })
   const [itemOffset, SetOffset] = useState({ offset: 0, current: 0 })
   const itemPerPage = 7
   const endOffset = itemOffset.offset + itemPerPage
@@ -65,7 +66,7 @@ const Voucher = () => {
               <button className="btn btn-primary rounded-5"
                 data-bs-toggle="modal" data-bs-target="#add">Thêm</button>
             </div>
-            <div className="d-inline d-flex justify-content-center">\
+            <div className="d-inline d-flex justify-content-center">
 
               {DeleteVouchers()}
               <button className="btn btn-danger rounded-5 btn-block"
@@ -74,7 +75,10 @@ const Voucher = () => {
           </div>
           <div className="col d-flex flex-row w-100 justify-content-md-end justify-content-center align-items-center" id="top-right">
             <div className="d-inline d-flex justify-content-center">
-              <input className="form-control rounded-5 input-bg-dark" type="text" placeholder="Tìm kiếm tên" aria-label="search" />
+              <div className="input-group d-flex px-5">
+                <input className="form-control" type="text" placeholder="Tìm kiếm tên" aria-label="search" />
+                <button className="btn btn-outline-primary" type="button">Tìm</button>
+              </div>
             </div>
           </div>
         </div>
@@ -109,15 +113,15 @@ const Voucher = () => {
                         <td>{voucher.tag}</td>
                         <td>
                           <div>
-                            {EditVoucher(voucher)}
-                            {DeleteVoucher(voucher)}
+                            {EditVoucher(def)}
+                            {DeleteVoucher(def)}
                           </div>
-                        <button type="button" className="btn me-1 border-0"
-                            data-bs-toggle="modal" data-bs-target="#edit">
+                          <button type="button" className="btn me-1 border-0"
+                            data-bs-toggle="modal" onClick={() => { SetDef(voucher) }} data-bs-target="#edit">
                             <BiEdit size={25} style={{ color: "#0d6efd" }} />
                           </button>
                           <button type="button" className="btn me-0 border-0"
-                            data-bs-toggle="modal" data-bs-target="#delete">
+                            data-bs-toggle="modal" onClick={() => { SetDef(voucher) }} data-bs-target="#delete">
                             <RiDeleteBin6Fill size={25} style={{ color: "#dc3545" }} />
                           </button>
                         </td>
@@ -130,7 +134,7 @@ const Voucher = () => {
           </div>
           <div className="row d-flex flex-sm-row flex-column w-100 justify-content-between align-items-center m-0 gap-1" id="bottome">
             <div className="col d-flex flex-row w-100 justify-content-md-start justify-content-center align-items-center gap-md-3 gap-2" id="bottom-left">
-                  <p style={{ color: "#6C757D" }}>Hiển thị {data.length} trong tổng số {datas.length} sản phẩm</p>
+              <p style={{ color: "#6C757D" }}>Hiển thị {data.length} trong tổng số {datas.length} mã giảm giá</p>
             </div>
             <div className="col d-flex flex-row w-100 justify-content-md-end justify-content-center align-items-center" id="bottom-right">
               <ResponsivePagination
