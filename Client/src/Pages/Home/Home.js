@@ -1,4 +1,5 @@
 import "./Home.css"
+import ListItem from "../../Components/ListItem/ListItem"
 function Home() {
     return (
         <div className="HomePage">
@@ -29,43 +30,7 @@ function Home() {
             <div className="content-product">
                 <div className="grid">
                     <div className="product__heading">SẢN PHẨM NỔI BẬT</div>
-                    <div className="list-item">
-                        
-                    <div className="item-wrap">
-                            <a href="">
-                                <img src="https://picsum.photos/200/200" className="img-thumbnail" alt="Cinque Terre"/>
-                                <div className="item__price">Tên sản phẩm</div>
-                                
-                            </a>
-                            <div className="item__price">1.999.000đ</div>
-                        </div>
-                        
-                        <div className="item-wrap">
-                            <a href="">
-                                <img src="https://picsum.photos/200/200" className="img-thumbnail" alt="Cinque Terre"/>
-                                <div className="item__price">Tên sản phẩm</div>
-                                
-                            </a>
-                            <div className="item__price">1.999.000đ</div>
-                        </div>
-                        <div className="item-wrap">
-                            <a href="">
-                                <img src="https://picsum.photos/200/200" className="img-thumbnail" alt="Cinque Terre"/>
-                                <div className="item__price">Tên sản phẩm</div>
-                                
-                            </a>
-                            <div className="item__price">1.999.000đ</div>
-                        </div>
-                        
-                        <div className="item-wrap">
-                            <a href="">
-                                <img src="https://picsum.photos/200/200" className="img-thumbnail" alt="Cinque Terre"/>
-                                <div className="item__price">Tên sản phẩm</div>
-                                
-                            </a>
-                            <div className="item__price">1.999.000đ</div>
-                        </div>
-                    </div>
+                    <ListItem />
                 </div>
                 
                 
@@ -73,86 +38,13 @@ function Home() {
             <div className="content-accessory">
                 <div className="grid">
                     <div className="accessory__heading">SẢN PHẨM BÁN CHẠY</div>
-                    <div className="list-item">
-                        
-                        <div className="item-wrap">
-                            <a href="">
-                                <img src="https://picsum.photos/200/200" className="img-thumbnail" alt="Cinque Terre"/>
-                                <div className="item__price">Tên sản phẩm</div>
-                                
-                            </a>
-                            <div className="item__price">1.999.000đ</div>
-                        </div>
-                        
-                        <div className="item-wrap">
-                            <a href="">
-                                <img src="https://picsum.photos/200/200" className="img-thumbnail" alt="Cinque Terre"/>
-                                <div className="item__price">Tên sản phẩm</div>
-                                
-                            </a>
-                            <div className="item__price">1.999.000đ</div>
-                        </div>
-                        <div className="item-wrap">
-                            <a href="">
-                                <img src="https://picsum.photos/200/200" className="img-thumbnail" alt="Cinque Terre"/>
-                                <div className="item__price">Tên sản phẩm</div>
-                                
-                            </a>
-                            <div className="item__price">1.999.000đ</div>
-                        </div>
-                        
-                        <div className="item-wrap">
-                            <a href="">
-                                <img src="https://picsum.photos/200/200" className="img-thumbnail" alt="Cinque Terre"/>
-                                <div className="item__price">Tên sản phẩm</div>
-                                
-                            </a>
-                            <div className="item__price">1.999.000đ</div>
-                        </div>
-                        
-                    </div>
+                    <ListItem />
                 </div>
             </div>
             <div className="content-accessory">
                 <div className="grid">
                     <div className="accessory__heading">SẢN PHẨM SALES CHẠY NHẤT THÁNG</div>
-                    <div className="list-item">
-                        
-                    <div className="item-wrap">
-                            <a href="">
-                                <img src="https://picsum.photos/200/200" className="img-thumbnail" alt="Cinque Terre"/>
-                                <div className="item__price">Tên sản phẩm</div>
-                                
-                            </a>
-                            <div className="item__price">1.999.000đ</div>
-                        </div>
-                        
-                        <div className="item-wrap">
-                            <a href="">
-                                <img src="https://picsum.photos/200/200" className="img-thumbnail" alt="Cinque Terre"/>
-                                <div className="item__price">Tên sản phẩm</div>
-                                
-                            </a>
-                            <div className="item__price">1.999.000đ</div>
-                        </div>
-                        <div className="item-wrap">
-                            <a href="">
-                                <img src="https://picsum.photos/200/200" className="img-thumbnail" alt="Cinque Terre"/>
-                                <div className="item__price">Tên sản phẩm</div>
-                                
-                            </a>
-                            <div className="item__price">1.999.000đ</div>
-                        </div>
-                        
-                        <div className="item-wrap">
-                            <a href="">
-                                <img src="https://picsum.photos/200/200" className="img-thumbnail" alt="Cinque Terre"/>
-                                <div className="item__price">Tên sản phẩm</div>
-                                
-                            </a>
-                            <div className="item__price">1.999.000đ</div>
-                        </div>
-                    </div>
+                    <ListItem />
                 </div>
             </div>
         </div>
