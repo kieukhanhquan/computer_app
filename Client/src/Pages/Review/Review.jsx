@@ -23,7 +23,7 @@ const Review = () => {
 
   return (
         <Fragment>
-            <Header/>
+            
                 <div className='body' style={{marginTop:'5%',}}>
                     <div className='sidebar' style={{width:'325px'}}>
                         <Sidenav defaultOpenKeys={[]}>
@@ -72,7 +72,7 @@ const Review = () => {
                         </div>      
                     </div>
                 </div>
-            <Footer/>
+            
         </Fragment>
   )
 }

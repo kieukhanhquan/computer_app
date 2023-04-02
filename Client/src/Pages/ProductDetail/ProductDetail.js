@@ -20,7 +20,6 @@ function ProductDetail() {
 
     return (
         <Fragment>
-            <Header/>
             <div class="ProfileProduct" style={{marginTop:'5%'}}>
                 <div class="pathUrl">
                     <a href="./index.php" class="path1">
@@ -123,7 +122,6 @@ function ProductDetail() {
         </div>
     
         </div>
-            <Footer/>
         </Fragment> 
     )
 }

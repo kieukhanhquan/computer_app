@@ -22,7 +22,7 @@ function UserInfor() {
         <Fragment >
             <div className='body'>
                 <div >
-                    <Header />
+                    
                 </div>
                 
                 <div className='content' >
@@ -108,7 +108,7 @@ function UserInfor() {
                     </div>
                 </div>
                 <div>
-                    <Footer />
+                    
                 </div>
             </div>
             
