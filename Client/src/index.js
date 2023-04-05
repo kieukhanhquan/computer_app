@@ -8,11 +8,16 @@ import ProductDetail from './Pages/ProductDetail/ProductDetail';
 import Review from './Pages/Review/Review';
 import OrderItem from './Components/OrderItem/OrderItem';
 import AboutUs from './Pages/AboutUs/AboutUs';
+import CategoryProduct from './Pages/CategoryProduct/CategoryProduct'
+import Payment from './Pages/Payment/Payment'
+import UserInfor from './Pages/UserInfor/UserInfor'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode  >
-    <AboutUs></AboutUs>
+    <Header />
+    <AboutUs />
+    <Footer />
   </React.StrictMode>
 );
 
