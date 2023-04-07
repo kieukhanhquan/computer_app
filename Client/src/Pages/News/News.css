@@ -1,0 +1,17 @@
+.global-wrap{
+    display: flex;
+    flex-direction: column;
+}
+.news-wrap{
+    padding-right:5%;
+    display: flex;
+    flex-direction: column;
+}
+.news-title{
+    text-size-adjust: bold;
+    font-size:20px;
+}
+.news-decription{
+    text-size-adjust: light;
+    font-size:9px;
+}
