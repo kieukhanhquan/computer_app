@@ -1,10 +1,11 @@
 @import url('normalize.css');
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;700&display=swap');
 @import 'rsuite/dist/rsuite.css';
+
 :root {
     --text-color: #333;
-    --header-height: 70px ;
-    --sidebar-width: 250px ;
+    --header-height: 70px;
+    --sidebar-width: 250px;
 }
 
 body {
@@ -14,22 +15,26 @@ body {
     scroll-behavior: smooth;
     overflow-x: hidden;
     min-width: 200px;
-    
+
 }
 
-.nav > li > a:hover{
-    background-color:#DC3545;
+.nav>li>a:hover {
+    background-color: #DC3545;
 }
-img{
+
+img {
     border-radius: 50%;
     border: #333;
 }
-a{
+
+a {
     text-decoration: none;
 }
-.header-bar{
+
+.header-bar {
     z-index: 999;
 }
+
 /* position-fixed shadow-sm d-flex justify-content-between align-items-center py-2 px-4 bg-white */
 /* .header-bar{
     position: fixed;
@@ -45,3 +50,21 @@ a{
     height: var(--header-height); 
     width:calc(100% - var(--sidebar-width));
 } */
+::-webkit-scrollbar {
+    width: 9px;
+    height: 9px;
+
+}
+
+::-webkit-scrollbar-track {
+    background: white;
+}
+
+::-webkit-scrollbar-thumb {
+    height: 50px;
+    border-radius: 4px;
+    background: rgb(174, 174, 174);
+}
+::-webkit-scrollbar-thumb:hover {
+    background: rgb(152, 152, 152);
+}

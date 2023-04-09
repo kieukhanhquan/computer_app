@@ -11,7 +11,7 @@ const confirmChange = () => {
                     </div>
                     <div className="modal-footer d-flex justify-content-around">
                         <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
-                        <button type="button" className="btn btn-primary" data-bs-dismiss="modal">Xóa</button>
+                        <button type="button" className="btn btn-primary" data-bs-dismiss="modal">Lưu thay đổi</button>
                     </div>
                 </div>
             </div>
