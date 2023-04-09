@@ -1,0 +1,13 @@
+.body{
+    display: flex;
+    flex-direction: column;
+}
+.content{
+    margin-top: 75px;
+    display: flex;
+    flex-direction: row;
+}
+.Form{
+    margin-left: 30px;
+    margin-right: 30px;
+}

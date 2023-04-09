@@ -1,0 +1,9 @@
+.body{
+    display: flex;
+    flex-direction: row;
+}
+.Nav1{
+    display:    grid;
+    grid-template-columns: auto auto auto auto;
+    margin-top: 40px;
+}

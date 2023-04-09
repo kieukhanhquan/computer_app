@@ -1,6 +1,6 @@
 import "./Home.css"
 import ListItem from "../../Components/ListItem/ListItem"
-function Home() {
+function News() {
     return (
         <div className="HomePage">
             <div className="content-main">
@@ -51,4 +51,4 @@ function Home() {
     )
 }
   
-export default Home
+export default News

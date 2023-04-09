@@ -1,5 +1,4 @@
-import { useLayoutEffect, useState } from "react"
-import { useLocation } from "react-router-dom"
+
 import LocationIcon from '@rsuite/icons/Location';
 import PhoneIcon from '@rsuite/icons/Phone';
 import EmailIcon from '@rsuite/icons/Email';
