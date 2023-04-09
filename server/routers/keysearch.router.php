@@ -17,7 +17,7 @@
     elseif($method == "POST") {
         $data = json_decode(file_get_contents('php://input'), true) ;
         $result = $keysearch->addKeySearch($server->db, $data['name']);
-        if ($result == "success"){
+        if (strcmp($result, "Success")){
             echo($result);
             http_response_code(200);
         }
@@ -30,7 +30,7 @@
     elseif($method == "DELETE") {
         $data = json_decode(file_get_contents('php://input'), true) ;
         $result = $keysearch->deleteKeySearch($server->db, $data['id']);
-        if ($result == "success"){
+        if (strcmp($result, "Success")){
             echo($result);
             http_response_code(200);
         }
