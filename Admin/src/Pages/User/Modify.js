@@ -24,41 +24,41 @@ const ModifyClient = ({ user }) => {
                         <div className='d-flex justify-content-between'>
                             <div className='mb-3' style={{ width: "48%" }}>
                                 <label for='userID' className='form-label' style={{ color: "#6B7280" }}>Mã thành viên</label>
-                                <input type='userID' className='form-control' id='userID' name='userID' value={user.id} disabled />
+                                <input type='userID' className='form-control' id='userID' name='userID' value={user.ID} disabled />
                             </div>
                             <div className='mb-3' style={{ width: "48%" }}>
                                 <label for='username' className='form-label' style={{ color: "#6B7280" }}>Tên tài khoản</label>
-                                <input type='text' className='form-control' id='username' name='username' value={user.username} disabled />
+                                <input type='text' className='form-control' id='username' name='username' value={user.UserName} disabled />
                             </div>
                         </div>
                         <div className='d-flex justify-content-between'>
                             <div className='mb-3' style={{ width: "48%" }}>
                                 <label for='fname' className='form-label' style={{ color: "#6B7280" }}>Họ và tên</label>
-                                <input type='text' className='form-control' id='fname' name='fname' value="Arlene" />
+                                <input type='text' className='form-control' id='fname' name='fname' value={user.FirstName} />
                             </div>
                             <div className='mb-3' style={{ width: "48%" }}>
                                 <label></label>
-                                <input type='text' className='form-control mt-2' id='lname' name='lname' value="McCoy" />
+                                <input type='text' className='form-control mt-2' id='lname' name='lname' value={user.LastName} />
                             </div>
                         </div>
                         <div className='d-flex justify-content-between'>
                             <div className='mb-3' style={{ width: "48%" }}>
                                 <label for='birth' className='form-label' style={{ color: "#6B7280" }}>Ngày sinh</label>
-                                <input type='text' className='form-control' id='birth' name='birth' value={user.birth} />
+                                <input type='text' className='form-control' id='birth' name='birth' value={user.DayOfBirth} />
                             </div>
                             <div className='mb-3' style={{ width: "48%" }}>
                                 <label for='phone' className='form-label' style={{ color: "#6B7280" }}>Số điện thoại</label>
-                                <input type='text' className='form-control' id='phones' name='phone' value={user.phone} />
+                                <input type='text' className='form-control' id='phones' name='phone' value={user.PhoneNumber} />
                             </div>
                         </div>
                         <div className='d-flex justify-content-between'>
                             <div className='mb-3' style={{ width: "48%" }}>
                                 <label for='email' className='form-label' style={{ color: "#6B7280" }}>Email</label>
-                                <input type='text' className='form-control' id='email' name='email' value={user.email} />
+                                <input type='text' className='form-control' id='email' name='email' value={user.Email} />
                             </div>
                             <div className='mb-3' style={{ width: "48%" }}>
                                 <label for='image' className='form-label' style={{ color: "#6B7280" }}>Ảnh đại diện</label>
-                                <input type='text' className='form-control' id='image' name='image' value={user.avatar} />
+                                <input type='text' className='form-control' id='image' name='image' value={user.Avatar} />
                             </div>
                         </div>
                     </Modal.Body>
