@@ -8,7 +8,7 @@
 -- PHP Version: 8.2.0
 DROP DATABASE IF EXISTS computerapp;
 CREATE DATABASE IF NOT EXISTS computerapp; 
-USE test;
+USE computerapp;
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
