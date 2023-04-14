@@ -1,7 +1,7 @@
 <?php
 
     class Server{
-        public $serverName = "127.0.0.1";
+        public $serverName = "localhost";
         public $userName = "root";
         public $password = "";
         public $dbName = "computerapp";
