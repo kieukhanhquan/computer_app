@@ -21,6 +21,10 @@
         include_once "./routers/product.router.php";
     }
 
+
+    elseif($pathName == "clients") {
+        include_once "./routers/clients.router.php";
+    }
     
 
     $server->disConnect()
