@@ -29,7 +29,7 @@ const BanClient = ({ user }) => {
     return (
         <>
             {user.Status == "Hoạt động" ?
-                <div className="col-4 text-success" data-bs-toggle="tooltip" title="Cấm" style={{ cursor: "pointer" }}>
+                <div className="col-sm-2 text-success" data-bs-toggle="tooltip" title="Cấm" style={{ cursor: "pointer" }}>
                     <button className="bg-white" onClick={handleShow}>   <BsFillPersonPlusFill size={20} /> </button>
 
                     <Modal show={show} onHide={handleClose} dialogClassName="w-25" >
@@ -51,7 +51,7 @@ const BanClient = ({ user }) => {
                     </Modal>
                 </div>
                 :
-                <div className="col-4 text-danger" data-bs-toggle="tooltip" title="Bỏ cấm" style={{ cursor: "pointer" }}>
+                <div className="col-sm-2 text-danger" data-bs-toggle="tooltip" title="Bỏ cấm" style={{ cursor: "pointer" }}>
                     <button className="bg-white" onClick={handleShow}>  <BsFillPersonXFill size={20} /> </button>
 
                     <Modal show={show} onHide={handleClose} dialogClassName="w-25">
