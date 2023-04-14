@@ -1,0 +1,13 @@
+.overlay {
+    position: absolute;
+    display: none;
+    z-index: 10000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(255, 255, 255);
+}
+.spinner-border {
+    animation-duration: 1s;
+}

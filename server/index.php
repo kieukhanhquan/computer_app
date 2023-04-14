@@ -17,6 +17,10 @@
     if ($pathName == "keysearch") {
         include_once "./routers/keysearch.router.php";
     }
+    if ($pathName == "product") {
+        include_once "./routers/product.router.php";
+    }
+
     
 
     $server->disConnect()
