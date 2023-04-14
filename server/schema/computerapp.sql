@@ -6,6 +6,9 @@
 -- Generation Time: Apr 09, 2023 at 07:42 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
+DROP DATABASE IF EXISTS computerapp;
+CREATE DATABASE IF NOT EXISTS computerapp; 
+USE computerapp;
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
