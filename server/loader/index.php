@@ -4,7 +4,7 @@
         public $serverName = "127.0.0.1";
         public $userName = "root";
         public $password = "";
-        public $dbName = "test";
+        public $dbName = "computerapp";
         public $db = null;
         
         public function Connect() {
