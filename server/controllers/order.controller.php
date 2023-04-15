@@ -33,23 +33,6 @@
                     return $this->model->orderDetail($db, $query);
                 }
 
-                public function orderSpecific($db, $data) {
-                    $orderID = $data;
-                    $query = "SELECT * FROM orderp WHERE ID='$orderID'";
-                    return $this->model->orderSpecific($db, $query);
-                }
-
-                public function changeStatus($db, $data) {
-                    $orderID = $data["ID"];
-                    $status = $data["Status"];
-                    $date = $data["Date"];
-                    $admin = $data["Admin"];
-                    $query = "UPDATE orderp SET OrderState='$status', AdminID='$admin', TimeConfirm='$date' WHERE ID='$orderID'";
-                    return $this->model->changeStatus($db, $query);
-                }
-
-                
-
             }
 
 ?>

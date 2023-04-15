@@ -1,75 +1,58 @@
 import { Link, useParams } from "react-router-dom"
 import ResponsivePagination from 'react-responsive-pagination';
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Confirm from './Confirm';
 import Decline from "./Decline";
-import { useSelector, useDispatch } from 'react-redux'
-import { orderDetail, orderSpecs } from '../../Redux/Slice/orderSlice';
 
-// let dataAll = [
-//     {
-//         productID: 123, productName: "Màn hình 4k", productType: "Màn hình", productPrice: 50000, productQuantity: 2
-//     },
-//     {
-//         productID: 124, productName: "Màn hình 4k", productType: "Màn hình", productPrice: 50000, productQuantity: 2
-//     },
-//     {
-//         productID: 125, productName: "Màn hình 4k", productType: "Màn hình", productPrice: 50000, productQuantity: 2
-//     },
-//     {
-//         productID: 126, productName: "Màn hình 4k", productType: "Màn hình", productPrice: 50000, productQuantity: 2
-//     },
+let dataAll = [
+    {
+        productID: 123, productName: "Màn hình 4k", productType: "Màn hình", productPrice: 50000, productQuantity: 2
+    },
+    {
+        productID: 124, productName: "Màn hình 4k", productType: "Màn hình", productPrice: 50000, productQuantity: 2
+    },
+    {
+        productID: 125, productName: "Màn hình 4k", productType: "Màn hình", productPrice: 50000, productQuantity: 2
+    },
+    {
+        productID: 126, productName: "Màn hình 4k", productType: "Màn hình", productPrice: 50000, productQuantity: 2
+    },
 
-//     {
-//         productID: 127, productName: "Màn hình 4k", productType: "Màn hình", productPrice: 50000, productQuantity: 2
-//     },
-//     {
-//         productID: 125, productName: "Màn hình 4k", productType: "Màn hình", productPrice: 50000, productQuantity: 2
-//     },
-//     {
-//         productID: 128, productName: "Màn hình 4k", productType: "Màn hình", productPrice: 50000, productQuantity: 2
-//     },
-//     {
-//         productID: 129, productName: "Màn hình 4k", productType: "Màn hình", productPrice: 50000, productQuantity: 2
-//     },
-//     {
-//         productID: 133, productName: "Màn hình 4k", productType: "Màn hình", productPrice: 50000, productQuantity: 2
-//     },
-//     {
-//         productID: 143, productName: "Màn hình 4k", productType: "Màn hình", productPrice: 50000, productQuantity: 2
-//     },
-//     {
-//         productID: 153, productName: "Màn hình 4k", productType: "Màn hình", productPrice: 50000, productQuantity: 2
-//     },
+    {
+        productID: 127, productName: "Màn hình 4k", productType: "Màn hình", productPrice: 50000, productQuantity: 2
+    },
+    {
+        productID: 125, productName: "Màn hình 4k", productType: "Màn hình", productPrice: 50000, productQuantity: 2
+    },
+    {
+        productID: 128, productName: "Màn hình 4k", productType: "Màn hình", productPrice: 50000, productQuantity: 2
+    },
+    {
+        productID: 129, productName: "Màn hình 4k", productType: "Màn hình", productPrice: 50000, productQuantity: 2
+    },
+    {
+        productID: 133, productName: "Màn hình 4k", productType: "Màn hình", productPrice: 50000, productQuantity: 2
+    },
+    {
+        productID: 143, productName: "Màn hình 4k", productType: "Màn hình", productPrice: 50000, productQuantity: 2
+    },
+    {
+        productID: 153, productName: "Màn hình 4k", productType: "Màn hình", productPrice: 50000, productQuantity: 2
+    },
 
-//     {
-//         productID: 163, productName: "Màn hình 4k", productType: "Màn hình", productPrice: 50000, productQuantity: 2
-//     },
-//     {
-//         productID: 173, productName: "Màn hình 4k", productType: "Màn hình", productPrice: 50000, productQuantity: 2
-//     },
-//     {
-//         productID: 183, productName: "Màn hình 4k", productType: "Màn hình", productPrice: 50000, productQuantity: 2
-//     },
-// ]
+    {
+        productID: 163, productName: "Màn hình 4k", productType: "Màn hình", productPrice: 50000, productQuantity: 2
+    },
+    {
+        productID: 173, productName: "Màn hình 4k", productType: "Màn hình", productPrice: 50000, productQuantity: 2
+    },
+    {
+        productID: 183, productName: "Màn hình 4k", productType: "Màn hình", productPrice: 50000, productQuantity: 2
+    },
+]
 
 const OrderDetail = () => {
-
     let { id } = useParams()
-
-    const dataAll = useSelector((state) => state.order.product)
-    const order = useSelector((state) => state.order.detail)
-    const dispatch = useDispatch()
-    const fetchData = async () => {
-        await dispatch(orderDetail(id))
-        await dispatch(orderSpecs(id))
-    }
-
-    useEffect(() => {
-        fetchData()
-    }, [])
-
-
     const [itemOffset, SetOffset] = useState({ offset: 0, current: 0 })
     const itemPerPage = 9
     const endOffset = itemOffset.offset + itemPerPage
@@ -90,25 +73,21 @@ const OrderDetail = () => {
                         <h5 className="col-xl col-lg col-md col-sm mb-2">
                             Thông tin đơn hàng
                         </h5>
-                
-                        {
-                            order.OrderState=="Đang đợi" && <div className="col-xl-3 col-lg-4 col-md-4 col-sm-5">
-                            <Confirm data={order}/>
-                            <Decline data={order}/>
-                            </div>       
-                        }
-
+                        <div className="col-xl-3 col-lg-4 col-md-4 col-sm-5">
+                            {<Confirm />}
+                            {<Decline />}
+                        </div>
                     </div>
                     <div className="row mt-3 ">
                         <div className="col-xxl-9 ">
                             <div className="row ">
                                 <div className="col-xxl col-xl col-lg col-md">
-                                    <p><span className="fw-bold">Mã đơn: </span> {order.ID}</p>
-                                    <p className="mb-2"><span className="fw-bold">Ngày tạo: </span> {order.TimeCreate}</p>
+                                    <p><span className="fw-bold">Mã đơn: </span> 1</p>
+                                    <p className="mb-2"><span className="fw-bold">Ngày tạo: </span> 15:23:12  10/3/2023</p>
                                 </div>
                                 <div className="col-xxl-9 col-xl-7 col-lg-8 col-md-8">
-                                    <p><span className="fw-bold">Mã khách hàng: </span> {order.CientID}</p>
-                                    <p className="mb-2"> <span className="fw-bold">Địa chỉ khách hàng: </span>  {order.Address}</p>
+                                    <p><span className="fw-bold">Mã khách hàng: </span> 12345678</p>
+                                    <p className="mb-2"> <span className="fw-bold">Địa chỉ khách hàng: </span>  567/123, Phường ABC, Thành phố Thủ Đức, Thành phố Hồ Chí Minh</p>
                                 </div>
                             </div>
                         </div>
@@ -116,11 +95,11 @@ const OrderDetail = () => {
                             <div className="row">
                                 <div className="col-xxl col-xl col-lg col-md">
                                     <p><span className="fw-bold">Trạng thái </span> </p>
-                                    <p className="mb-2"> {order.OrderState}</p>
+                                    <p className="mb-2"> Đang đợi xác nhận</p>
                                 </div>
                                 <div className="col-xxl-6 col-xl-7 col-lg-8 col-md-8">
                                     <p><span className="fw-bold">Tổng hóa đơn</span> </p>
-                                    <p className="mb-2">{ parseFloat(order.OrderShip) + parseFloat(order.OrderFee)} VND</p>
+                                    <p className="mb-2"> 100.000 VND</p>
                                 </div>
                             </div>
                         </div>
@@ -147,11 +126,11 @@ const OrderDetail = () => {
                                             <tr>
 
 
-                                                <td className="pt-2">{item.ProductID}</td>
-                                                <td className="pt-2">{item.Name}</td>
-                                                <td className="pt-2">{item.Type}</td>
-                                                <td className="pt-2">{item.Price}</td>
-                                                <td className="pt-2">{item.Quantity}</td>
+                                                <td className="pt-2">{item.productID}</td>
+                                                <td className="pt-2">{item.productName}</td>
+                                                <td className="pt-2">{item.productType}</td>
+                                                <td className="pt-2">{item.productPrice}</td>
+                                                <td className="pt-2">{item.productQuantity}</td>
 
 
                                             </tr>

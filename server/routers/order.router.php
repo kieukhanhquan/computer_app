@@ -13,14 +13,6 @@
             echo($result);
             http_response_code(200);
         }
-        else {
-            $queryParam = explode( '=', $queryValue );
-            if($queryParam[0] == "order" ){
-                $result = $order->orderSpecific($server->db, $queryParam[1]);
-                echo($result);
-                http_response_code(200);
-            }
-        }
        
 
     }
@@ -47,20 +39,6 @@
                 echo($result);
                 http_response_code(200);   
             }
-        }
-    }
-
-    if ($method == "PUT") {
-        $data = json_decode(file_get_contents('php://input'), true) ;
-        $result = $order->changeStatus($server->db, $data);
-
-        if(strcmp(json_decode($result), "Success") == 0) {
-            echo($result);
-            http_response_code(200);
-        }
-        else {
-            echo($result);
-            http_response_code(400);
         }
     }
 

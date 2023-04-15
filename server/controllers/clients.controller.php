@@ -69,12 +69,5 @@
             $query = "DELETE FROM client WHERE ID=$ID";
             return $this->model->deleteClient($db, $query);
         }
-
-        public function updateGrade($db, $data) {
-            $ID = $data["ID"];
-            $grade = round($data["Grade"]/1000);
-            $query = "UPDATE client SET Grade= Grade + '$grade ' WHERE ID='$ID'";
-            return $this->model->changeStatus($db, $query);
-        }
     }
 ?>

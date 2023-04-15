@@ -1,27 +1,9 @@
 import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import { useSelector, useDispatch } from 'react-redux'
-import {updateStatus } from '../../Redux/Slice/orderSlice';
 
-const Decline = ({data}) => {
+const Decline = () => {
     const [show, setShow] = useState(false);
-    let dispatch = useDispatch()
-
-    const handelSubmit = async (event) => {
-        event.preventDefault()
-        const date = new Date();
-
-        let day = date.getDate();
-        let month = date.getMonth() + 1;
-        let year = date.getFullYear();
-        let currentDate = `${year}-${month}-${day}`;
-        let dataUpdate = {id: data.ID, status: "Đã hủy", date: currentDate, admin: 1000001}
-        
-        await dispatch(updateStatus(dataUpdate))
-        setShow(false)
-
-    }
 
     const handleClose = () => {
         setShow(false)
@@ -32,7 +14,7 @@ const Decline = ({data}) => {
         <>
             <button className="btn btn-danger px-3 mb-2" onClick={handleShow}>Từ chối</button>
             <Modal show={show} onHide={handleClose} dialogClassName="w-25" >
-                        <form onSubmit={handelSubmit}>
+                        <form >
              
                             <Modal.Body className='pt-5 text-center border-0'>
             
@@ -42,7 +24,7 @@ const Decline = ({data}) => {
                                 <Button variant="secondary" onClick={handleClose} className="px-4">
                                     Hủy
                                 </Button>
-                                <Button variant="danger" type='submit'>
+                                <Button variant="danger" type='submit' onClick={handleClose}>
                                 Xác nhận
                                 </Button>
                             </Modal.Footer>
