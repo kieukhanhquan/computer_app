@@ -14,9 +14,5 @@
             $query = "SELECT * FROM product";
             return $this->model->viewAll($db,$query);
         }
-        public function addProduct($db,$data){
-            $query = "INSERT INTO pruduct (Name) VALUES ('" . $data .  "') ";
-            return $this->model->addProduct($db,$query);
-        }
     }
 ?>
