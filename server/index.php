@@ -9,10 +9,14 @@
     $queryValue = parse_url($_SERVER['REQUEST_URI'], PHP_URL_QUERY); // get query param If any 
     $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);  // get uri
     $uri = explode( '/', $uri ); 
-    $pathName = $uri[4];
+    
 
     $server = new Server();
+
     $server->Connect();
+
+    $pathName = $uri[4];
+
 
     if ($pathName == "keysearch") {
         include_once "./routers/keysearch.router.php";
@@ -20,6 +24,9 @@
 
     elseif($pathName == "clients") {
         include_once "./routers/clients.router.php";
+    }
+    elseif($pathName == "product"){
+        include "./routers/product.router.php";
     }
     
 
