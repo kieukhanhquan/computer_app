@@ -13,7 +13,7 @@ async (data, { dispatch }) => {
     }
 });
 
-const productsSlice = createSlice({
+const productSlice = createSlice({
   name: 'productReducer',
   initialState: {
     products: [],
@@ -39,4 +39,4 @@ const productsSlice = createSlice({
   },
 });
 
-export default productsSlice.reducer;
+export default productSlice.reducer;

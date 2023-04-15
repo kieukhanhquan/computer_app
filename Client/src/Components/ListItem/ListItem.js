@@ -2,7 +2,7 @@ import "./listItem.css"
 import { useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux'
-import {fetchProduct} from "../../Redux/Reducers/Slide/productSlide"
+import {fetchProduct} from "../../Redux/Reducers/Slice/productSlice"
 function ListItem() {
     const dataAll = useSelector((state) => state.product.product)
     const dispatch = useDispatch()
