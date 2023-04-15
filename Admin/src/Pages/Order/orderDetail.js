@@ -6,53 +6,6 @@ import Decline from "./Decline";
 import { useSelector, useDispatch } from 'react-redux'
 import { orderDetail, orderSpecs } from '../../Redux/Slice/orderSlice';
 
-// let dataAll = [
-//     {
-//         productID: 123, productName: "Màn hình 4k", productType: "Màn hình", productPrice: 50000, productQuantity: 2
-//     },
-//     {
-//         productID: 124, productName: "Màn hình 4k", productType: "Màn hình", productPrice: 50000, productQuantity: 2
-//     },
-//     {
-//         productID: 125, productName: "Màn hình 4k", productType: "Màn hình", productPrice: 50000, productQuantity: 2
-//     },
-//     {
-//         productID: 126, productName: "Màn hình 4k", productType: "Màn hình", productPrice: 50000, productQuantity: 2
-//     },
-
-//     {
-//         productID: 127, productName: "Màn hình 4k", productType: "Màn hình", productPrice: 50000, productQuantity: 2
-//     },
-//     {
-//         productID: 125, productName: "Màn hình 4k", productType: "Màn hình", productPrice: 50000, productQuantity: 2
-//     },
-//     {
-//         productID: 128, productName: "Màn hình 4k", productType: "Màn hình", productPrice: 50000, productQuantity: 2
-//     },
-//     {
-//         productID: 129, productName: "Màn hình 4k", productType: "Màn hình", productPrice: 50000, productQuantity: 2
-//     },
-//     {
-//         productID: 133, productName: "Màn hình 4k", productType: "Màn hình", productPrice: 50000, productQuantity: 2
-//     },
-//     {
-//         productID: 143, productName: "Màn hình 4k", productType: "Màn hình", productPrice: 50000, productQuantity: 2
-//     },
-//     {
-//         productID: 153, productName: "Màn hình 4k", productType: "Màn hình", productPrice: 50000, productQuantity: 2
-//     },
-
-//     {
-//         productID: 163, productName: "Màn hình 4k", productType: "Màn hình", productPrice: 50000, productQuantity: 2
-//     },
-//     {
-//         productID: 173, productName: "Màn hình 4k", productType: "Màn hình", productPrice: 50000, productQuantity: 2
-//     },
-//     {
-//         productID: 183, productName: "Màn hình 4k", productType: "Màn hình", productPrice: 50000, productQuantity: 2
-//     },
-// ]
-
 const OrderDetail = () => {
 
     let { id } = useParams()
