@@ -17,15 +17,18 @@
     if ($pathName == "keysearch") {
         include_once "./routers/keysearch.router.php";
     }
-    if ($pathName == "product") {
+    elseif ($pathName == "product") {
         include_once "./routers/product.router.php";
     }
-
-
     elseif($pathName == "clients") {
         include_once "./routers/clients.router.php";
     }
-    
+    elseif($pathName == "news") {
+        include_once "./routers/news.router.php";
+    }
+    elseif($pathName == "comment") {
+        include_once "./routers/comment.router.php";
+    }   
 
     $server->disConnect()
 

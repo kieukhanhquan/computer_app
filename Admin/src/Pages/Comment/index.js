@@ -1,66 +1,69 @@
-import React, { Fragment, useState } from "react"
+import React, { Fragment, useState, useEffect } from "react"
 import { RiDeleteBin6Fill } from 'react-icons/ri'
 import ResponsivePagination from 'react-responsive-pagination';
-import DeleteComment from "./delete";
-import DeleteComments from "./deleteMul";
+import axios from "axios"
+import { Modal, Button } from 'react-bootstrap';
+import { BsExclamationCircle } from 'react-icons/bs'
+
+const client = axios.create({
+  baseURL: "http://localhost/WebApp/Server/index.php/comment"
+});
 
 
-function createData(id, username, product_name, content, timestamp) {
-  return { id: id, username: username, product_name: product_name, content: content, timestamp: timestamp }
-}
-const datas = [
-  createData('c123', 'Nguyễn Văn A', 'Điện thoại C', 'Sản phẩm rất tốt', '16:45:24, February 24, 2023'),
-  createData('c124', 'Nguyễn Văn B', 'Điện thoại A', 'Sản phẩm rất tệ', '16:45:24, February 24, 2023'),
-  createData('c125', 'Nguyễn Văn C', 'Điện thoại B', 'Sản phẩm tạm được', '16:45:24, February 24, 2023'),
-  createData('c123', 'Nguyễn Văn A', 'Điện thoại C', 'Sản phẩm rất tốt', '16:45:24, February 24, 2023'),
-  createData('c124', 'Nguyễn Văn B', 'Điện thoại A', 'Sản phẩm rất tệ', '16:45:24, February 24, 2023'),
-  createData('c125', 'Nguyễn Văn C', 'Điện thoại B', 'Sản phẩm tạm được', '16:45:24, February 24, 2023'),
-  createData('c123', 'Nguyễn Văn A', 'Điện thoại C', 'Sản phẩm rất tốt', '16:45:24, February 24, 2023'),
-  createData('c124', 'Nguyễn Văn B', 'Điện thoại A', 'Sản phẩm rất tệ', '16:45:24, February 24, 2023'),
-  createData('c125', 'Nguyễn Văn C', 'Điện thoại B', 'Sản phẩm tạm được', '16:45:24, February 24, 2023'),
-  createData('c123', 'Nguyễn Văn A', 'Điện thoại C', 'Sản phẩm rất tốt', '16:45:24, February 24, 2023'),
-  createData('c124', 'Nguyễn Văn B', 'Điện thoại A', 'Sản phẩm rất tệ', '16:45:24, February 24, 2023'),
-  createData('c125', 'Nguyễn Văn C', 'Điện thoại B', 'Sản phẩm tạm được', '16:45:24, February 24, 2023'),
-  createData('c123', 'Nguyễn Văn A', 'Điện thoại C', 'Sản phẩm rất tốt', '16:45:24, February 24, 2023'),
-  createData('c124', 'Nguyễn Văn B', 'Điện thoại A', 'Sản phẩm rất tệ', '16:45:24, February 24, 2023'),
-  createData('c125', 'Nguyễn Văn C', 'Điện thoại B', 'Sản phẩm tạm được', '16:45:24, February 24, 2023'),
-  createData('c123', 'Nguyễn Văn A', 'Điện thoại C', 'Sản phẩm rất tốt', '16:45:24, February 24, 2023'),
-  createData('c124', 'Nguyễn Văn B', 'Điện thoại A', 'Sản phẩm rất tệ', '16:45:24, February 24, 2023'),
-  createData('c125', 'Nguyễn Văn C', 'Điện thoại B', 'Sản phẩm tạm được', '16:45:24, February 24, 2023'),
-  createData('c123', 'Nguyễn Văn A', 'Điện thoại C', 'Sản phẩm rất tốt', '16:45:24, February 24, 2023'),
-  createData('c124', 'Nguyễn Văn B', 'Điện thoại A', 'Sản phẩm rất tệ', '16:45:24, February 24, 2023'),
-  createData('c125', 'Nguyễn Văn C', 'Điện thoại B', 'Sản phẩm tạm được', '16:45:24, February 24, 2023'),
 
-];
 
 const Comment = () => {
+  const [show, setShow] = useState({
+    type: "", value: {
+      ID: "",
+      Name: "",
+      Author: "",
+      Type: "",
+      Description: ""
+    }
+  })
+  const [comments, setComments] = useState([])
+  const getAll = async () => {
+    await client.get(`?search=${searchKey}`).then((response) => { setComments(response.data) })
+  }
+  useEffect(() => {
+    getAll();
+  }, [])
+  const handleClose = () => setShow({ type: "", value: {} })
+  const handleShow = ({ type, value }) => setShow({ type: type, value: value })
+  const [searchKey, setSearchKey] = useState("")
   const [def, SetDef] = useState({ id: "", username: "", product_name: "", content: "", timestamp: "" })
   const [itemOffset, SetOffset] = useState({ offset: 0, current: 0 })
   const itemPerPage = 7
   const endOffset = itemOffset.offset + itemPerPage
-  const data = datas.slice(itemOffset.offset, endOffset)
-  const countPage = Math.ceil(datas.length / itemPerPage)
+  const comment = comments.slice(itemOffset.offset, endOffset)
+  const countPage = Math.ceil(comments.length / itemPerPage)
 
   const handelPagination = (event) => {
-    const newOffset = ((event - 1) * itemPerPage) % datas.length  //event start from 1
+    const newOffset = ((event - 1) * itemPerPage) % comments.length  //event start from 1
     SetOffset({ offset: newOffset, current: (event) })
   }
-  const [all, setAll] = useState(false)
-  const checkAll = () => {
-    document.getElementsByName("checkItem").forEach((item) => {
-      item.checked = true
+  const deleteComment = async () => {
+    console.log(show.value.ID)
+    await client.delete("", { data: { id: show.value.ID } })
+
+    setComments(
+      comments.filter((item) => {
+        return item.ID !== show.value.ID;
+      })
+    );
+    getAll()
+  };
+  const [showLoad, setShowLoad] = useState(0)
+  const handleSearch = async (e) => {
+    await client.get(`?search=${searchKey}`).then((response) => {
+      setShowLoad(1);
+      setComments(response.data)
     })
-  }
-  const unCheckAll = () => {
-    document.getElementsByName("checkItem").forEach((item) => {
-      item.checked = false
-    })
-  }
-  const handleCheckAll = event => {
-    if (event.target.checked) {
-      checkAll()
-    } else unCheckAll()
-    setAll(curr => !curr)
+    SetOffset({ offset: 0, current: 0 })
+    setTimeout(() => {
+      setShowLoad(0)
+    }, 300);
   }
   return (
     <Fragment>
@@ -69,34 +72,32 @@ const Comment = () => {
         <div className="row d-flex flex-sm-row flex-column w-100 justify-content-between align-items-center m-0 gap-1" id="top">
           <div className="col d-flex flex-row w-100 justify-content-md-start justify-content-center align-items-center gap-md-3 gap-2" id="top-left">
             <p className="d-inline fs-6">
-              All({datas.length})
+              All({comments.length})
             </p>
-            <div className="d-inline d-flex justify-content-center">
-              {DeleteComments()}
-              <button className="btn btn-danger rounded-5 btn-block"
-                data-bs-toggle="modal" data-bs-target="#deleteMul">Xóa</button>
-            </div>
           </div>
           <div className="col d-flex flex-row w-100 justify-content-md-end justify-content-center align-items-center" id="top-right">
             <div className="d-inline d-flex justify-content-center">
               <div className="input-group d-flex px-5">
-                <input className="form-control" type="text" placeholder="Tìm kiếm tên" aria-label="search" />
-                <button className="btn btn-outline-primary" type="button">Tìm</button>
+                <input className="form-control" type="text" placeholder="Tìm kiếm" onChange={(e) => setSearchKey(e.currentTarget.value)} aria-label="search" />
+                <button className="btn btn-outline-primary" type="button" onClick={handleSearch}>Tìm</button>
               </div>
             </div>
           </div>
         </div>
         <div className="position-relative row flex-row w-100 justify-content-between align-items-center m-0" id="device">
           <div className="table-responsive-lg">
+            <div style={{ opacity: showLoad }} className="overlay d-flex justify-content-center align-items-center">
+              <div className="d-flex justify-content-center text-center">
+                <div className="spinner-border spinner-border-md" role="status">
+                </div>
+              </div>
+            </div>
             <table className="table table-hover">
               <thead>
                 <tr>
-                  <th>
-                    <input className="form-check-input" value={all} type="checkbox" id="checkAll" onChange={handleCheckAll} />
-                  </th>
                   <th>Mã bình luận</th>
-                  <th>Người dùng</th>
-                  <th>Tên sản phẩm</th>
+                  <th>Mã người dùng</th>
+                  <th>Mã sản phẩm</th>
                   <th>Nội dung</th>
                   <th>Thời gian bình luận</th>
                   <th>Xóa bình luận</th>
@@ -104,21 +105,17 @@ const Comment = () => {
               </thead>
               <tbody>
                 {
-                  data.map((comment) => {
+                  comment.map((item) => {
                     return (
                       <tr className="align-middle">
+                        <td>{item.ID}</td>
+                        <td>{item.ClientID}</td>
+                        <td>{item.ProductID}</td>
+                        <td>{item.Content}</td>
+                        <td>{item.Time}</td>
                         <td>
-                          <input className="form-check-input" type="checkbox" value="" name="checkItem" id={comment.id} />
-                        </td>
-                        <td>{comment.id}</td>
-                        <td>{comment.username}</td>
-                        <td>{comment.product_name}</td>
-                        <td>{comment.content}</td>
-                        <td>{comment.timestamp}</td>
-                        <td>
-                          <div>{DeleteComment(def)}</div>
                           <button type="button" className="btn me-0 border-0"
-                            data-bs-toggle="modal" onClick={() => { SetDef(comment) }} data-bs-target="#delete">
+                            onClick={() => { handleShow({ type: "delete", value: item }) }}>
                             <RiDeleteBin6Fill size={25} style={{ color: "#dc3545" }} />
                           </button>
                         </td>
@@ -131,7 +128,7 @@ const Comment = () => {
           </div>
           <div className="row d-flex flex-sm-row flex-column w-100 justify-content-between align-items-center m-0 gap-1" id="bottome">
             <div className="col d-flex flex-row w-100 justify-content-md-start justify-content-center align-items-center gap-md-3 gap-2" id="bottom-left">
-              <p style={{ color: "#6C757D" }}>Hiển thị {data.length} trong tổng số {datas.length} bình luận</p>
+              <p style={{ color: "#6C757D" }}>Hiển thị {comment.length} trong tổng số {comments.length} bình luận</p>
             </div>
             <div className="col d-flex flex-row w-100 justify-content-md-end justify-content-center align-items-center" id="bottom-right">
               <ResponsivePagination
@@ -141,9 +138,24 @@ const Comment = () => {
               />
             </div>
           </div>
-
         </div>
       </div>
+      {/* Modal for remove content */}
+      {<Modal show={show.type === "delete"} onHide={handleClose} id="delete" centered>
+        <Modal.Body>
+          <div className="d-flex flex-column justify-content-around align-items-center gap-4">
+            <h4 className="text-center">Xác nhận xóa bình luận của người dùng {show.value.ClientID}</h4>
+            <BsExclamationCircle size={100} style={{ color: "#dc3545" }} />
+            <p className='display-8 text-center'>Bạn sẽ không được hoàn tác</p>
+          </div>
+        </Modal.Body>
+        <Modal.Footer className="d-flex justify-content-around">
+          <Button variant="secondary" className="px-4" onClick={handleClose}>
+            Huỷ
+          </Button>
+          <Button variant="danger" className="px-4" onClick={() => { deleteComment(); handleClose() }}>Xóa</Button>
+        </Modal.Footer>
+      </Modal>}
     </Fragment>
   );
 }

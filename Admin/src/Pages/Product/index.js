@@ -5,14 +5,12 @@ import ResponsivePagination from 'react-responsive-pagination';
 import axios from 'axios';
 import { Modal, Form, Button } from 'react-bootstrap';
 import { BsExclamationCircle } from 'react-icons/bs'
-import './index.css'
 
 const client = axios.create({
   baseURL: "http://localhost/WebApp/Server/index.php/product"
 });
 
 const Product = () => {
-
   const [show, setShow] = useState({
     type: "", value: {
       ID: "",
@@ -44,27 +42,9 @@ const Product = () => {
   const endOffset = itemOffset.offset + itemPerPage
   const product = products.slice(itemOffset.offset, endOffset)
   const countPage = Math.ceil(products.length / itemPerPage)
-
   const handelPagination = (event) => {
     const newOffset = ((event - 1) * itemPerPage) % products.length  //event start from 1
     SetOffset({ offset: newOffset, current: (event) })
-  }
-  const [all, setAll] = useState(false)
-  const checkAll = () => {
-    document.getElementsByName("checkItem").forEach((item) => {
-      item.checked = true
-    })
-  }
-  const unCheckAll = () => {
-    document.getElementsByName("checkItem").forEach((item) => {
-      item.checked = false
-    })
-  }
-  const handleCheckAll = event => {
-    if (event.target.checked) {
-      checkAll()
-    } else unCheckAll()
-    setAll(curr => !curr)
   }
   // Add product
   const addProduct = async (data) => {
@@ -124,20 +104,30 @@ const Product = () => {
   };
   // Handle search
   const handleSearch = async (e) => {
-    await client.get(`?search=${searchKey}&sortby=${sort}&type=${type}`).then((response) => { setProducts(response.data) })
+    await client.get(`?search=${searchKey}&sortby=${sort}&type=${type}`).then((response) => { 
+      setShowLoad(1);
+      setProducts(response.data) })
     SetOffset({ offset: 0, current: 0 })
+    setTimeout(() => {
+      setShowLoad(0)
+    }, 300);
   }
   //Handle sort
   const handleSortType = async (e) => {
     setType(e.currentTarget.value)
-    await client.get(`?search=${searchKey}&sortby=${sort}&type=${e.currentTarget.value}`).then((response) => { setProducts(response.data) })
+    await client.get(`?search=${searchKey}&sortby=${sort}&type=${e.currentTarget.value}`).then((response) => {
+      setShowLoad(1);
+      setProducts(response.data) })
     SetOffset({ offset: 0, current: 0 })
+    setTimeout(() => {
+      setShowLoad(0)
+    }, 300);
   }
   const handleSort = async (e) => {
     setSort(e.currentTarget.value)
     await client.get(`?search=${searchKey}&sortby=${e.currentTarget.value}&type=${type}`).then((response) => {
-      setShowLoad(1)
-      ; setProducts(response.data)
+      setShowLoad(1); 
+      setProducts(response.data)
     })
     SetOffset({ offset: 0, current: 0 })
     setTimeout(() => {
@@ -156,10 +146,6 @@ const Product = () => {
             <div className="d-inline d-flex justify-content-center">
               <button className="btn btn-primary rounded-5"
                 onClick={() => handleShow({ type: "add", value: {} })}>Thêm</button>
-            </div>
-            <div className="d-inline d-flex justify-content-center">
-              <button className="btn btn-danger rounded-5 btn-block"
-                data-bs-toggle="modal" data-bs-target="#deletemul">Xóa</button>
             </div>
           </div>
           <div className="col d-flex flex-row w-100 justify-content-md-end justify-content-center align-items-center" id="top-middle">
@@ -197,9 +183,6 @@ const Product = () => {
             <table className="table table-hover">
               <thead>
                 <tr>
-                  <th>
-                    <input className="form-check-input" value={all} type="checkbox" id="checkAll" onChange={handleCheckAll} />
-                  </th>
                   <th>Ảnh</th>
                   <th>Tên sản phẩm</th>
                   <th>Mã sản phẩm</th>
@@ -217,10 +200,6 @@ const Product = () => {
                   product.map((product) => {
                     return (
                       <tr className="align-middle">
-
-                        <td>
-                          <input className="form-check-input" type="checkbox" value="" name="checkItem" id={product.ID} />
-                        </td>
                         <td><img src={product.Image} style={{ width: 40, height: 40 }} alt="product_img"></img></td>
                         <td>{product.Name}</td>
                         <td>{product.ID}</td>
