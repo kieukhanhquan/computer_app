@@ -1,83 +1,51 @@
 import Nav from 'react-bootstrap/Nav';
 import ResponsivePagination from 'react-responsive-pagination';
 import Client from "../../Assets/Client.png"
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { CiSquareMore } from "react-icons/ci";
 import { Link } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux'
+import { fetchOrder, filterOrder, searchOrder } from '../../Redux/Slice/orderSlice';
 
-
-
-let dataAll = [{
-    id: 1, userID: 1111111, timeCreate: "15:30:12 10/3/2023", timeConfirm: "15:30:12  10/3/2023", adminID: 123466788888, status: "Đã xác nhận"
-},
-{
-    id: 2, userID: 1111111, timeCreate: "15:30:12 10/3/2023", timeConfirm: "15:30:12  10/3/2023", adminID: 123466788888, status: "Đã xác nhận"
-},
-{
-    id: 3, userID: 1111111, timeCreate: "15:30:12 10/3/2023", timeConfirm: "15:30:12  10/3/2023", adminID: 123466788888, status: "Đã xác nhận"
-},
-{
-    id: 4, userID: 1111111, timeCreate: "15:30:12 10/3/2023", timeConfirm: "15:30:12  10/3/2023", adminID: 123466788888, status: "Đã xác nhận"
-},
-{
-    id: 5, userID: 1111111, timeCreate: "15:30:12 10/3/2023", timeConfirm: "15:30:12  10/3/2023", adminID: 123466788888, status: "Đã xác nhận"
-},
-{
-    id: 6, userID: 1111111, timeCreate: "15:30:12 10/3/2023", timeConfirm: "15:30:12  10/3/2023", adminID: 123466788888, status: "Đã xác nhận"
-},
-{
-    id: 7, userID: 1111111, timeCreate: "15:30:12 10/3/2023", timeConfirm: "15:30:12  10/3/2023", adminID: 123466788888, status: "Đã xác nhận"
-},
-{
-    id: 8, userID: 1111111, timeCreate: "15:30:12 10/3/2023", timeConfirm: "15:30:12  10/3/2023", adminID: 123466788888, status: "Đã xác nhận"
-},
-{
-    id: 9, userID: 1111111, timeCreate: "15:30:12 10/3/2023", timeConfirm: "15:30:12  10/3/2023", adminID: 123466788888, status: "Đã xác nhận"
-},
-{
-    id: 10, userID: 1111111, timeCreate: "15:30:12 10/3/2023", timeConfirm: "15:30:12  10/3/2023", adminID: 123466788888, status: "Đã xác nhận"
-},
-{
-    id: 11, userID: 1111111, timeCreate: "15:30:12 10/3/2023", timeConfirm: "15:30:12  10/3/2023", adminID: 123466788888, status: "Đã xác nhận"
-},
-{
-    id: 12, userID: 1111111, timeCreate: "15:30:12 10/3/2023", timeConfirm: "15:30:12  10/3/2023", adminID: 123466788888, status: "Đã xác nhận"
-},
-{
-    id: 1, userID: 1111111, timeCreate: "15:30:12 10/3/2023", timeConfirm: "15:30:12  10/3/2023", adminID: 123466788888, status: "Đã xác nhận"
-},
-{
-    id: 1, userID: 1111111, timeCreate: "15:30:12 10/3/2023", timeConfirm: "15:30:12  10/3/2023", adminID: 123466788888, status: "Đã xác nhận"
-},
-{
-    id: 1, userID: 1111111, timeCreate: "15:30:12 10/3/2023", timeConfirm: "15:30:12  10/3/2023", adminID: 123466788888, status: "Đã xác nhận"
-},
-{
-    id: 1, userID: 1111111, timeCreate: "15:30:12 10/3/2023", timeConfirm: "15:30:12  10/3/2023", adminID: 123466788888, status: "Đã xác nhận"
-},
-{
-    id: 1, userID: 1111111, timeCreate: "15:30:12 10/3/2023", timeConfirm: "15:30:12  10/3/2023", adminID: 123466788888, status: "Đã xác nhận"
-},
-{
-    id: 1, userID: 1111111, timeCreate: "15:30:12 10/3/2023", timeConfirm: "15:30:12  10/3/2023", adminID: 123466788888, status: "Đã xác nhận"
-},
-{
-    id: 1, userID: 1111111, timeCreate: "15:30:12 10/3/2023", timeConfirm: "15:30:12  10/3/2023", adminID: 123466788888, status: "Đã xác nhận"
-},
-{
-    id: 1, userID: 1111111, timeCreate: "15:30:12 10/3/2023", timeConfirm: "15:30:12  10/3/2023", adminID: 123466788888, status: "Đã xác nhận"
-},
-{
-    id: 1, userID: 1111111, timeCreate: "15:30:12 10/3/2023", timeConfirm: "15:30:12  10/3/2023", adminID: 123466788888, status: "Đã xác nhận"
-}
-]
-
-const HandelFilter = (key) => {
-    console.log(key)
-}
 
 
 const Order = () => {
+
+    const dataAll = useSelector((state) => state.order.order)
+    const dispatch = useDispatch()
+    const fetchData = async () => {
+        await dispatch(fetchOrder(0))
+    }
+
+    useEffect(() => {
+        fetchData()
+
+    }, [])
+
+    const HandleSearch = async (event) => {
+        event.preventDefault()
+        let ID  = event.target.orderID.value
+        let ClientID  = event.target.clientID.value
+        await dispatch(searchOrder({ID: ID, CientID: ClientID}))
+    }
+
+    const HandelFilter = async (key) => {
+        if(key == "all") {
+            await dispatch(fetchOrder(0))
+        }
+        else{
+            let temp = ""
+            if (key == "pending") {
+                temp = "Đang đợi"
+            }
+            else {
+                temp = "Đã xác nhận"
+            }
+            await dispatch(filterOrder(temp))
+        }
+        setactive(key)
+    }
+    console.log(dataAll)
     const [itemOffset, SetOffset] = useState({ offset: 0, current: 0 })
     const itemPerPage = 11
     const endOffset = itemOffset.offset + itemPerPage
@@ -89,7 +57,7 @@ const Order = () => {
         SetOffset({ offset: newOffset, current: (event) })
     }
 
-    const [active, Setactive] = useState("all")
+    const [active, setactive] = useState("all")
 
     return (
         <>
@@ -116,17 +84,17 @@ const Order = () => {
                         </div>
                     </div>
                     <div className="col-xxl mb-3">
-                        <form className='row'>
+                        <form className='row' onSubmit={HandleSearch}>
                             <div className="col-xl mb-2">
                                 <div className='row '>
-                                    <p for="clietID" className="form-label  col-xl-6 col-lg-2 col-md-3 mt-2">Mã đơn hàng :</p>
-                                    <input type="email " className="form-control  col-lg col-sm " id="clietID" placeholder="Tìm kiếm" name="clietID" />
+                                    <p for="orderID" className="form-label  col-xl-6 col-lg-2 col-md-3 mt-2">Mã đơn hàng :</p>
+                                    <input type="email " className="form-control  col-lg col-sm " id="orderID" placeholder="Tìm kiếm" name="orderID" />
                                 </div>
                             </div>
                             <div className="col-xl mb-2 ">
                                 <div className='row '>
-                                    <p for="orderID" className="form-label  col-xl-6 col-lg-2 col-md-3 mt-2">Mã khách hàng :</p>
-                                    <input type="email " className="form-control  col-lg col-sm " id="orderID" placeholder="Tìm kiếm" name="orderID" />
+                                    <p for="clientID" className="form-label  col-xl-6 col-lg-2 col-md-3 mt-2">Mã khách hàng :</p>
+                                    <input type="email " className="form-control  col-lg col-sm " id="clientID" placeholder="Tìm kiếm" name="clientID" />
                                 </div>
                             </div>
                             <div className='col-xl-2 mb-2  d-flex justify-content-center  '>
@@ -158,12 +126,12 @@ const Order = () => {
                                             <tr>
 
 
-                                                <td className="pt-2">{item.id}</td>
-                                                <td className="pt-2">{item.userID}</td>
-                                                <td className="pt-2">{item.timeCreate}</td>
-                                                <td className="pt-2">{item.timeConfirm}</td>
-                                                <td className="pt-2">{item.adminID}</td>
-                                                <td className="pt-2">{item.status}</td>
+                                                <td className="pt-2">{item.ID}</td>
+                                                <td className="pt-2">{item.CientID}</td>
+                                                <td className="pt-2">{item.TimeCreate}</td>
+                                                <td className="pt-2">{item.TimeConfirm}</td>
+                                                <td className="pt-2">{item.AdminID}</td>
+                                                <td className="pt-2">{item.OrderState}</td>
 
                                                 <td className=""><div className="col-4 text-success" data-bs-toggle="tooltip" title="Xem chi tiết" style={{ cursor: "pointer" }}> 
                                                <Link to={`/order/${item.id}`}> <button className="bg-white" >   <CiSquareMore size={20} /> </button> </Link>
