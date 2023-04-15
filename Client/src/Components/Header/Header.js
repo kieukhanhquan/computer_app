@@ -4,29 +4,30 @@ import SearchIcon from '@rsuite/icons/Search';
 import PersonIcon from '@mui/icons-material/Person';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import { Link } from "react-router-dom"
 // import { Whisper, Avatar, Popover } from 'rsuite';
 import "./header.css";
 
 // import { Link } from "react-router-dom"
 
 function Header(){
-    
+    const location = useLocation()
     return (
         <header className="header">
             <div className="navbar">
-                <a href='./index.php' className="navbar_logo">LOGO</a>
+                <a href='./' className="navbar_logo">LOGO</a>
                 <div className="categories">
                     <div className="categories_wrap_link">
-                        <a href="" className="categories_link">Khuyến mãi</a>
+                        <a href="./CategoryProduct" className="categories_link" as= {Link} to="./CategoryProduct" >Sản phẩm</a>
                     </div>
                     <div className="categories_wrap_link">
-                        <a href="" className="categories_link">Hot</a>
+                        <a href="./CategoryProduct" className="categories_link">Hot</a>
                     </div>
                     <div className="categories_wrap_link">
-                        <a href="" className="categories_link">Mới ra mắt</a>
+                        <a href="./News" className="categories_link">News</a>
                     </div>
                     <div className="categories_wrap_link">
-                        <a href="" className="categories_link">Phụ Kiện</a>
+                        <a href="./AboutUs" className="categories_link">About Us</a>
                     </div>
                 </div>
                 
@@ -37,10 +38,10 @@ function Header(){
                     </button>
                 </form>
                 <div className="route_wrap">
-                    <a href=""  className="route-icon">
+                    <a href="./UserInfor"  className="route-icon">
                             <PersonIcon height= "90%"/>
                     </a>
-                    <a href=""  className="route-icon">
+                    <a href="./Payment"  className="route-icon">
                             <ShoppingCartIcon height= "90%"/>
                     </a>
                     <a href=""  className="route-icon">

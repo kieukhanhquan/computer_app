@@ -1,4 +1,4 @@
-import "./Home.css"
+import "./News.css"
 import ListItem from "../../Components/ListItem/ListItem"
 function News() {
     return (

@@ -1,24 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import Header from "./Components/Header/Header"
-import Footer from "./Components/Footer/Footer"
-import Home from "./Pages/Home/Home"
-import ProductDetail from './Pages/ProductDetail/ProductDetail';
-import Review from './Pages/Review/Review';
-import OrderItem from './Components/OrderItem/OrderItem';
-import AboutUs from './Pages/AboutUs/AboutUs';
-import CategoryProduct from './Pages/CategoryProduct/CategoryProduct'
-import Payment from './Pages/Payment/Payment'
-import UserInfor from './Pages/UserInfor/UserInfor'
+import App from './App';
+import GlobalStyles from './Assets';
+import Header from './Components/Header/Header';
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode  >
-    <Header />
-    <Home />
-    <Footer />
-  </React.StrictMode>
+  <React.StrictMode>
+    <GlobalStyles>
+      <App/>
+    </GlobalStyles>
+</React.StrictMode>
+  
 );
 
 // If you want to start measuring performance in your app, pass a function
