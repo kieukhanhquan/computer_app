@@ -2,16 +2,16 @@ import "./listItem.css"
 import { useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux'
+import {fetchProducts} from "../../Redux/Action/product"
 function ListItem() {
     const dataAll = useSelector((state) => state.order.order)
     const dispatch = useDispatch()
     const fetchData = async () => {
-        await dispatch(fetchOrder(0))
+        await dispatch(fetchProducts(0))
     }
 
     useEffect(() => {
         fetchData()
-
     }, [])
 
     return (
