@@ -121,6 +121,18 @@ export const deleteUser = createAsyncThunk(
 
 )
 
+export const updateGrade  = createAsyncThunk(
+    "updateGrade",
+        async (data, { dispatch }) => {
+            try {
+                await axios.put("http://localhost/WebApp/Server/index.php/clients", data)
+            }
+            catch (err) {
+                alert(err.response.data)
+            }
+    }
+)
+
 const userSlice = createSlice({
     name: 'userSlice',
     initialState: {
@@ -196,6 +208,15 @@ const userSlice = createSlice({
                 state.loader = false
             })
             .addCase(deleteUser.rejected, (state, action) => {
+                state.loader = false
+            })
+            .addCase(updateGrade.pending, (state, action) => {
+                state.loader = true
+            })
+            .addCase(updateGrade.fulfilled, (state, action) => {
+                state.loader = false
+            })
+            .addCase(updateGrade.rejected, (state, action) => {
                 state.loader = false
             })
     }

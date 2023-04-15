@@ -37,6 +37,10 @@
         if ($data["type"] == 1) {
             $result = $client->updateUser($server->db, $data);
         }
+        
+        if ($data["type"] == 2) {
+            $result = $client->updateGrade($server->db, $data);
+        }
 
         if(strcmp(json_decode($result), "Success") == 0) {
             echo($result);
