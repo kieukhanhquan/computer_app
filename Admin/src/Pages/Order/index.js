@@ -38,14 +38,16 @@ const Order = () => {
             if (key == "pending") {
                 temp = "Đang đợi"
             }
-            else {
+            else if (key == "complete") {
                 temp = "Đã xác nhận"
+            }
+            else {
+                temp = "Đã hủy"
             }
             await dispatch(filterOrder(temp))
         }
         setactive(key)
     }
-    console.log(dataAll)
     const [itemOffset, SetOffset] = useState({ offset: 0, current: 0 })
     const itemPerPage = 11
     const endOffset = itemOffset.offset + itemPerPage
@@ -78,6 +80,9 @@ const Order = () => {
                                     <Nav.Item className='border border-1' >
                                         <Nav.Link eventKey="complete" style={{ borderRadius: "0px" }}>Đã xác nhận</Nav.Link>
                                     </Nav.Item>
+                                    <Nav.Item className='border border-1' >
+                                        <Nav.Link eventKey="reject" style={{ borderRadius: "0px" }}>Đã hủy</Nav.Link>
+                                    </Nav.Item>
                                 </Nav>
 
                             </div>
@@ -86,15 +91,17 @@ const Order = () => {
                     <div className="col-xxl mb-3">
                         <form className='row' onSubmit={HandleSearch}>
                             <div className="col-xl mb-2">
-                                <div className='row '>
-                                    <p for="orderID" className="form-label  col-xl-6 col-lg-2 col-md-3 mt-2">Mã đơn hàng :</p>
-                                    <input type="email " className="form-control  col-lg col-sm " id="orderID" placeholder="Tìm kiếm" name="orderID" />
+                                <div className='input-group flex-nowrap'>
+                                    {/* <p for="orderID" className="form-label  col-xl-6 col-lg-2 col-md-3 mt-2">Mã đơn hàng :</p>
+                                    <input type="email " className="form-control  col-lg col-sm " id="orderID" placeholder="Tìm kiếm" name="orderID" /> */}
+                                    <span class="input-group-text" id="addon-wrapping">Mã đơn</span>
+                                    <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="addon-wrapping" name="orderID" />
                                 </div>
                             </div>
                             <div className="col-xl mb-2 ">
-                                <div className='row '>
-                                    <p for="clientID" className="form-label  col-xl-6 col-lg-2 col-md-3 mt-2">Mã khách hàng :</p>
-                                    <input type="email " className="form-control  col-lg col-sm " id="clientID" placeholder="Tìm kiếm" name="clientID" />
+                                <div className='input-group flex-nowrap'>
+                                    <span class="input-group-text" id="addon-wrapping">Mã khách</span>
+                                    <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="addon-wrapping" name="clientID" />
                                 </div>
                             </div>
                             <div className='col-xl-2 mb-2  d-flex justify-content-center  '>
@@ -134,7 +141,7 @@ const Order = () => {
                                                 <td className="pt-2">{item.OrderState}</td>
 
                                                 <td className=""><div className="col-4 text-success" data-bs-toggle="tooltip" title="Xem chi tiết" style={{ cursor: "pointer" }}> 
-                                               <Link to={`/order/${item.id}`}> <button className="bg-white" >   <CiSquareMore size={20} /> </button> </Link>
+                                               <Link to={`/order/${item.ID}`}> <button className="bg-white" >   <CiSquareMore size={20} /> </button> </Link>
                                                 </div></td>
 
                                             </tr>

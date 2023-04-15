@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
+import { useSelector, useDispatch } from 'react-redux'
+import {updateStatus } from '../../Redux/Slice/orderSlice';
+import { updateGrade } from '../../Redux/Slice/userSlice';
 
-const Confirm = () => {
+const Confirm = ({data}) => {
     const [show, setShow] = useState(false);
 
     const handleClose = () => {
@@ -10,11 +13,29 @@ const Confirm = () => {
     };
     const handleShow = () => setShow(true);
 
+    let dispatch = useDispatch()
+
+    const handelSubmit = async (event) => {
+        event.preventDefault()
+        const date = new Date();
+
+        let day = date.getDate();
+        let month = date.getMonth() + 1;
+        let year = date.getFullYear();
+        let currentDate = `${year}-${month}-${day}`;
+        let dataUpdate = {id: data.ID, status: "Đã xác nhận", date: currentDate, admin: 1000001}
+        
+        await dispatch(updateStatus(dataUpdate))
+        dispatch(updateGrade({ID: data.CientID, Grade: parseFloat(data.OrderShip) + parseFloat(data.OrderFee), type:2 }))
+        setShow(false)
+
+    }
+
     return (
         <>
             <button className="btn btn-primary me-3 mb-2" onClick={handleShow}>Xác nhận</button>
             <Modal show={show} onHide={handleClose} dialogClassName="w-25" >
-                        <form >
+                        <form onSubmit={handelSubmit}>
              
                             <Modal.Body className='pt-5 text-center border-0'>
             
@@ -24,7 +45,7 @@ const Confirm = () => {
                                 <Button variant="secondary" onClick={handleClose} className="px-4">
                                     Hủy
                                 </Button>
-                                <Button variant="danger" type='submit' onClick={handleClose}>
+                                <Button variant="danger" type='submit' >
                                     Xác nhận
                                 </Button>
                             </Modal.Footer>
