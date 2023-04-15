@@ -1,13 +1,19 @@
-<?php 
+<?php
     include "./models/product.model.php";
+
 
     class ProductController {
         public $model;
 
-        function __construct(){
+        function __construct()
+        {
             $this->model = new Product();
         }
 
+        public function viewAll($db) {
+            $query = "SELECT * FROM product";
+            return $this->model->viewAll($db,$query);
+        }
         public function viewProduct($db) {
             $query = "SELECT * FROM product";
             return $this->model->viewProduct($db, $query);

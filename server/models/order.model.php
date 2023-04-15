@@ -1,5 +1,5 @@
 <?php 
-    class Comment {
+    class Order {
 
         public function viewAll($db, $query) {
             $results = mysqli_query($db, $query);
@@ -7,28 +7,21 @@
             return json_encode($results);
         }
 
-        public function filterComment($db, $query) {
+        public function filterOrder($db, $query) {
             $results = mysqli_query($db, $query);
             $results = $results->fetch_all(MYSQLI_ASSOC);
             return json_encode($results);
         }
-        public function viewComment($db, $query) {
+
+
+        public function searchOrder($db, $query) {
             $results = mysqli_query($db, $query);
             $results = $results->fetch_all(MYSQLI_ASSOC);
             return json_encode($results);
         }
+
         
-
-        public function deleteComment($db, $query) {
-            if (mysqli_query($db, $query)){
-                return json_encode("Success");
-            }
-            else {
-                return json_encode("fail");
-            }
-        }
-
-        public function searchComment($db, $query) {
+        public function orderDetail($db, $query) {
             $results = mysqli_query($db, $query);
             $results = $results->fetch_all(MYSQLI_ASSOC);
             return json_encode($results);
