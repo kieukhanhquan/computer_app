@@ -21,20 +21,25 @@
     if ($pathName == "keysearch") {
         include_once "./routers/keysearch.router.php";
     }
-
+    elseif ($pathName == "product") {
+        include_once "./routers/product.router.php";
+    }
     elseif($pathName == "clients") {
         include_once "./routers/clients.router.php";
     }
     elseif($pathName == "product"){
         include "./routers/product.router.php";
     }
-    
-    elseif($pathName == "order") {
-        include_once "./routers/order.router.php";
+    elseif($pathName == "news") {
+        include_once "./routers/news.router.php";
     }
     elseif($pathName == "comment") {
         include_once "./routers/comment.router.php";
     }   
+    elseif($pathName == "order") {
+        include_once "./routers/order.router.php";
+    }
+
 
     $server->disConnect()
 

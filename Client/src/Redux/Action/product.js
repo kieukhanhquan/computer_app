@@ -4,7 +4,7 @@ export const getProductRequest = () => {
   return { type: "PRODUCT_REQUEST" };
 };
 
-export const getProductSuccess = (products) => {
+export const getAllProductSuccess = (products) => {
   return { type: "PRODUCT_SUCCESS", payload: products };
 };
 
@@ -16,7 +16,7 @@ export const fetchProducts = () => {
   return (dispatch) => {
     dispatch(getProductRequest());
     axios
-      .get("/api/products")
+      .get("http://localhost/WebApp/Server/index.php/product")
       .then((response) => {
         const products = response.data;
         dispatch(getProductSuccess(products));
