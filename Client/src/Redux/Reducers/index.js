@@ -1,6 +1,6 @@
 import { combineReducers } from "redux";
 import { configureStore } from '@reduxjs/toolkit'
-import productReducer from "./productReducer/productReducer";
+import productReducer from "./productSlide/productSlide";
 
 export const store = configureStore({
   reducer:{

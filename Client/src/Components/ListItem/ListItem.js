@@ -2,7 +2,7 @@ import "./listItem.css"
 import { useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux'
-import {fetchProduct} from "../../Redux/Reducers/productReducer/productReducer"
+import {fetchProduct} from "../../Redux/Reducers/productSlide/productSlide"
 function ListItem() {
     const dataAll = useSelector((state) => state.product.product)
     const dispatch = useDispatch()
@@ -18,8 +18,8 @@ function ListItem() {
     const [itemOffset, SetOffset] = useState({ offset: 0, current: 0 })
     const itemPerPage = 11
     const endOffset = itemOffset.offset + itemPerPage
-    // const data = dataAll.Reducers.productReducer(itemOffset.offset, endOffset)
-    // const countPage = Math.ceil(dataAll.length / itemPerPage)
+    const data = dataAll.Reducers.productReducer(itemOffset.offset, endOffset)
+    const countPage = Math.ceil(dataAll.length / itemPerPage)
     return (
         <div className="list-item">
             {/* {
