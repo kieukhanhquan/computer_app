@@ -14,9 +14,9 @@ async (data, { dispatch }) => {
 });
 
 const productSlice = createSlice({
-  name: 'productReducer',
+  name: 'productSlice',
   initialState: {
-    products: [],
+    product: [],
     loader: false,
     error: null,
   },
@@ -28,7 +28,7 @@ const productSlice = createSlice({
         state.error = null;
       })
       .addCase(fetchProduct.fulfilled, (state, action) => {
-        state.products = action.payload;
+        state.product = action.payload;
         state.loading = false;
         state.error = null;
       })
