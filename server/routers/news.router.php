@@ -1,26 +1,30 @@
 <?php
-    include "./controllers/product.controller.php";
+    include "./controllers/news.controller.php";
+
+    $queryValue = parse_url($_SERVER['REQUEST_URI'], PHP_URL_QUERY); // get query param If any 
+
+    $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);  // get uri
+
+    parse_str($_SERVER['QUERY_STRING'], $params);
 
     $method = $_SERVER['REQUEST_METHOD'];
     $server = $GLOBALS['server'];
-    $product = new ProductController();
-    parse_str($_SERVER['QUERY_STRING'], $params);
-    $currentFile = $_SERVER['PHP_SELF'];
-
-    if($method == "GET"){
+    $news = new NewsController();
+    if($method == "GET") {
         if ($queryValue != ""){
-            $result = $product->sortProduct($server->db, $params["search"], $params["sortby"], $params["type"]);
+            $result = $news->searchNews($server->db, $params["search"]);
             echo($result);
             http_response_code(200);
         } else {
-        $result = $product->viewAll($server->db);
-        echo($result);
-        http_response_code(200);
+            $result = $news->viewNews($server->db);
+            echo($result);
+            http_response_code(200);
         }
     }
+    
     elseif($method == "POST") {
         $data = json_decode(file_get_contents('php://input'), true) ;
-        $result = $product->addProduct($server->db, $data);
+        $result = $news->addNews($server->db, $data);
         if (strcmp($result, "Success")){
             echo($result);
             http_response_code(200);
@@ -33,7 +37,7 @@
 
     elseif($method == "DELETE") {
         $data = json_decode(file_get_contents('php://input'), true) ;
-        $result = $product->deleteProduct($server->db, $data);
+        $result = $news->deleteNews($server->db, $data);
         if (strcmp($result, "Success")){
             echo($result);
             http_response_code(200);
@@ -46,7 +50,7 @@
 
     elseif($method == "PUT") {
         $data = json_decode(file_get_contents('php://input'), true) ;
-        $result = $product->updateProduct($server->db, $data);
+        $result = $news->updateNews($server->db, $data);
         if (strcmp($result, "Success")){
             echo($result);
             http_response_code(200);

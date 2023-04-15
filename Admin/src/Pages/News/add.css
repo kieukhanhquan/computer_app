@@ -1,8 +1,0 @@
-.scroll-x{
-    overflow-y: initial !important
-}
-.scroll-y{
-    height: 600px;
-    overflow-y: auto;
-}
-.tox-notification { display: none !important }
