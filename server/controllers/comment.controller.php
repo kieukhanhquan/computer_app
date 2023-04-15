@@ -15,7 +15,7 @@
 
                 public function filterComment($db, $data) {
                     $query = "SELECT * FROM comment WHERE ProductID='$data'";
-                    return $this->model->filterOrder($db, $query);
+                    return $this->model->filterComment($db, $query);
                 }
 
 

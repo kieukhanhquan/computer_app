@@ -32,6 +32,9 @@
     elseif($pathName == "order") {
         include_once "./routers/order.router.php";
     }
+    elseif($pathName == "comment") {
+        include_once "./routers/comment.router.php";
+    }   
 
     $server->disConnect()
 
