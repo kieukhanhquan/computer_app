@@ -15,19 +15,19 @@ function Header(){
     return (
         <header className="header">
             <div className="navbar">
-                <a href='./' className="navbar_logo">LOGO</a>
+                <Link to='/' className="navbar_logo">LOGO</Link>
                 <div className="categories">
                     <div className="categories_wrap_link">
-                        <a href="./CategoryProduct" className="categories_link" as= {Link} to="./CategoryProduct" >Sản phẩm</a>
+                        <Link to='/CategoryProduct' className="categories_link">Sản phẩm</Link>
                     </div>
                     <div className="categories_wrap_link">
-                        <a href="./CategoryProduct" className="categories_link">Hot</a>
+                        <Link to ='/CategoryProduct'className="categories_link">Hot</Link>
                     </div>
                     <div className="categories_wrap_link">
-                        <a href="./News" className="categories_link">News</a>
+                        <Link to ='/News'className="categories_link">News</Link>
                     </div>
                     <div className="categories_wrap_link">
-                        <a href="./AboutUs" className="categories_link">About Us</a>
+                    <Link to ='/AboutUs'className="categories_link">AboutUs</Link>
                     </div>
                 </div>
                 
@@ -38,15 +38,17 @@ function Header(){
                     </button>
                 </form>
                 <div className="route_wrap">
-                    <a href="./UserInfor"  className="route-icon">
-                            <PersonIcon height= "90%"/>
-                    </a>
-                    <a href="./Payment"  className="route-icon">
-                            <ShoppingCartIcon height= "90%"/>
-                    </a>
-                    <a href=""  className="route-icon">
-                            <FavoriteBorderIcon height= "90%" />
-                    </a>
+                    <Link to='/UserInfor' className="route-icon">
+                        <PersonIcon height= "90%"/>
+                    </Link>
+                    <Link to='/Payment' className="route-icon">
+                        <ShoppingCartIcon height= "90%"/>
+                    </Link>
+                    <Link to='' className="route-icon">
+                        <FavoriteBorderIcon height= "90%" />    
+                    </Link>
+                    
+                
                 </div>
             </div>
 

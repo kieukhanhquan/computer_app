@@ -1,9 +1,15 @@
 import React from 'react'
 import "./AboutUs.css"
-
+import { useState } from 'react'
 
 const AboutUs = () => {
+    const [selectedImageIndex, setSelectedImageIndex] = useState(0);
+    function handleImageClick(index) {
+        setSelectedImageIndex(index);
+      }
+      
   return (
+    
     <div class="aboutus-wrap">
     <div class="img-header-wrap">
         <img class="head-img" src="https://juliansherman.net/wp-content/uploads/2017/07/Shoe-Store.png" alt="title-img"></img>
@@ -31,7 +37,9 @@ const AboutUs = () => {
          <div class='flex-container'>
             <div id='hinh1' class='flex-container flex-column'>
                 <img src="https://www.famousfootwear.com/-/media/project/tenant/famous-footwear/famous-footwear/misc-landing-pages/about-us-lp/about_us_famous_brands.jpg"
-                    alt="hinh1" />
+                    alt="hinh1" height="400px"  style={{ zIndex: selectedImageIndex === 0 ? 1 : 0 }} 
+                    onMouseOver = {() => handleImageClick(0)}
+                    />
                 <div class='flex-item1'>
                     <p class="element_vetical" style={{color:'white', fontWeight:'bold'}}>THƯƠNG HIỆU NỔI TIẾNG</p>
                 </div>
@@ -43,7 +51,9 @@ const AboutUs = () => {
             <br></br>
             <div id='hinh2' class='flex-container flex-column'>
                 <img src="https://www.famousfootwear.com/-/media/project/tenant/famous-footwear/famous-footwear/misc-landing-pages/about-us-lp/about_us_winning_associates.jpg"
-                    alt="hinh2" />
+                    alt="hinh2" height="400px"  style={{ zIndex: selectedImageIndex === 1 ? 1 : 0 }}
+                    onMouseOver = {() => handleImageClick(1)}
+                    />
                 <div class='flex-item1'>
                     <p class="element_vetical" style={{color:'white', fontWeight:'bold'}}>NHÂN VIÊN TẬN TÂM</p>
                 </div>
@@ -55,7 +65,9 @@ const AboutUs = () => {
             </div><br></br>
             <div id='hinh3' class='flex-container flex-column'>
                 <img src="https://www.famousfootwear.com/-/media/project/tenant/famous-footwear/famous-footwear/misc-landing-pages/about-us-lp/about_us_communities.jpg"
-                    alt="hinh3" />
+                    alt="hinh3" height="400px"  style={{ zIndex: selectedImageIndex === 2 ? 1 : 0 }}
+                    onMouseOver = {() => handleImageClick(2)}
+                />
                 <div class='flex-item1'>
                     <p class="element_vetical" style={{color:'white', fontWeight:'bold'}}>CỘNG ĐỒNG</p>
                 </div>

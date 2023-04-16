@@ -22,7 +22,7 @@ export const routes = [
         path: "/CategoryProduct", component: CategoryProduct, layout: MainLayout
     },
     {
-        path: '/ProductDetail',  component: ProductDetail, layout: MainLayout
+        path: '/ProductDetail/:id',  component: ProductDetail, layout: MainLayout
     },
     {
         path: '/Review',  component: Review, layout: MainLayout

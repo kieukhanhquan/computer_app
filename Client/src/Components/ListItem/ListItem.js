@@ -1,8 +1,8 @@
 import "./listItem.css"
 import { useState, useEffect } from "react";
-import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux'
 import {fetchProduct} from "../../Redux/Slice/productSlice"
+import { Link } from "react-router-dom"
 function ListItem() {
     const dataAll = useSelector((state) => state.product.product)
     const dispatch = useDispatch()
@@ -13,7 +13,6 @@ function ListItem() {
         fetchData()
 
     }, [])
-    console.log(dataAll)
 
     const [itemOffset, SetOffset] = useState({ offset: 0, current: 0 })
     const itemPerPage = 9
@@ -25,10 +24,11 @@ function ListItem() {
             {
             data.map((item) => {return (
                 <div className="item-wrap">
-                <a href="">
-                    <img src={item.Image} className="img-thumbnail" alt="Cinque Terre"/>
-                     <div className="item__price">{item.Name}</div>
-                </a>
+                    <Link to={`/ProductDetail/${item.ID}`}>
+                        <img src={item.Image} className="img-thumbnail" alt="Cinque Terre"/>
+                        <div className="item__price">{item.Name}</div>
+                    </Link>
+                
                 <div className="item__price">1.999.000đ</div>
             </div>
                 )

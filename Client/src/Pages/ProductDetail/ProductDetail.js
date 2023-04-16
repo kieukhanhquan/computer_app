@@ -1,14 +1,18 @@
 import React, { Fragment } from 'react';
 import Header from '../../Components/Header/Header'
 import Footer from '../../Components/Footer/Footer'
-import "./ProductDetail.css"
+import { Link } from 'react-router-dom';
 import { Nav } from 'rsuite';
+import { useState, useEffect } from "react";
+import { useSelector, useDispatch } from 'react-redux'
+import {fetchProduct} from "../../Redux/Slice/productSlice"
 import 'rsuite/dist/rsuite.min.css'
-
-
+import { useParams } from 'react-router-dom';
+import { fetchcomments } from '../../Redux/Slice/commentsSlice';
+import "./ProductDetail.css"
 
 const items = [
-    { eventKey: 'A', label: 'Mô tả sản phẩm',data:'Buyers show là một cách mới tuyệt vời để bạn chia sẻ ảnh thời trang của mình. Điều này có nghĩa là hiển thị tất cả các nhân vật biểu cảm, sáng tạo và cảm hứng!' },
+    { eventKey: 'A', label: 'Mô tả sản phẩm',data:'' },
     { eventKey: 'B', label: 'Sản phẩm liên quan',data:'' },
     { eventKey: 'C', label: 'Đánh giá về sản phẩm',data:'' },
 
@@ -16,86 +20,102 @@ const items = [
 
 function ProductDetail() {
     const [activeKey, setActiveKey] = React.useState('A');
+    const dataAll = useSelector((state) => state.product.product)
+    const dispatch = useDispatch()
+    const datacomments = useSelector((state) => state.comments.comments)
+    const fetchData = async () => {
+        await dispatch(fetchProduct(0))
+    }
+    useEffect(() => {
+        fetchData()
 
-
+    }, [])
+    const dispatch1 = useDispatch()
+    const fetchData1 = async () => {
+        await dispatch1(fetchcomments(0))
+    }
+    useEffect(() => {
+        fetchData1()
+        
+    }, [])
+    
+    const { id } = useParams(); 
+    const product = dataAll.find(item => item.ID === id);
+    const comment = datacomments.find(item => item.ProductID === id);
+    const typeProduct = dataAll.filter(item => item.Type === product.Type);
     return (
         <Fragment>
-            <div class="ProfileProduct" style={{marginTop:'5%'}}>
-                <div class="pathUrl">
-                    <a href="./index.php" class="path1">
-                    <i class=" home-icon fa-solid fa-house-chimney"></i>
+            <div className="ProfileProduct" style={{marginTop:'5%'}}>
+                <div className="pathUrl">
+                    <a href="./index.php" className="path1">
+                    <i className=" home-icon fa-solid fa-house-chimney"></i>
                     </a>
-                
                 </div>
-            <div class="contentProduct">
-                <div class="grid">
-                <form class="grid__row" action='./index.php?url=Cart/insert' method='POST'>
-                <div class="grid__column-60 m-7 c-12">
-                    <div class="product__listImg">  
-                            <button class="left-btn" type='button'>
-                                <i class="left-icon fa-solid fa-angle-left"></i>
+            <div className="contentProduct">
+                <div className="grid">
+                <form className="grid__row" action='./index.php?url=Cart/insert' method='POST'>
+                <div className="grid__column-60 m-7 c-12">
+                    <div className="product__listImg">  
+                            <button className="left-btn" type='button'>
+                                <i className="left-icon fa-solid fa-angle-left"></i>
                             </button>
-                            <img class="img img--active" src=""></img>
-                            <img class="img " src=""></img>
-                            <img class="img " src=""></img>
-                            <button class="right-btn" type='button'>
-                                <i class="right-icon fa-solid fa-angle-right"></i>
+                            <img className="img img--active" src={product?.Image || 'default-image.jpg'}></img>
+                            <img className="img " src=""></img>
+                            <img className="img " src=""></img>
+                            <button className="right-btn" type='button'>
+                                <i className="right-icon fa-solid fa-angle-right"></i>
                             </button>
                        
                     </div>
                 </div>
-                <div class="grid__column-40 m-5 c-12">
-                    <div class="product__detail">
-                        <div class="product__detail-name">
-                            <span class="title">
-                                
+                <div className="grid__column-40 m-5 c-12">
+                    <div className="product__detail">
+                        <div className="product__detail-name">
+                            <span className="title">
+                                {product?.Name}
                             </span>
-                            <div class="product-code">
-                                <span class="code">Mã sản phẩm:</span>
+                            <span>
+                                Thương hiệu {product?.Company}
+                            </span>
+                            <div className="product-code">
+                                <span className="code">Mã sản phẩm:</span>
                                 <span>
                                     
                                 </span>
                                 <input type="text" name="ProductID" 
-                                    value=""></input>
+                                    value={id}></input>
                             </div>
                         </div>
-                        <div class="product__detail-price">
+                        <div className="product__detail-price">
+                            {product?.Price} đ
+                        </div>
+                        <div className="product__detail-size">
                             
-                        </div>
-                        <div class="product__detail-size">
-                            <div class="size-heading">
-                                <span class="size-heading__title1">KÍCH THƯỚC</span>
-                                
-                            </div>
-                            <div class="size-bottom">
-                                <div class="size-bottom_list">
-                                    <button type='button' class="size-bottom_list-item size--active">37</button>
-                                    <button type='button' class="size-bottom_list-item">38</button>
-                                    <button type='button' class="size-bottom_list-item">39</button>
-                                    <button type='button' class="size-bottom_list-item">40</button>
-                                    <button type='button' class="size-bottom_list-item">41</button>
-                                    <button type='button' class="size-bottom_list-item">42</button>
-                                    <button type='button' class="size-bottom_list-item">43</button>
-                                </div>
-                                <input   class="size" value="37" name='Size'></input>
-                            </div>
-                            <div class="product__detail-amount">
-                                <span class="amount-heading">SỐ LƯỢNG</span>
-                                <div class="amount-bottom">
-                                    <input type="number" class="amount" name="Amount" min="1" max="10" value='1'></input>
+
+                            <div className="product__detail-amount">
+                                <span className="amount-heading">SỐ LƯỢNG</span>
+                                <div className="amount-bottom">
+                                    <input type="number" className="amount" name="Amount" min="1" max="10" vVlue='1' step = '1' ></input>
                                 </div>
                             </div>
-                            <div class="product__detail-addtional">
-                                <ul class="addtional-text">
-                                    <li class="addtional-heading">Mua 1 tặng 1</li>
-                                    <li>- Chọn 2 hoặc 4 sản phẩm trong danh mục Mua 1 tặng 1</li>
-                                    <li>- Hệ thống sẽ tự giảm ở bước thanh toán</li>
+                            <div className="product__detail-addtional">
+                                <ul className="addtional-text">
+                                    <li className="addtional-heading">Khuyến mãi liên quan</li>
+                                    <li>- Hỗ trợ trả góp với đơn hàng từ 3.000.000đ</li>
+                                    <li>- Nhập mã VNPAYPV
+                                        <ul className="addtional-text1">
+                                            <li >Tặng ngay 100.000đ cho mỗi giao dịch thành công từ 4,000,000đ</li>
+                                            <li>Tặng ngay 200.000đ cho mỗi giao dịch thành công từ 15,000,000đ</li>
+                                            <li>Tặng ngay 300.000đ cho mỗi giao dịch thành công từ 25,000,000đ</li>
+                                        </ul>
+                                        Khi thanh toán qua VNPAY-QR
+                                    </li>
                                     <li>- Không áp dụng chung với sale 30% - 20% - 10%</li>
                                 </ul>
                             </div>
-                            <div class="product__detail-submit">
-                                <button class="cart-btn">Thêm vào giỏ hàng</button>
-                                 <button class="buy-btn">Mua ngay</button> 
+                            <div className="product__detail-submit">
+                                <button className="cart-btn">Thêm vào giỏ hàng</button>
+                                 <button className="buy-btn">Mua ngay</button> 
                             </div>
                         </div>
 
@@ -106,21 +126,43 @@ function ProductDetail() {
 
     </div>
         <div className='detail'>
-            <Nav activeKey={activeKey} onSelect={setActiveKey} style={{backgroundColor:'ButtonShadow'}}>
-                {items.map(item => (
-                    <Nav.Item key={item.eventKey} eventKey={item.eventKey}>
-                    {item.label}
-                    </Nav.Item>
-                ))}
+            <Nav activeKey={activeKey} onSelect={setActiveKey} style={{backgroundColor:'ButtonShadow'}} className='Navbar1'>
+                {items.map(item => {
+                        return (
+                                 <Nav.Item key={item.eventKey} eventKey={item.eventKey}>
+                                    {item.label}
+                                </Nav.Item>
+                    )
+                    
+                })}
+                
             </Nav>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-            Integer porttitor nisi sit amet sollicitudin pretium. 
-            In a mi vel elit interdum molestie. Suspendisse ac nulla at nisi pharetra commodo. 
-            Vestibulum ac malesuada nisl. Suspendisse at metus et metus dictum tempus non sit amet tellus. 
-            Nulla facilisi. Morbi ex neque, sagittis sit amet feugiat a, accumsan quis lorem. 
-            Curabitur vitae est id nibh ornare auctor eget at odio. Donec consequat sapien a egestas ornare.</p>
+            {activeKey === 'A' && (
+                <div>{product?.Description}</div>
+            )}
+            {activeKey === 'C' && (
+                <div>{comment?.Content}</div>
+            )}
+            {activeKey === 'B' && 
+                (
+                    <div className="list-item">
+                        {typeProduct.map((item) => {return (
+                <div className="item-wrap">
+                    <Link to={`/ProductDetail/${item.ID}`}>
+                        <img src={item.Image} className="img-thumbnail" alt="Cinque Terre"/>
+                        <div className="item__price">{item.Name}</div>
+                    </Link>
+                
+                <div className="item__price">1.999.000đ</div>
+            </div>
+                )
+            })}
+                    </div>
+                )
+            }
+            
         </div>
-    
+        
         </div>
         </Fragment> 
     )

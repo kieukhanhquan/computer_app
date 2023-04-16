@@ -39,6 +39,9 @@
     elseif($pathName == "order") {
         include_once "./routers/order.router.php";
     }
+    elseif($pathName == "product"){
+        include "./routers/product.router.php";
+    }
 
 
     $server->disConnect()
