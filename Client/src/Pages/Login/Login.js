@@ -1,9 +1,9 @@
 import { useState } from "react";
-// import Link from "next/link";
+import {Link} from "react-router-dom";
 
 
 
-const Login = ({ handleSubmitLogin, messageLogin }) => {
+const Login = ({ handleSubmitLogin, messageLogin ,props}) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
@@ -72,17 +72,21 @@ const Login = ({ handleSubmitLogin, messageLogin }) => {
               </span>
             </div>
             
+            <Link href="/forget_password">Quên mật khẩu</Link>
+            <Link href="/workers">
             <div className="container-Login100-form-btn">
             
               <button className="Login100-form-btn">Đăng nhập</button>
               
             </div>
+            </Link>
+            <Link href="/workers">
             <div className="container-Login100-form-btn">
             
-              <button className="Login100-form-btn">Quên mật khẩu</button>
+              <button className="Login100-form-btn">Đăng Kí</button>
               
             </div>
-
+            </Link>
             {/* <div className="container-Login100-form-btn">
               <Link to='../Register' className="Login100-form-btn" >Đăng Kí</Link>
             </div> */}
@@ -91,8 +95,10 @@ const Login = ({ handleSubmitLogin, messageLogin }) => {
       </div>
       <style jsx>
                 {`
-                
+                    /*//////////////////////////////////////////////////////////////////
+                    [ FONT ]*/
                     
+                   
                     * {
                       margin: 0px;
                       padding: 0px;

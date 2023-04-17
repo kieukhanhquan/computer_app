@@ -14,7 +14,7 @@
     $server = new Server();
 
     $server->Connect();
-
+    
     $pathName = $uri[4];
 
 
@@ -27,9 +27,6 @@
     elseif($pathName == "clients") {
         include_once "./routers/clients.router.php";
     }
-    elseif($pathName == "product"){
-        include "./routers/product.router.php";
-    }
     elseif($pathName == "news") {
         include_once "./routers/news.router.php";
     }
@@ -39,10 +36,6 @@
     elseif($pathName == "order") {
         include_once "./routers/order.router.php";
     }
-    elseif($pathName == "product"){
-        include "./routers/product.router.php";
-    }
-
 
     $server->disConnect()
 

@@ -1,6 +1,15 @@
 import "./CategoryProduct.css"
+import { useState, useEffect } from "react";
 import ListItem from "../../Components/ListItem/ListItem"
 function CategoryProduct() {
+    const [type, setType] = useState('');
+
+    // useEffect(() => {
+        const handleSelectTypeChange = (event) => {
+            setType(event.target.value);
+        };
+    // }, [])
+
     return(
         <div className="CategoryProduct" >
                 <div className="grid">
@@ -19,9 +28,7 @@ function CategoryProduct() {
                         <div className="grid__column-8333 m-10">
                             <div className="home-filter">
                                 <span className="home-filter__label"> Sắp xếp theo</span>
-                                <button className="BTN btn--primary">Hãng</button>
-                                <button className="BTN filter-color">Năm ra mắt</button>
-                                <button className="BTN filter-size">Hiệu năng</button>
+        
                                 <form className="filter-form" method="POST" action='./index.php?url=CategoryProduct/filter'>
                                     <select className="select-input" name='selectPrice'>
                                         <option className="optionSelect" value='0'> Giá</option> 
@@ -29,6 +36,19 @@ function CategoryProduct() {
                                         <option className="optionSelect" value='2'>200.000đ - 400.000đ</option>
                                         <option className="optionSelect" value='3'>400.000đ - 1.000.000đ</option>
                                         <option className="optionSelect" value='4'> 1.000.000đ</option>
+                                    </select>
+                                    <select className="select-input" name='selectCompany'>
+                                        <option className="optionSelect" value='0'>Hãng</option> 
+                                        <option className="optionSelect" value='1'>Apple</option>
+                                        <option className="optionSelect" value='2'>LG</option>
+                                        <option className="optionSelect" value='3'>Intel</option>
+                                        <option className="optionSelect" value='4'>...</option>
+                                    </select>
+                                    <select className="select-input" name='selectType' onChange={handleSelectTypeChange}>
+                                        <option className="optionSelect" value=''> Loại</option> 
+                                        <option className="optionSelect" value='computer'>Máy Tính</option>
+                                        <option className="optionSelect" value='Phone'>Điện thoại</option>
+                                        <option className="optionSelect" value='accessory'>Phụ kiện</option>
                                     </select>
                                     <input className='Type' name='Type' value=''/>
                                     <button className="filter-btn">
@@ -55,10 +75,7 @@ function CategoryProduct() {
                             </div>
                             <div className="home-product">
                                 <div className="grid__row">
-                                <ListItem></ListItem>
-                                <ListItem></ListItem>
-                                <ListItem></ListItem>
-                                <ListItem></ListItem>
+                                    <ListItem type={type}></ListItem>  
                                 </div>
                                 
                             </div>

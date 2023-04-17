@@ -12,7 +12,8 @@
             $result = $product->sortProduct($server->db, $params["search"], $params["sortby"], $params["type"]);
             echo($result);
             http_response_code(200);
-        } else {
+        }
+        else {
         $result = $product->viewAll($server->db);
         echo($result);
         http_response_code(200);

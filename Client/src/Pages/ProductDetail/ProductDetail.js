@@ -147,14 +147,14 @@ function ProductDetail() {
                 (
                     <div className="list-item">
                         {typeProduct.map((item) => {return (
-                <div className="item-wrap">
-                    <Link to={`/ProductDetail/${item.ID}`}>
-                        <img src={item.Image} className="img-thumbnail" alt="Cinque Terre"/>
-                        <div className="item__price">{item.Name}</div>
-                    </Link>
-                
-                <div className="item__price">1.999.000đ</div>
-            </div>
+                        <div className="item-wrap">
+                            <Link to={`/ProductDetail/${item.ID}`}>
+                                <img src={item.Image} className="img-thumbnail" alt="Cinque Terre"/>
+                                <div className="item__price">{item.Name}</div>
+                            </Link>
+                            
+                            <div className="item__price">1.999.000đ</div>
+                        </div>
                 )
             })}
                     </div>

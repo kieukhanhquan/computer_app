@@ -12,7 +12,19 @@ async (data, { dispatch }) => {
         alert(err.response.data)
     }
 });
-
+export const filterProduct = createAsyncThunk(
+  "filterProduct",
+async (data, { dispatch }) => {
+    try {
+        const response = await axios.post("http://localhost/WebApp/Server/index.php/product?filter=true",{
+          filter: data
+        })
+        return response.data
+    }
+    catch (err) {
+        alert(err.response.data)
+    }
+});
 const productSlice = createSlice({
   name: 'productSlice',
   initialState: {
@@ -33,6 +45,19 @@ const productSlice = createSlice({
         state.error = null;
       })
       .addCase(fetchProduct.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
+      })
+      .addCase(filterProduct.pending, (state) => {
+        state.loader = true;
+        state.error = null;
+      })
+      .addCase(filterProduct.fulfilled, (state, action) => {
+        state.product = action.payload;
+        state.loading = false;
+        state.error = null;
+      })
+      .addCase(filterProduct.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message;
       });

@@ -57,5 +57,16 @@
             }
             return $this->model->searchProduct($db, $query);
         }
+        public function filterProduct($db, $data) {
+            $query = "";
+            // if (empty($data)){
+            //     $query = "SELECT * FROM product"
+            // } 
+            // if($data["type"]!="") {
+            //     $type=$data["type"]
+            //     $query = "SELECT * FROM product WHERE Type=$type";
+            // }
+            return $this->model->filterProduct($db, $query);
+        }
     }
 ?>

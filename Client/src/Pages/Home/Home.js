@@ -29,22 +29,22 @@ function Home() {
             </div>
             <div className="content-product">
                 <div className="grid">
-                    <div className="product__heading">SẢN PHẨM NỔI BẬT</div>
-                    <ListItem />
+                    <div className="product__heading">MÁY TÍNH</div>
+                    <ListItem type='computer' price="" company=""/>
                 </div>
                 
                 
             </div>
             <div className="content-accessory">
                 <div className="grid">
-                    <div className="accessory__heading">SẢN PHẨM BÁN CHẠY</div>
-                    <ListItem />
+                    <div className="accessory__heading">ĐIỆN THOẠI</div>
+                    <ListItem type='Phone' price="" company=""/>
                 </div>
             </div>
             <div className="content-accessory">
                 <div className="grid">
-                    <div className="accessory__heading">SẢN PHẨM SALES CHẠY NHẤT THÁNG</div>
-                    <ListItem />
+                    <div className="accessory__heading">PHỤ KIỆN</div>
+                    <ListItem type='accessory' price="" company=""/>
                 </div>
             </div>
         </div>
