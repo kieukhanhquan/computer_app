@@ -30,7 +30,7 @@ function Home() {
             <div className="content-product">
                 <div className="grid">
                     <div className="product__heading">MÁY TÍNH</div>
-                    <ListItem type='computer' price="" company=""/>
+                    <ListItem type='computer' minPrice={0} maxPrice={0} company=""/>
                 </div>
                 
                 
@@ -38,13 +38,13 @@ function Home() {
             <div className="content-accessory">
                 <div className="grid">
                     <div className="accessory__heading">ĐIỆN THOẠI</div>
-                    <ListItem type='Phone' price="" company=""/>
+                    <ListItem type='Phone' minPrice={0} maxPrice={0} company=""/>
                 </div>
             </div>
             <div className="content-accessory">
                 <div className="grid">
                     <div className="accessory__heading">PHỤ KIỆN</div>
-                    <ListItem type='accessory' price="" company=""/>
+                    <ListItem type='accessory' minPrice={0} maxPrice={0} company=""/>
                 </div>
             </div>
         </div>

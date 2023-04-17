@@ -3,13 +3,32 @@ import { useState, useEffect } from "react";
 import ListItem from "../../Components/ListItem/ListItem"
 function CategoryProduct() {
     const [type, setType] = useState('');
-
-    // useEffect(() => {
-        const handleSelectTypeChange = (event) => {
-            setType(event.target.value);
-        };
-    // }, [])
-
+    const [minPrice, setMinPrice] = useState(0);
+    const [maxPrice, setMaxPrice] = useState(0);
+    const [company, setCompany] = useState('');
+    const handleSelectTypeChange = (event) => {
+        setType(event.target.value);
+    };
+    const handleSelectPriceChange = (event) => {
+        if (event.target.value==='1'){
+            setMaxPrice(2000000.0)
+        }
+        else if (event.target.value==='2'){
+            setMaxPrice(10000000.0);
+            setMinPrice(2000000.0)
+        }
+        else if (event.target.value==='3'){
+            setMaxPrice(17000000.0);
+            setMinPrice(10000000.0)
+        }
+        else if (event.target.value==='4'){
+            setMinPrice(17000000.0);
+            setMaxPrice(250000000.0)
+        }
+    }
+    const handleSelectCompanyChange = (event) => {
+        setCompany(event.target.value);
+    };
     return(
         <div className="CategoryProduct" >
                 <div className="grid">
@@ -31,17 +50,17 @@ function CategoryProduct() {
         
                                 <form className="filter-form" method="POST" action='./index.php?url=CategoryProduct/filter'>
                                     <select className="select-input" name='selectPrice'>
-                                        <option className="optionSelect" value='0'> Giá</option> 
-                                        <option className="optionSelect" value='1'>100.000đ - 200.000đ</option>
-                                        <option className="optionSelect" value='2'>200.000đ - 400.000đ</option>
-                                        <option className="optionSelect" value='3'>400.000đ - 1.000.000đ</option>
-                                        <option className="optionSelect" value='4'> 1.000.000đ</option>
+                                        <option className="optionSelect" value='0' onChange={handleSelectPriceChange}> Giá</option> 
+                                        <option className="optionSelect" value='1'>400.000đ - 2000.000đ</option>
+                                        <option className="optionSelect" value='2'>2000.000đ - 10.000.000đ</option>
+                                        <option className="optionSelect" value='3'>10.000.000đ - 17.000.000đ</option>
+                                        <option className="optionSelect" value='4'>17.000.000đ-25.000.000đ</option>
                                     </select>
-                                    <select className="select-input" name='selectCompany'>
-                                        <option className="optionSelect" value='0'>Hãng</option> 
-                                        <option className="optionSelect" value='1'>Apple</option>
-                                        <option className="optionSelect" value='2'>LG</option>
-                                        <option className="optionSelect" value='3'>Intel</option>
+                                    <select className="select-input" name='selectCompany' onChange={handleSelectCompanyChange}>
+                                        <option className="optionSelect" value=''>Hãng</option> 
+                                        <option className="optionSelect" value='Aukey'>Aukey</option>
+                                        <option className="optionSelect" value='Asus'>Asus</option>
+                                        <option className="optionSelect" value='Apple'>Apple</option>
                                         <option className="optionSelect" value='4'>...</option>
                                     </select>
                                     <select className="select-input" name='selectType' onChange={handleSelectTypeChange}>
@@ -75,7 +94,7 @@ function CategoryProduct() {
                             </div>
                             <div className="home-product">
                                 <div className="grid__row">
-                                    <ListItem type={type}></ListItem>  
+                                    <ListItem type={type} minPrice={minPrice} maxPrice={maxPrice} company={company}></ListItem>  
                                 </div>
                                 
                             </div>

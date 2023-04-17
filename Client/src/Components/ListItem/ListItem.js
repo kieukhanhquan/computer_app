@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import {fetchProduct} from "../../Redux/Slice/productSlice"
 import { Link } from "react-router-dom"
 function ListItem(props) {
-    const {type,price,company}=props;
+    const {type,minPrice,maxPrice,company}=props;
     const dataAll = useSelector((state) => state.product.product)
     const dispatch = useDispatch()
     const fetchData = async () => {
@@ -12,7 +12,6 @@ function ListItem(props) {
     }
     useEffect(() => {
         fetchData()
-
     }, [])
 
     const [itemOffset, SetOffset] = useState({ offset: 0, current: 0 })
@@ -20,13 +19,19 @@ function ListItem(props) {
     const endOffset = itemOffset.offset + itemPerPage
     const [data,setData]=useState(dataAll);
     useEffect(() => {
+        // fetchData()
+        // setData(dataAll);
         if(type!=""){
-            setData(dataAll.filter(item => item.Type === type));
+            // setData(dataAll);
+            setData(dataAll.filter(item => (item.Type === type)));
         }
-        else{
-            setData(dataAll);
+        if(minPrice!=0&&maxPrice!=0){
+            setData(dataAll.filter(item => (item.Price >= minPrice && item.Price <= maxPrice)));
         }
-    }, [price, company, type]);
+        if(company!=""){
+            setData(dataAll.filter(item => (item.Company === company)));
+        }
+    }, [minPrice, maxPrice, company, type]);
     const countPage = Math.ceil(dataAll?.length / itemPerPage)
     return (
         <div className="list-item">
