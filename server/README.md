@@ -14,3 +14,49 @@
             http://localhost/WebApp/Server/index.php/keysearch  (GET)
             http://localhost/WebApp/Server/index.php/keysearch  (POST) với data đầu vào {"name": "value"}
             http://localhost/WebApp/Server/index.php/keysearch  (DELETE) với data đầu vào {"id": "value"}
+
+        ### Authentication(client Type: 2000000 || admin Type: 1000000)
+            #### Login API
+                http://localhost/WebApp/Server/index.php/auth?UserName=Value&Password=Value&Type=Value (GET)
+                EX: http://localhost/WebApp/Server/index.php/auth?UserName=giangngocnu24&Password=Giangnu24&Type=2000000
+            #### Register API
+                http://localhost/WebApp/Server/index.php/auth (POST) với data đầu vào {
+                                                                                            "FullName": value,
+                                                                                            "UserName": value,
+                                                                                            "Password": value,
+                                                                                            "PhoneNumber": value,
+                                                                                            "Confirm": value,
+                                                                                            "Type": value
+                                                                                        }
+                EX: http://localhost/WebApp/Server/index.php/auth 
+                    data: {
+                            "FullName": "Nguyen Huu Luong",
+                            "UserName": "giangngocnu999",
+                            "Password": 123,
+                            "PhoneNumber": 1356,
+                            "Confirm": 123,
+                            "Type": 2000000
+                        }
+
+                #### Forget password
+                    ##### Step 1: Check UserName and PhoneNumber
+                        API: http://localhost/WebApp/Server/index.php/auth (PUT) với data đầu vào {
+                                                                                                    "UserName": value,
+                                                                                                    "PhoneNumber": value,
+                                                                                                    "Type": value,
+                                                                                                    "Step": 1
+                                                                                                }
+                        EX: http://localhost/WebApp/Server/index.php/auth 
+                        data: {
+                                "UserName": "giangngocnu999",
+                                "PhoneNumber": 1356,
+                                "Type": 2000000,
+                                "Step": 1
+                            }
+                    ##### Step2 : Change password:
+                        API: http://localhost/WebApp/Server/index.php/auth (PUT) với data đầu vào {
+                                                                                                    "UserName": value,
+                                                                                                    "PhoneNumber": value,
+                                                                                                    "Type": value,
+                                                                                                    "Step": 2
+                                                                                                }

@@ -36,6 +36,12 @@
     elseif($pathName == "order") {
         include_once "./routers/order.router.php";
     }
+    elseif($pathName == "auth") {
+        include_once "./routers/auth.router.php";
+    }
+    elseif($pathName == "statistic"){
+        
+    }
 
     $server->disConnect()
 
