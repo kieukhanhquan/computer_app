@@ -55,8 +55,9 @@
                             }
                     ##### Step2 : Change password:
                         API: http://localhost/WebApp/Server/index.php/auth (PUT) với data đầu vào {
-                                                                                                    "UserName": value,
-                                                                                                    "PhoneNumber": value,
-                                                                                                    "Type": value,
-                                                                                                    "Step": 2
+                                                                                                  "UserName": value,
+                                                                                                  "Password": value,
+                                                                                                  "Confirm": value,
+                                                                                                  "Type": value,
+                                                                                                  "Step": 2
                                                                                                 }
