@@ -9,6 +9,9 @@ function CategoryProduct() {
     const handleSelectTypeChange = (event) => {
         setType(event.target.value);
     };
+    // const handleFilter=()=>{
+    //     setType(document.getElementById('selectType'));
+    // }
     const handleSelectPriceChange = (event) => {
         if (event.target.value==='1'){
             setMaxPrice(2000000.0)
@@ -48,7 +51,7 @@ function CategoryProduct() {
                             <div className="home-filter">
                                 <span className="home-filter__label"> Sắp xếp theo</span>
         
-                                <form className="filter-form" method="POST" action='./index.php?url=CategoryProduct/filter'>
+                                {/* <form className="filter-form" method="POST" action='./index.php?url=CategoryProduct/filter'> */}
                                     <select className="select-input" name='selectPrice'>
                                         <option className="optionSelect" value='0' onChange={handleSelectPriceChange}> Giá</option> 
                                         <option className="optionSelect" value='1'>400.000đ - 2000.000đ</option>
@@ -71,9 +74,9 @@ function CategoryProduct() {
                                     </select>
                                     <input className='Type' name='Type' value=''/>
                                     <button className="filter-btn">
-                                        <i className="filter-icon fa-solid fa-filter"></i>
+                                        Lọc
                                     </button>
-                                </form>
+                                {/* </form> */}
 
                                 <div className="home-filter__page">
                                     <div className="home-filter__page-num">
