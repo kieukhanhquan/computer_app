@@ -43,7 +43,7 @@ function ListItem(props) {
     return (
         <div className="list-item">
             {
-            data.map((item) => {return (
+            dataAll.filter(item => (item.Type === type)).map((item) => {return (
                 <div className="item-wrap">
                     <Link to={`/ProductDetail/${item.ID}`}>
                         <img src={item.Image} className="img-thumbnail" alt="Cinque Terre"/>

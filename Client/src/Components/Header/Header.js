@@ -1,4 +1,4 @@
-import { useLayoutEffect, useState } from "react"
+import { useLayoutEffect, useState,useEffect } from "react"
 import { useLocation } from "react-router-dom"
 import SearchIcon from '@rsuite/icons/Search';
 import PersonIcon from '@mui/icons-material/Person';
@@ -11,6 +11,12 @@ import "./header.css";
 // import { Link } from "react-router-dom"
 
 function Header(){
+    const [linkUser,setLinkUser]=useState("/Login")
+    useEffect (()=>{
+        if(false){
+            setLinkUser("/UserInfor");
+        }
+    },[])
     const location = useLocation()
     return (
         <header className="header">
@@ -38,7 +44,7 @@ function Header(){
                     </button>
                 </form>
                 <div className="route_wrap">
-                    <Link to='/UserInfor' className="route-icon">
+                    <Link to={linkUser} className="route-icon">
                         <PersonIcon height= "90%"/>
                     </Link>
                     <Link to='/Payment' className="route-icon">

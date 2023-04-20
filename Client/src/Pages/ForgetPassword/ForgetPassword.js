@@ -1,11 +1,8 @@
 import { useState } from "react";
 import {Link} from "react-router-dom";
 
-
-
-const Login = ({  messageLogin ,props}) => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+const ForgetPassword = ({ handleSubmitForgetPassword, messageForgetPassword,props }) => {
+  const [phonenumber, setPhonenumber] = useState("");
 
   const handleBlur = (event) => {
     if (event.target.value === "") {
@@ -15,78 +12,48 @@ const Login = ({  messageLogin ,props}) => {
   const handleFocus = (event) => {
     event.target.parentElement.classList.remove("alert-validate");
   };
-  const handleSubmitLogin=(username)=>{
-    
-  }
   return (
     <div className="limiter">
-      <div className="container-Login100">
-        <div className="wrap-Login100">
-          <div className="Login100-pic js-tilt" data-tilt>
-          <input type="image" src="./images/img-01.png" alt="Submit" />
+      <div className="container-ForgetPassword100">
+        <div className="wrap-ForgetPassword100">
+          <div className="ForgetPassword100-pic js-tilt" data-tilt>
+            <img src={require("../../Assets/LoginP.png")} alt="IMG" />
           </div>
 
           <form
             name="form"
-            onSubmit={(event) => handleSubmitLogin(username)}
-            className="Login100-form validate-form"
+            onSubmit={(event) => handleSubmitForgetPassword(event, phonenumber)}
+            className="ForgetPassword100-form validate-form"
           >
-            <span className="Login100-form-title">ĐĂNG NHẬP</span>
-            {messageLogin && (
-              <div className="error-message">{messageLogin}</div>
+            <span className="ForgetPassword100-form-title">QUÊN MẬT KHẨU</span>
+            {messageForgetPassword && (
+              <div className="error-message">{messageForgetPassword}</div>
             )}
+            <div>nhập số điện thoại để nhận lại mật khẩu</div>
             <div
               className="wrap-input100 validate-input"
-              data-validate="Username is required"
+              data-validate="Phonenumber is required"
             >
               <input
                 className="input100"
                 type="text"
-                name="username"
-                value={username}
-                placeholder="Username"
+                name="phonenumber"
+                value={phonenumber}
+                placeholder="phone_number"
                 onFocus={handleFocus}
                 onBlur={handleBlur}
-                onChange={(event) => setUsername(event.target.value)}
+                onChange={(event) => setPhonenumber(event.target.value)}
               />
               <span className="focus-input100"></span>
               <span className="symbol-input100">
                 <i className="fa fa-user" aria-hidden="true"></i>
               </span>
             </div>
-
-            <div
-              className="wrap-input100 validate-input"
-              data-validate="Password is required"
-            >
-              <input
-                className="input100"
-                type="password"
-                name="password"
-                value={password}
-                placeholder="Password"
-                onFocus={handleFocus}
-                onBlur={handleBlur}
-                onChange={(event) => setPassword(event.target.value)}
-              />
-              <span className="focus-input100"></span>
-              <span className="symbol-input100">
-                <i className="fa fa-lock" aria-hidden="true"></i>
-              </span>
+            <div className="container-ForgetPassword100-form-btn">
+              <button className="ForgetPassword100-form-btn">Hoàn tất</button>
             </div>
+            <Link href="/login">login here</Link>
             
-            <Link to ={"/ForgetPassword"}>Quên mật khẩu</Link>
-            <Link href="/">
-            <div className="container-Login100-form-btn">
-            
-              <button className="Login100-form-btn">Đăng nhập</button>
-              
-            </div>
-            <Link href="/Register">Đăng kí</Link>
-            </Link>
-            {/* <div className="container-Login100-form-btn">
-              <Link to='../Register' className="Login100-form-btn" >Đăng Kí</Link>
-            </div> */}
           </form>
         </div>
       </div>
@@ -95,7 +62,29 @@ const Login = ({  messageLogin ,props}) => {
                     /*//////////////////////////////////////////////////////////////////
                     [ FONT ]*/
                     
-                   
+                    @font-face {
+                      font-family: Poppins-Regular;
+                      src: url("./fonts/poppins/Poppins-Regular.ttf");
+                    }
+                    
+                    @font-face {
+                      font-family: Poppins-Bold;
+                      src: url("./fonts/poppins/Poppins-Bold.ttf");
+                    }
+                    
+                    @font-face {
+                      font-family: Poppins-Medium;
+                      src: url("./fonts/poppins/Poppins-Medium.ttf");
+                    }
+                    
+                    @font-face {
+                      font-family: Montserrat-Bold;
+                      src: url("./fonts/montserrat/Montserrat-Bold.ttf");
+                    }
+                    
+                    /*//////////////////////////////////////////////////////////////////
+                      [ RESTYLE TAG ]*/
+                    
                     * {
                       margin: 0px;
                       padding: 0px;
@@ -254,14 +243,14 @@ const Login = ({  messageLogin ,props}) => {
                     }
                     
                     /*//////////////////////////////////////////////////////////////////
-                      [ Login ]*/
+                      [ ForgetPassword ]*/
                     
                     .limiter {
                       width: 100%;
                       margin: 0 auto;
                     }
                     
-                    .container-Login100 {
+                    .container-ForgetPassword100 {
                       width: 100%;
                       min-height: 100vh;
                       display: -webkit-box;
@@ -280,7 +269,7 @@ const Login = ({  messageLogin ,props}) => {
                       background: linear-gradient(-135deg, #c850c0, #4158d0); */
                     }
                     
-                    .wrap-Login100 {
+                    .wrap-ForgetPassword100 {
                       width: 960px;
                       background: #fff;
                       border-radius: 10px;
@@ -298,22 +287,22 @@ const Login = ({  messageLogin ,props}) => {
                     
                     /*------------------------------------------------------------------
                       [  ]*/
-                    .Login100-pic {
+                    .ForgetPassword100-pic {
                       width: 316px;
                     }
                     
-                    .Login100-pic img {
+                    .ForgetPassword100-pic img {
                       max-width: 100%;
                     }
                     
                     /*------------------------------------------------------------------
                       [  ]*/
-                    .Login100-form {
+                    .ForgetPassword100-form {
                       width: 290px;
                     }
                     
-                    .Login100-form-title {
-                      
+                    .ForgetPassword100-form-title {
+                    
                       font-size: 29px;
                       color: #333333;
                       line-height: 1.2;
@@ -412,21 +401,19 @@ const Login = ({  messageLogin ,props}) => {
                     
                     /*------------------------------------------------------------------
                       [ Button ]*/
-                    .container-Login100-form-btn {
+                    .container-ForgetPassword100-form-btn {
                       width: 100%;
-                      
                       display: -webkit-box;
                       display: -webkit-flex;
                       display: -moz-box;
                       display: -ms-flexbox;
                       display: flex;
                       flex-wrap: wrap;
-                    
                       justify-content: center;
                       padding-top: 20px;
                     }
                     
-                    .Login100-form-btn {
+                    .ForgetPassword100-form-btn {
                       font-weight: bold;
                       font-size: 15px;
                       line-height: 1.5;
@@ -452,7 +439,7 @@ const Login = ({  messageLogin ,props}) => {
                       transition: all 0.4s;
                     }
                     
-                    .Login100-form-btn:hover {
+                    .ForgetPassword100-form-btn:hover {
                       background: #333333;
                     }
                     
@@ -460,35 +447,35 @@ const Login = ({  messageLogin ,props}) => {
                       [ Responsive ]*/
                     
                     @media (max-width: 992px) {
-                      .wrap-Login100 {
+                      .wrap-ForgetPassword100 {
                         padding: 177px 90px 33px 85px;
                       }
                     
-                      .Login100-pic {
+                      .ForgetPassword100-pic {
                         width: 35%;
                       }
                     
-                      .Login100-form {
+                      .ForgetPassword100-form {
                         width: 50%;
                       }
                     }
                     
                     @media (max-width: 768px) {
-                      .wrap-Login100 {
+                      .wrap-ForgetPassword100 {
                         padding: 100px 80px 33px 80px;
                       }
                     
-                      .Login100-pic {
+                      .ForgetPassword100-pic {
                         display: none;
                       }
                     
-                      .Login100-form {
+                      .ForgetPassword100-form {
                         width: 100%;
                       }
                     }
                     
                     @media (max-width: 576px) {
-                      .wrap-Login100 {
+                      .wrap-ForgetPassword100 {
                         padding: 100px 15px 33px 15px;
                       }
                     }
@@ -581,16 +568,17 @@ const Login = ({  messageLogin ,props}) => {
                       margin-left: 5px;
                     }
                     
-                    /* tự bổ sung*/
-                    .ForgetPass
+                    /* bổ sung*/
+                    .BackLogin
                     {
                       text-decoration: none;
                       color: black;
                     }
+                    
                 `}
             </style>
     </div>
   );
 };
 
-export default Login;
+export default ForgetPassword;
