@@ -10,6 +10,7 @@ import Payment from "../Pages/Payment/Payment";
 import Login from "../Pages/Login/Login";
 import MainLayout from "../Layouts/MainLayout/MainLayout";
 import LoginLayout from "../Layouts/LoginLayout/LoginLayout";
+import NewsDetail from "../Pages/NewsDetail/NewsDetail";
 
 
 export const routes = [
@@ -39,6 +40,9 @@ export const routes = [
     },
     {
         path: '/Payment', component: Payment, layout: MainLayout
+    },
+    {
+        path: '/NewsDetail/:id', component: NewsDetail, layout: MainLayout
     },
     
 ]
