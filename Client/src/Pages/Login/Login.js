@@ -1,12 +1,12 @@
 import { useState } from "react";
 import {Link} from "react-router-dom";
-
+import { useCookies } from 'react-cookie';
 
 
 const Login = ({  messageLogin ,props}) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-
+  const [cookies, setCookie] = useCookies(['user']);
   const handleBlur = (event) => {
     if (event.target.value === "") {
       event.target.parentElement.classList.add("alert-validate");
@@ -16,7 +16,7 @@ const Login = ({  messageLogin ,props}) => {
     event.target.parentElement.classList.remove("alert-validate");
   };
   const handleSubmitLogin=(username)=>{
-    
+    setCookie('user', { username}, { path: '/' });
   }
   return (
     <div className="limiter">
@@ -76,7 +76,7 @@ const Login = ({  messageLogin ,props}) => {
             </div>
             
             <Link to ={"/ForgetPassword"}>Quên mật khẩu</Link>
-            <Link href="/">
+            <Link to ="/">
             <div className="container-Login100-form-btn">
             
               <button className="Login100-form-btn">Đăng nhập</button>

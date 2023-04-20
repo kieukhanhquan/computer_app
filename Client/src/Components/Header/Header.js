@@ -5,15 +5,17 @@ import PersonIcon from '@mui/icons-material/Person';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import { Link } from "react-router-dom"
+import { useCookies } from 'react-cookie';
 // import { Whisper, Avatar, Popover } from 'rsuite';
 import "./header.css";
 
 // import { Link } from "react-router-dom"
 
 function Header(){
+    const [cookies] = useCookies(['user']);
     const [linkUser,setLinkUser]=useState("/Login")
     useEffect (()=>{
-        if(false){
+        if(!cookies.user){
             setLinkUser("/UserInfor");
         }
     },[])
