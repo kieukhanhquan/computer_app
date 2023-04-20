@@ -8,6 +8,7 @@ import News from "../Pages/News/News";
 import Home from "../Pages/Home/Home";
 import Payment from "../Pages/Payment/Payment";
 import Login from "../Pages/Login/Login";
+import ForgetPassword from "../Pages/ForgetPassword/ForgetPassword";
 import MainLayout from "../Layouts/MainLayout/MainLayout";
 import LoginLayout from "../Layouts/LoginLayout/LoginLayout";
 import NewsDetail from "../Pages/NewsDetail/NewsDetail";
@@ -19,6 +20,9 @@ export const routes = [
     },
     {
         path: "/Login", component: Login, layout: MainLayout
+    },
+    {
+        path: "/ForgetPassword", component: ForgetPassword, layout: MainLayout
     },
     {
         path: "/AboutUs", component: AboutUs, layout: MainLayout
