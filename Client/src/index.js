@@ -6,14 +6,17 @@ import GlobalStyles from './Assets';
 import Header from './Components/Header/Header';
 import {store} from "./Redux/store";
 import { Provider } from 'react-redux'
+import { CookiesProvider } from "react-cookie";
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
+    <CookiesProvider>
     <Provider store={store}>
     <GlobalStyles>
       <App/>
     </GlobalStyles>
     </Provider>
+    </CookiesProvider>
 </React.StrictMode>
   
 );

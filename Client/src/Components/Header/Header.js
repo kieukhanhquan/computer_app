@@ -13,12 +13,12 @@ import "./header.css";
 
 function Header(){
     const [cookies] = useCookies(['user']);
+    console.log(cookies.user);
     const [linkUser,setLinkUser]=useState("/Login")
-    useEffect (()=>{
-        if(!cookies.user){
-            setLinkUser("/UserInfor");
-        }
-    },[])
+        // if(cookies.user){
+        //     setLinkUser("/UserInfor");
+        // }
+
     const location = useLocation()
     return (
         <header className="header">
