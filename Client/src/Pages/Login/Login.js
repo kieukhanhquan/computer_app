@@ -16,7 +16,7 @@ const Login = ({  messageLogin ,props}) => {
     event.target.parentElement.classList.remove("alert-validate");
   };
   const handleSubmitLogin=(username)=>{
-    setCookie('user', { username }, { path: '/' });
+    setCookie('user',  username , { path: '/' });
   }
   return (
     <div className="limiter">
@@ -28,7 +28,7 @@ const Login = ({  messageLogin ,props}) => {
 
           <form
             name="form"
-            onSubmit={(event) => handleSubmitLogin(username)}
+            onSubmit={handleSubmitLogin(username)}
             className="Login100-form validate-form"
           >
             <span className="Login100-form-title">ĐĂNG NHẬP</span>
@@ -76,7 +76,7 @@ const Login = ({  messageLogin ,props}) => {
             </div>
             
             <Link to ={"/ForgetPassword"}>Quên mật khẩu</Link>
-            <Link href="/">
+            <Link to ="/">
             <div className="container-Login100-form-btn">
             
               <button className="Login100-form-btn">Đăng nhập</button>
