@@ -1,13 +1,55 @@
 import { Link, useNavigate } from "react-router-dom"
+import { useDispatch, useSelector} from 'react-redux'
+import { loginAdmin } from "../../Redux/Slice/adminSlice"
+import { useEffect } from "react"
 
 const Login = () => {
     let navigate = useNavigate()
-
-    const handelLogin = (event) => {
-        event.preventDefault()
-        event.target.reset()
-        navigate("/statistic")
+    let dispatch = useDispatch()
+    const admin = useSelector(state => state.admin.adminInfo)
+    const validData = (data) => {
+        let checker = true
+        let userPattern = /[a-zA-Z\_](\w)*/
+        if (data.UserName.length == 0) {
+            alert("Vui lòng điền tên đăng nhập của bạn")
+            checker = false
+        }
+    
+        else if (data.UserName.match(userPattern) == null) {
+            alert("Tên đăng nhập phải bắt đầu bằng kí tự")
+            checker = false
+        }
+    
+        else if (data.UserName.length < 7) {
+            alert("Độ dài tối thiểu của tên đăng nhập là 7")
+            checker = false
+        }
+        else if (data.Password.length == 0) {
+            alert("Vui lòng điền mật khẩu của bạn")
+            checker = false
+        }
+        return checker
     }
+
+    const handelLogin = async (event) => {
+        event.preventDefault()
+        let UserName = event.target.userName.value
+        let Password = event.target.password.value
+        let checker = validData({UserName: UserName, Password: Password})
+        if(checker) {
+            await dispatch(loginAdmin({UserName: UserName, Password: Password}))
+            
+        }
+        // navigate("/statistic")
+    }
+    useEffect(() => {
+    if (admin != null) {
+        sessionStorage.setItem("admin", admin.ID);
+        localStorage.setItem('admin', JSON.stringify(admin));
+        navigate("/statistic")
+
+    }
+})
 
     return (
         <>
