@@ -17,6 +17,7 @@ const Login = ({  messageLogin ,props}) => {
   };
   const handleSubmitLogin=(username)=>{
     setCookie('user',  username , { path: '/' });
+    setCookie('ClientId',  2000001 , { path: '/' });
   }
   return (
     <div className="limiter">
