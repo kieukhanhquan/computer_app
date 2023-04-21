@@ -51,7 +51,7 @@ function CategoryProduct() {
                             <div className="home-filter">
                                 <span className="home-filter__label"> Sắp xếp theo</span>
         
-                                {/* <form className="filter-form" method="POST" action='./index.php?url=CategoryProduct/filter'> */}
+                                <form className="filter-form" method="POST" action='http://localhost/WebApp/Server/index.php/product?filter=true'>
                                     <select className="select-input" name='selectPrice'>
                                         <option className="optionSelect" value='0' onChange={handleSelectPriceChange}> Giá</option> 
                                         <option className="optionSelect" value='1'>400.000đ - 2000.000đ</option>
@@ -76,7 +76,7 @@ function CategoryProduct() {
                                     <button className="filter-btn">
                                         Lọc
                                     </button>
-                                {/* </form> */}
+                                </form>
 
                                 <div className="home-filter__page">
                                     <div className="home-filter__page-num">

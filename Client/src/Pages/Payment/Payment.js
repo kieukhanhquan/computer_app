@@ -1,11 +1,12 @@
 import "./Payment.css"
-function Payment() {
+import { useCookies } from 'react-cookie';
+function Payment(listItem) {
     return(
     <div className='payment-wrapper'>
     <form className='cus-infor' method='post' action="./index.php?url=Pay/insert">
         <div className='pay-wrap'>
             <div className='pay-col1'>
-                
+
                     <div className='section-header'>
                         <h2 className='section-title'>Thông tin giao hàng</h2>
                     </div>

@@ -14,12 +14,14 @@ import "./header.css";
 function Header(){
     const [cookies] = useCookies(['user']);
     console.log(cookies.user);
-    const [linkUser,setLinkUser]=useState("/UserInfor")
-    useEffect(()=>{
+    const linkUser =()=>{
         if(!cookies.user){
-            setLinkUser("/Login");
+            return "/Login";
         }
-    },[]);
+        else {
+            return "/UserInfor"
+        }
+    };
     const location = useLocation()
     return (
         <header className="header">
@@ -47,7 +49,7 @@ function Header(){
                     </button>
                 </form>
                 <div className="route_wrap">
-                    <Link to={linkUser} className="route-icon">
+                    <Link to={linkUser()} className="route-icon">
                         <PersonIcon height= "90%"/>
                     </Link>
                     <Link to='/Payment' className="route-icon">
