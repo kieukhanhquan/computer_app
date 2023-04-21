@@ -32,10 +32,10 @@ const validData = (data) => {
     }
 
 
-    else if (data.Password.length < 7) {
-        alert("Độ dài tối thiểu của mật khẩu là 7")
-        checker = false
-    }
+    // else if (data.Password.length < 7) {
+    //     alert("Độ dài tối thiểu của mật khẩu là 7")
+    //     checker = false
+    // }
 
     else if (data.LastName.length == 0) {
         alert("Vui lòng điền họ của bạn")

@@ -39,6 +39,9 @@
     elseif($pathName == "auth") {
         include_once "./routers/auth.router.php";
     }
+    elseif($pathName == "admin") {
+        include_once "./routers/admin.router.php";
+    }
     elseif($pathName == "statistic"){
         
     }

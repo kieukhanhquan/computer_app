@@ -74,8 +74,8 @@
                         if (count($checker) !=0) {
                             return json_encode("Tên tài khoản đã tồn tại");
                         }
-                        $query = "INSERT INTO client (UserName, Password, FirstName, LastName, PhoneNumber, Type, Grade, Status)
-                        VALUES('$UserName','$Password','$FirstName','$LastName','$PhoneNumber', '$Type', '1', 'Hoạt động') ";
+                        $query = "INSERT INTO client (UserName, Password, FirstName, LastName, PhoneNumber, Type, Grade, Status, Avatar)
+                        VALUES('$UserName','$Password','$FirstName','$LastName','$PhoneNumber', '$Type', '1', 'Hoạt động', 'https://img.myloview.com/stickers/default-avatar-profile-flat-icon-social-media-user-vector-portrait-of-unknown-a-human-image-400-209987471.jpg') ";
                         $result = $this->model->Register($db, $query);
                         return $result;
                     }
@@ -86,8 +86,8 @@
                         if (count($checker) !=0) {
                             return json_encode("Tên tài khoản đã tồn tại");
                         }
-                        $query = "INSERT INTO admin (UserName, Password, FirstName, LastName, PhoneNumber, Type)
-                        VALUES('$UserName','$Password','$FirstName','$LastName','$PhoneNumber', '$Type') ";
+                        $query = "INSERT INTO admin (UserName, Password, FirstName, LastName, PhoneNumber, Type,  Avatar)
+                        VALUES('$UserName','$Password','$FirstName','$LastName','$PhoneNumber', '$Type', 'https://img.myloview.com/stickers/default-avatar-profile-flat-icon-social-media-user-vector-portrait-of-unknown-a-human-image-400-209987471.jpg') ";
                         $result = $this->model->Register($db, $query);
                         return $result;
                     }

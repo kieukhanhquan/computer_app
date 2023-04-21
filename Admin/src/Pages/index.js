@@ -7,6 +7,7 @@ import Comment from "./Comment";
 import Login from "./Login";
 import Register from "./Register";
 import Phone from "./Forget/phone";
+import NotFound from "./NotFind";
 import Reset
  from "./Forget/reset";
  import Statistic  from "./Statistic";
@@ -30,5 +31,6 @@ export {
   Register,
   Phone,
   Reset, Statistic
-  ,News
+  ,News,
+  NotFound
 }
