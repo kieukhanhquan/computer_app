@@ -45,6 +45,9 @@
     elseif($pathName == "cart"){
         include_once "./routers/cart.router.php";
     }
+    elseif($pathName == "possess"){
+        include_once "./routers/possess.router.php";
+    }
     elseif($pathName == "statistic"){
         
     }

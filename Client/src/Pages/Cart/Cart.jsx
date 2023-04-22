@@ -1,8 +1,10 @@
 import React, { Fragment } from 'react'
 import "./Cart.css"
 import { Link } from 'react-router-dom'
+import { useCookies } from 'react-cookie';
 const Cart = () => {
   return (
+    const [cookies, setCookie,removeCookies] = useCookies(['user']);
     <Fragment >
     <div className="cart-wrapper">
             <div className="cart">
