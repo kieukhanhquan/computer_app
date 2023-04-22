@@ -45,7 +45,10 @@
     elseif($pathName == "statistic"){
         
     }
-
+    elseif($pathName == "cart"){
+        include_once "./routers/cart.router.php";
+    }
+    
     $server->disConnect()
 
 ?>

@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react'
 import "./Cart.css"
+import { Link } from 'react-router-dom'
 const Cart = () => {
   return (
     <Fragment >
@@ -27,11 +28,13 @@ const Cart = () => {
                 </p>
             </div>
             <div className="cart-buttons">
-                <a href="">
-                    <button className="buycart" type="button" id="" name="">
+                <Link to='/Payment'>
+                    <button className="buycart" type="button" id="" name="" >
                         Tiến hành đặt hàng
                     </button>
-                </a>
+                </Link>
+                    
+                
             </div>
         </div>
     </div>

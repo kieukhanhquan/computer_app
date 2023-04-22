@@ -13,10 +13,7 @@
             return $this->model->viewAll($db, $query);
         }
 
-        public function getUserCart($db, $data) {
-            $query = "SELECT * FROM cart WHERE ClientID='$data'";
-            return $this->model->getUserCart($db, $query);
-        }
+        
 
         public function addCart($db, $data) {
             $ClientID = $data["ClientID"];
@@ -28,11 +25,6 @@
                 // tăng 1 
             }
             
-            else {
-            $query = "INSERT INTO Cart (ClientID)
-            VALUES('$ClientID','$Password','$FirstName','$LastName','$DayOfBirth','$PhoneNumber','$Email','$Avatar', '2000000', '1', 'Hoạt động')";
-            return $this->model->addClient($db, $query);
-            }
         }
 
         public function searchClient($db, $data) {
@@ -43,14 +35,14 @@
 
         public function sortClient($db, $data) {
             $query = "SELECT * FROM client ORDER BY $data";
-            return $this->model->sortClient($db, $query);
+            return $this->model->sortCart($db, $query);
         }
 
 
-        public function deleteClient($db, $data) {
+        public function deleteCart($db, $data) {
             $ID = $data["ID"];
             $query = "DELETE FROM client WHERE ID=$ID";
-            return $this->model->deleteClient($db, $query);
+            return $this->model->deleteCart($db, $query);
         }
 
         public function updateGrade($db, $data) {
