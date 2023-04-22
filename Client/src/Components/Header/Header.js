@@ -13,7 +13,7 @@ import "./header.css";
 
 function Header(){
     const [cookies] = useCookies(['user']);
-    console.log(cookies.user);
+    // console.log(cookies.user.ID);
     const linkUser =()=>{
         if(!cookies.user){
             return "/Login";
