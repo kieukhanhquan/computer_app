@@ -43,7 +43,7 @@
         include_once "./routers/admin.router.php";
     }
     elseif($pathName == "statistic"){
-        
+        include_once "./routers/statistic.router.php";
     }
 
     $server->disConnect()

@@ -8,7 +8,10 @@ import {
     Tooltip,
     Legend,
 } from 'chart.js';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+
+import { useDispatch, useSelector } from 'react-redux';
+import { getRevenue } from '../../Redux/Slice/statisSlice';
 
 ChartJS.register(
     CategoryScale,
@@ -19,14 +22,22 @@ ChartJS.register(
     Legend
 );
 
-let data = [65, 59, 80, 81, 56, 55, 40, 80, 81, 56, 55, 40]
+// let data = [65, 59, 80, 81, 56, 55, 40, 80, 81, 56, 55, 40]
 
 const Revenue = () => {
     const [year, setYear] = useState('2023')
+    const dispatch = useDispatch()
+    let data = useSelector(state=>state.statis.monthValue)
 
     const handleChange = (event) => {
         setYear(event.target.value)
     }
+    const getData = async () => {
+        await dispatch(getRevenue({year: year}))
+    }
+    useEffect(()=> {
+        getData()
+    }, [year])
 
     return (
         <>
