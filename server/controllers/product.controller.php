@@ -58,7 +58,10 @@
             return $this->model->searchProduct($db, $query);
         }
         public function filterProduct($db, $data) {
-            $query = "";
+            $query = "SELECT * FROM product WHERE ".($data["Type"] == '' ? "" : "Type = '".$data["Type"]."'")."".($data["Company"] == '' ? "" : "AND company = '".$data["Company"]."'")."";
+
+            // echo($query);
+            return $this->model->filterProduct($db,$query);
             // if (empty($data)){
             //     $query = "SELECT * FROM product"
             // } 
@@ -66,7 +69,7 @@
             //     $type=$data["type"]
             //     $query = "SELECT * FROM product WHERE Type=$type";
             // }
-            return $this->model->filterProduct($db, $query);
+            // return $this->model->filterProduct($db, $query);
         }
     }
 ?>
