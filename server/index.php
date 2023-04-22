@@ -49,7 +49,7 @@
         include_once "./routers/possess.router.php";
     }
     elseif($pathName == "statistic"){
-        
+        include_once "./routers/statistic.router.php";
     }
     
     
