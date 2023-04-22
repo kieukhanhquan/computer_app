@@ -13,14 +13,7 @@
             echo($result);
             http_response_code(200);
         }
-        else {
-            $queryParam = explode( '=', $queryValue );
-            if ($queryParam[0] == "ClientID") {
-                $result = $cart->getUserCart($server->db, $queryParam[1]);
-                echo($result);
-                http_response_code(200);
-            } 
-        }
+        
     }
 
     

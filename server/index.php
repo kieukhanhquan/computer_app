@@ -42,12 +42,13 @@
     elseif($pathName == "admin") {
         include_once "./routers/admin.router.php";
     }
-    elseif($pathName == "statistic"){
-        
-    }
     elseif($pathName == "cart"){
         include_once "./routers/cart.router.php";
     }
+    elseif($pathName == "statistic"){
+        
+    }
+    
     
     $server->disConnect()
 
