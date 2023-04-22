@@ -9,17 +9,17 @@ function ListItem(props) {
     const dispatch = useDispatch()
     const [data,setData]=useState(dataAll);
     const fetchData = async () => {
-        await dispatch(fetchProduct(0))
+        await dispatch(fetchProduct())
     }
    
     useEffect(() => {
         fetchData();
-        if(type!=""){
-            setData(dataAll.filter(item => (item.Type === type)));
-        }
-        else{
-            setData(dataAll);
-        }
+        // if(type!=""){
+        //     setData(dataAll.filter(item => (item.Type === type)));
+        // }
+        // else{
+        //     setData(dataAll);
+        // }
     }, [minPrice, maxPrice, company, type])
 
     const [itemOffset, SetOffset] = useState({ offset: 0, current: 0 })

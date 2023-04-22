@@ -14,16 +14,16 @@ async (data, { dispatch }) => {
 });
 export const filterProduct = createAsyncThunk(
   "filterProduct",
-async (data, { dispatch }) => {
-    try {
-        const response = await axios.post("http://localhost/WebApp/Server/index.php/product?filter=true",{
-          filter: data
-        })
-        return response.data
-    }
-    catch (err) {
-        alert(err.response.data)
-    }
+  async (data, { dispatch }) => {
+      try {
+        console.log(data);
+          const response = await axios.post("http://localhost/WebApp/Server/index.php/product?filter=true",data)
+          console.log(response.data)
+          return response.data
+      }
+      catch (err) {
+          alert(err.response.data)
+      }
 });
 const productSlice = createSlice({
   name: 'productSlice',

@@ -52,7 +52,7 @@ function Header(){
                     <Link to={linkUser()} className="route-icon">
                         <PersonIcon height= "90%"/>
                     </Link>
-                    <Link to='/Payment' className="route-icon">
+                    <Link to='/Cart' className="route-icon">
                         <ShoppingCartIcon height= "90%"/>
                     </Link>
                     <Link to='' className="route-icon">

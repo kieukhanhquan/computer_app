@@ -13,6 +13,7 @@ import MainLayout from "../Layouts/MainLayout/MainLayout";
 import LoginLayout from "../Layouts/LoginLayout/LoginLayout";
 import NewsDetail from "../Pages/NewsDetail/NewsDetail";
 import Cart from "../Pages/Cart/Cart";
+import StatusOrder from "../Pages/StatusOrder/StatusOrder";
 
 
 export const routes = [
@@ -51,6 +52,9 @@ export const routes = [
     },
     {
         path: '/Cart', component: Cart, layout: MainLayout
+    },
+    {
+        path: '/StatusOrder', component: StatusOrder, layout: MainLayout
     },
     
 ]

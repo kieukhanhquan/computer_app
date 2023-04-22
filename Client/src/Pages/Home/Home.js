@@ -5,22 +5,22 @@ import { useSelector, useDispatch } from 'react-redux'
 import {fetchProduct} from "../../Redux/Slice/productSlice"
 import { Link } from "react-router-dom"
 function Home() {
-    const dataAll = useSelector((state) => state.product.product)
-    const [data,setData]=useState(dataAll);
-    const dispatch = useDispatch()
-    const fetchData = async () => {
-        await dispatch(fetchProduct(0))
-    }
-    useEffect(() => {
-        fetchData();
-            // setData(dataAll);
-        setData(dataAll.filter(item => (item.Type === "computer")));
-    }, [])
+    // const dataAll = useSelector((state) => state.product.product)
+    // const [data,setData]=useState(dataAll);
+    // const dispatch = useDispatch()
+    // const fetchData = async () => {
+    //     await dispatch(fetchProduct(0))
+    // }
+    // useEffect(() => {
+    //     fetchData();
+    //         // setData(dataAll);
+    //     setData(dataAll.filter(item => (item.Type === "computer")));
+    // }, [])
     
-    const [itemOffset, SetOffset] = useState({ offset: 0, current: 0 })
-    const itemPerPage = 9
-    const endOffset = itemOffset.offset + itemPerPage
-    const countPage = Math.ceil(dataAll?.length / itemPerPage)
+    // const [itemOffset, SetOffset] = useState({ offset: 0, current: 0 })
+    // const itemPerPage = 9
+    // const endOffset = itemOffset.offset + itemPerPage
+    // const countPage = Math.ceil(dataAll?.length / itemPerPage)
     return (
         <div className="HomePage">
             <div className="content-main">
