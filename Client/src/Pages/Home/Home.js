@@ -16,7 +16,7 @@ function Home() {
             // setData(dataAll);
         setData(dataAll.filter(item => (item.Type === "computer")));
     }, [])
-
+    
     const [itemOffset, SetOffset] = useState({ offset: 0, current: 0 })
     const itemPerPage = 9
     const endOffset = itemOffset.offset + itemPerPage

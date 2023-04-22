@@ -12,6 +12,7 @@ import ForgetPassword from "../Pages/ForgetPassword/ForgetPassword";
 import MainLayout from "../Layouts/MainLayout/MainLayout";
 import LoginLayout from "../Layouts/LoginLayout/LoginLayout";
 import NewsDetail from "../Pages/NewsDetail/NewsDetail";
+import Cart from "../Pages/Cart/Cart";
 
 
 export const routes = [
@@ -47,6 +48,9 @@ export const routes = [
     },
     {
         path: '/NewsDetail/:id', component: NewsDetail, layout: MainLayout
+    },
+    {
+        path: '/Cart', component: Cart, layout: MainLayout
     },
     
 ]
