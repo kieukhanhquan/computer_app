@@ -1,16 +1,33 @@
 import React, { Fragment } from 'react'
+import { useState,useEffect } from "react";
 import "./Cart.css"
-import { Link } from 'react-router-dom'
-import { useCookies } from 'react-cookie';
+import { Link, useNavigate } from 'react-router-dom'
+import { useCookies } from 'react-cookie'
+import { useDispatch, useSelector} from 'react-redux'
+import { fetchCart } from '../../Redux/Slice/cartSlice';
+import CartItems from '../../Components/CartItems/CartItems';
+
 const Cart = () => {
-  return (
-    const [cookies, setCookie,removeCookies] = useCookies(['user']);
+    
+    const dataCart = useSelector(state => state.cart.cart) || []
+
+    let total = 0;
+    for (let i = 0; i < dataCart.length; i++) {
+    let product = dataCart[i];
+    let price = parseFloat(product.Price);
+    let quantity = parseInt(product.quantity);
+    total += price * quantity;
+    }
+    console.log(total);
+    return (
     <Fragment >
+    
     <div className="cart-wrapper">
             <div className="cart">
                 <div className="cart-header">
                     <h1>GIỎ HÀNG CỦA BẠN</h1>
                 </div>
+                <CartItems></CartItems>
             </div>
         <div className="cart-calculate">
             <div className="title-cart-calculate">
@@ -24,7 +41,7 @@ const Cart = () => {
                     <span className="titleorder"><b>Tổng tiền:</b></span>
                     <span className="cart-totalprice">
                         <input className="totalprice" type="text" name="" id=""
-                            value=""></input>
+                            value={total}></input>
                         <span>₫</span>
                     </span>
                 </p>

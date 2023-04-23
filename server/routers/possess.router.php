@@ -30,5 +30,17 @@
             
         }
     }
+    if($method =="PUT"){
+        $data = json_decode(file_get_contents('php://input'),true);
+        $result = $possess->updateQuantity($server->db,$data);
+        if(strcmp(json_decode($result), "Success") == 0) {
+            echo($result);
+            http_response_code(400);
+        }
+        else {
+            echo($result);
+            http_response_code(200);
+        }
+    }
 
 ?>

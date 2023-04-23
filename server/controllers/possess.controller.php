@@ -14,8 +14,18 @@
         }
 
         public function filterPossess($db,$data){
-            $query = "SELECT * FROM possess WHERE ClientID = '$data'";
+            $query = "SELECT * FROM possess 
+                                JOIN product 
+                                ON possess.ProductID = product.ID 
+                                WHERE ClientID = '$data'";
             return $this->model->filterPossess($db,$query);
+        }
+
+        public function updateQuantity($db,$data){
+            $ProductID = $data["ProductID"];
+            $quantity = $data["quantity"];
+            $query = "UPDATE possess SET quantity='$quantity' WHERE ProductID='$ProductID'";
+            return $this->model->updateQuantity($db,$query);
         }
     }
 ?>

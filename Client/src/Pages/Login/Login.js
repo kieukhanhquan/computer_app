@@ -14,7 +14,7 @@ const Login = ({  messageLogin ,props}) => {
   const client = useSelector(state => state.client.clientInfor)
   const handleBlur = (event) => {
     if (event.target.value === "") {
-      event.target.parentElement.classList.add("alert-validate");
+      event.target.cparentElement.classList.add("alert-validate");
     }
   };
   const handleFocus = (event) => {
