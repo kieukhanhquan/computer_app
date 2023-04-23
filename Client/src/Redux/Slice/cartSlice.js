@@ -33,7 +33,6 @@ export const updateQuantity = createAsyncThunk(
 export const addtoCart = createAsyncThunk(
   "addtoCart",
   async (data, { dispatch, getState }) => {
-    console.log(data.user);
     try {
         const existItem = getState().cart.find(item => item.ProductID = data.ID);
         if(existItem){

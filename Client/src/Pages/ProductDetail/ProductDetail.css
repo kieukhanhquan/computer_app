@@ -1,5 +1,6 @@
 .ProfileProduct
-{
+{   
+    margin-top: 10%;
     font-size: 15px;
 }
 .pathUrl
@@ -30,11 +31,7 @@
 .path3{
     margin: 10px;
 }
-.contentProduct
-{
-    height: 600px;
-    
-}
+
 .product__listImg
 {
     padding: 0 20px 20px 20px; 
@@ -43,6 +40,7 @@
     align-items: center;
    
 }
+
 
 .img{
     width: 100%;
@@ -353,6 +351,9 @@
 }
 @media only screen and (max-width: 740px){
     
+    .ProfileProduct{   
+    margin-top: 20%;
+    }
     .img{
         height: 350px;
     }
@@ -413,6 +414,9 @@
  @media only screen and (min-width: 740px) and (max-width: 1030px){
     .img{
         height: 500px;
+    }
+    .ProfileProduct{   
+    margin-top: 15%;
     }
     .size-bottom_list-item {
         font-size: 12px;
