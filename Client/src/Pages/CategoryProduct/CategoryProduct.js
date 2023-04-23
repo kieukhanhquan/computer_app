@@ -6,15 +6,23 @@ import { useDispatch, useSelector} from 'react-redux'
 import { fetchProduct } from "../../Redux/Slice/productSlice"
 import { filterProduct } from "../../Redux/Slice/productSlice"
 import { Link } from "react-router-dom"
-
+import { useLocation } from 'react-router-dom';
 function CategoryProduct() {
     const [type, setType] = useState('');
     const [minPrice, setMinPrice] = useState(0);
     const [maxPrice, setMaxPrice] = useState(0);
     const [company, setCompany] = useState('');
-
+    const location = useLocation();
+    const dataAll = location.state;
+    let data=useSelector((state) => state.product.product);
+    // useEffect(() => {
+    //     data=useSelector((state) => state.product.product);
+    // },[]);
+    if(dataAll!=null){
+        data=dataAll
+    }
     let dispatch = useDispatch()
-    const dataAll = useSelector((state) => state.product.product)
+    
 
     const handleSelectTypeChange = (event) => {
         setType(event.target.value);
@@ -60,18 +68,15 @@ function CategoryProduct() {
         <div className="CategoryProduct" >
                 <div className="grid">
                     <div className="grid__row CategoryProduct-row">
-                        <div className="grid__column-1667 m-2">
+                        {/* <div className="grid__column-1667 m-2">
                             <nav className="category">
                                 <h3 className="category__heading">
                                     <i className="category__heading-icon fa-solid fa-list-ul"></i>
                                     Tất cả danh mục
                                 </h3>
-                                <ul className="category__list">
-                                    
-                                </ul>
                             </nav>
-                        </div>
-                        <div className="grid__column-8333 m-10">
+                        </div> */}
+                        <div className="grid__column100 m-10">
                             <div className="home-filter">
                                 <span className="home-filter__label"> Sắp xếp theo</span>
         
@@ -102,7 +107,7 @@ function CategoryProduct() {
                                     </button>
                                 </form>
 
-                                <div className="home-filter__page">
+                                {/* <div className="home-filter__page">
                                     <div className="home-filter__page-num">
                                         <span className="home-filter__page-cur"></span>
                                 
@@ -116,14 +121,14 @@ function CategoryProduct() {
                                         </a>
         
                                     </div>
-                                </div>
+                                </div> */}
                                 
                             </div>
                             <div className="home-product">
                                 <div className="grid__row">
                                 <div className="list-item">
                                     {
-                                    dataAll.map((item) => {return (
+                                    data.map((item) => {return (
                                         <div className="item-wrap">
                                             <Link to={`/ProductDetail/${item.ID}`}>
                                                 <img src={item.Image} className="img-thumbnail" alt="Cinque Terre"/>

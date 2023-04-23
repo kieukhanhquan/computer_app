@@ -23,7 +23,7 @@ function ListItem(props) {
     }, [minPrice, maxPrice, company, type])
 
     const [itemOffset, SetOffset] = useState({ offset: 0, current: 0 })
-    const itemPerPage = 9
+    const itemPerPage = 8
     const endOffset = itemOffset.offset + itemPerPage
     useEffect(() => {
         // fetchData()
