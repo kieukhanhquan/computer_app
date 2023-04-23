@@ -15,7 +15,8 @@ An in-depth paragraph about your project and overview of use.
 * How to run the program
 * Step-by-step bullets
 ```
-code block
+code blocks for commands
+```
 
 ## Authors
 1. Nguyễn Hữu Lượng 
