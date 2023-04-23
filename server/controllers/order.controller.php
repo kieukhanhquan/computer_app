@@ -9,7 +9,7 @@
                 }
 
                 public function viewAll($db) {
-                    $query = "SELECT * FROM orderp";
+                    $query = "SELECT * FROM orderp ORDER BY TimeCreate	DESC";
                     return $this->model->viewAll($db, $query);
                 }
 

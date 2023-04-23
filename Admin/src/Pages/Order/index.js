@@ -6,7 +6,7 @@ import { CiSquareMore } from "react-icons/ci";
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux'
 import { fetchOrder, filterOrder, searchOrder } from '../../Redux/Slice/orderSlice';
-
+import { BiRefresh } from "react-icons/bi";
 
 
 const Order = () => {
@@ -48,8 +48,13 @@ const Order = () => {
         }
         setactive(key)
     }
+
+    const handelReload = async () => {
+        fetchData()
+    }
+
     const [itemOffset, SetOffset] = useState({ offset: 0, current: 0 })
-    const itemPerPage = 11
+    const itemPerPage = 10
     const endOffset = itemOffset.offset + itemPerPage
     const data = dataAll.slice(itemOffset.offset, endOffset)
     const countPage = Math.ceil(dataAll.length / itemPerPage)
@@ -111,6 +116,7 @@ const Order = () => {
 
                     </div>
                 </div>
+                <div><button className='btn btn-primary mb-2 ms-1' onClick={handelReload}>{<BiRefresh size={20} />} Làm mới </button></div>
                 <div className='table-responsive-lg '>
                     <table className='table '>
                         <thead>
