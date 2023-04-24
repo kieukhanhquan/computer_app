@@ -3,6 +3,7 @@ import { routes } from "./Routes/index";
 import { Fragment } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "bootstrap/dist/js/bootstrap.min.js";
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   return (
