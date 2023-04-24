@@ -5,7 +5,6 @@ export const loginClient = createAsyncThunk(
     "loginClient",
     async (data, { dispatch }) => {
         try {
-            console.log(`http://localhost/WebApp/Server/index.php/auth?UserName=${data.UserName}&Password=${data.Password}&Type=2000000`);
             let response = await axios.get(`http://localhost/WebApp/Server/index.php/auth?UserName=${data.UserName}&Password=${data.Password}&Type=2000000`)
             return response.data
         }
@@ -65,7 +64,7 @@ export const registerClient = createAsyncThunk(
                 Password: data.Password,
                 PhoneNumber: data.PhoneNumber,
                 Confirm: data.Confirm,
-                Type: 1000000
+                Type: 2000000
             })
             dispatch(setRegister(true))
         }

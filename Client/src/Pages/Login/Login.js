@@ -3,6 +3,7 @@ import {Link,useNavigate} from "react-router-dom";
 import { useCookies } from 'react-cookie';
 import { useDispatch, useSelector} from 'react-redux'
 import { loginClient } from "../../Redux/Slice/clientSlice"
+import { colors } from "@mui/material";
 
 
 const Login = ({  messageLogin ,props}) => {
@@ -12,27 +13,47 @@ const Login = ({  messageLogin ,props}) => {
   let navigate = useNavigate()
   let dispatch = useDispatch()
   const client = useSelector(state => state.client.clientInfor)
-  const handleBlur = (event) => {
-    if (event.target.value === "") {
-      event.target.cparentElement.classList.add("alert-validate");
+  const checker = sessionStorage.getItem("checker")
+  const validData = (data) => {
+    let checker = true
+    let userPattern = /[a-zA-Z\_](\w)*/
+    if (data.UserName.length == 0) {
+        alert("Vui lòng điền tên đăng nhập của bạn")
+        checker = false
     }
-  };
-  const handleFocus = (event) => {
-    event.target.parentElement.classList.remove("alert-validate");
-  };
+
+    else if (data.UserName.match(userPattern) == null) {
+        alert("Tên đăng nhập phải bắt đầu bằng kí tự")
+        checker = false
+    }
+
+    else if (data.UserName.length < 7) {
+        alert("Độ dài tối thiểu của tên đăng nhập là 7")
+        checker = false
+    }
+    else if (data.Password.length == 0) {
+        alert("Vui lòng điền mật khẩu của bạn")
+        checker = false
+    }
+    return checker
+}
+
   const handleSubmitLogin=async (event) => {
     event.preventDefault()
-        let UserName = username
-        let Password = password
-        // let checker = validData({UserName: UserName, Password: Password})
-        // if(true) {
+    console.log()
+    let UserName = event.target.userName.value
+    let Password = event.target.password.value
+    console.log(Password)
+    let checker = validData({UserName: UserName, Password: Password})
+        if(checker) {
+          sessionStorage.setItem("checker", UserName);
           await dispatch(loginClient({UserName: UserName, Password: Password}))
             
-        // }
+        }
 
   }
   useEffect(() => {
-    if (client != null) {
+    if (client != null && checker!="") {
       removeCookies();
       console.log(client.ID)
       setCookie('user', client, { path: '/' });
@@ -42,11 +63,11 @@ const Login = ({  messageLogin ,props}) => {
     }
   });
   return (
-    <div className="limiter">
+    <div >
       <div className="container-Login100">
         <div className="wrap-Login100">
           <div className="Login100-pic js-tilt" data-tilt>
-          <input type="image" src="./images/img-01.png" alt="Submit" />
+          <img src="https://i0.wp.com/stanzaliving.wpcomstaging.com/wp-content/uploads/2022/05/Malls-in-Mumbai.jpg?fit=1000%2C678&ssl=1" style={{border: "0", borderRadius: "0", height: "100%"}} alt="Submit" />
           </div>
 
           <form
@@ -62,15 +83,12 @@ const Login = ({  messageLogin ,props}) => {
               className="wrap-input100 validate-input"
               data-validate="Username is required"
             >
+            <p>Tên đăng nhập</p>
               <input
                 className="input100"
                 type="text"
-                name="username"
-                value={username}
+                id="userName" name="username"
                 placeholder="Username"
-                onFocus={handleFocus}
-                onBlur={handleBlur}
-                onChange={(event) => setUsername(event.target.value)}
               />
               <span className="focus-input100"></span>
               <span className="symbol-input100">
@@ -82,30 +100,26 @@ const Login = ({  messageLogin ,props}) => {
               className="wrap-input100 validate-input"
               data-validate="Password is required"
             >
+            <p>Mật khẩu</p>
               <input
                 className="input100"
-                type="password"
-                name="password"
-                value={password}
+                id="passWord" type="password" name="password"
                 placeholder="Password"
-                onFocus={handleFocus}
-                onBlur={handleBlur}
-                onChange={(event) => setPassword(event.target.value)}
               />
               <span className="focus-input100"></span>
               <span className="symbol-input100">
                 <i className="fa fa-lock" aria-hidden="true"></i>
               </span>
             </div>
-            
-            <Link to ={"/ForgetPassword"}>Quên mật khẩu</Link>
+            <p >
+            <Link to ={"/ForgetPassword"}>Quên mật khẩu</Link></p>
             {/* <Link to ="/"> */}
             <div className="container-Login100-form-btn">
             
               <button type="submit" className="Login100-form-btn">Đăng nhập</button>
               
             </div>
-            <Link to='../Register'>Đăng kí</Link>
+            <p style={{marginTop: "30px", display:"flex", justifyContent: "center"}}> Bạn không có tài khoản? <span className="textLogin"><Link to='../Register'> Đăng kí</Link> </span> </p> 
             {/* </Link> */}
             {/* <div className="container-Login100-form-btn">
               <Link to='../Register' className="Login100-form-btn" >Đăng Kí</Link>
@@ -355,6 +369,10 @@ const Login = ({  messageLogin ,props}) => {
                       margin-bottom: 10px;
                     }
                     
+                    .textLogin {
+                      color: blue;
+                    }
+
                     .input100 {
                       font-family: Poppins-Medium;
                       font-size: 15px;

@@ -4,8 +4,10 @@ import SearchIcon from '@rsuite/icons/Search';
 import PersonIcon from '@mui/icons-material/Person';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import { AiOutlineLogout } from "react-icons/ai";
 import { Link, useNavigate } from "react-router-dom";
 import { useCookies } from 'react-cookie';
+import { CiLogin } from "react-icons/ci";
 import axios from 'axios';
 // import { Whisper, Avatar, Popover } from 'rsuite';
 import "./header.css";
@@ -16,6 +18,7 @@ function Header(){
     const [cookies] = useCookies(['user']);
     const [searchTerm, setSearchTerm] = useState('');
     const [data, setData] = useState([]);
+    const checker = sessionStorage.getItem("checker")
     let navigate = useNavigate()
     // console.log(cookies.user.ID);
     const linkUser =()=>{
@@ -41,6 +44,14 @@ function Header(){
         
     }
     const location = useLocation()
+    const handelLogout = async () => {
+       await sessionStorage.setItem("checker", "")
+       navigate('/Login')
+    }
+    const handelLogin = async () => {
+        await sessionStorage.setItem("checker", "")
+        navigate('/Login')
+     }
     return (
         <header className="header">
             <div className="navbar">
@@ -63,19 +74,27 @@ function Header(){
                         <SearchIcon height= "90%" fontSize= "18px"/>
                     </button>
                 </form>
-                <div className="route_wrap">
+                {
+                    checker != "" ?
+                    <div className="route_wrap">
                     <Link to={linkUser()} className="route-icon">
-                        <PersonIcon height= "90%"/>
+                        <PersonIcon height= "90%" fontSize="50px"/>
                     </Link>
                     <Link to='/Cart' className="route-icon">
                         <ShoppingCartIcon height= "90%"/>
                     </Link>
-                    <Link to='' className="route-icon">
-                        <FavoriteBorderIcon height= "90%" />    
-                    </Link>
-                    
+                    <button onClick={handelLogout} style={{backgroundColor: "rgba(0,0,0,0)"}} className="route-icon">
+                        <AiOutlineLogout height= "90%" />    
+                    </button>
                 
                 </div>
+                : 
+                <div className="route_wrap">
+                <button onClick={handelLogin} style={{backgroundColor: "rgba(0,0,0,0)"}} className="route-icon">
+                        <CiLogin size={20} color="white"/>    
+                        </button>
+                </div>
+                }
             </div>
 
         </header>
