@@ -36,7 +36,11 @@
     elseif($pathName == "order") {
         include_once "./routers/order.router.php";
     }
-
+    elseif($pathName == "voucher") {
+        include_once "./routers/voucher.router.php";
+    }
+    elseif($pathName == "contact") {
+        include_once "./routers/contact.router.php";
+    }
     $server->disConnect()
-
 ?>

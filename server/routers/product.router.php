@@ -20,15 +20,22 @@
         }
     }
     elseif($method == "POST") {
-        $data = json_decode(file_get_contents('php://input'), true) ;
-        $result = $product->addProduct($server->db, $data);
-        if (strcmp($result, "Success")){
-            echo($result);
-            http_response_code(200);
-        }
-        else {
-            echo($result);
-            http_response_code(400);
+        if ($queryValue == null){
+
+        } else {
+            $queryParam = explode('=', $queryValue);
+            $data = json_decode(file_get_contents('php://input'), true) ;
+            if ($queryParam[0] == "add"){
+                $result = $product->addProduct($server->db, $data);
+                if (strcmp(json_decode($result), "Success") == 0){
+                    echo($result);
+                    http_response_code(200);
+                } else {
+                    echo($result);
+                    http_response_code(400);
+                }
+
+            }
         }
     }
 
