@@ -11,7 +11,7 @@ import {
     Register,
     Phone,
     Reset, Statistic
-    , News
+    , News, NotFound
 } from "../Pages/index";
 import Dashboard from "../Pages/index";
 import OrderDetail from "../Pages/Order/orderDetail";
@@ -55,5 +55,8 @@ export const routes = [
     },
     {
         path: '/news',  component: News, layout: MainLayout
-    }
+    },
+    {
+        path: '*',  component: NotFound, layout: null
+    },
 ]

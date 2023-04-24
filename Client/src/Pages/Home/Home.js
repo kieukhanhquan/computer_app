@@ -1,6 +1,26 @@
 import "./Home.css"
+import { useState, useEffect } from "react";
 import ListItem from "../../Components/ListItem/ListItem"
+import { useSelector, useDispatch } from 'react-redux'
+import {fetchProduct} from "../../Redux/Slice/productSlice"
+import { Link } from "react-router-dom"
 function Home() {
+    // const dataAll = useSelector((state) => state.product.product)
+    // const [data,setData]=useState(dataAll);
+    // const dispatch = useDispatch()
+    // const fetchData = async () => {
+    //     await dispatch(fetchProduct(0))
+    // }
+    // useEffect(() => {
+    //     fetchData();
+    //         // setData(dataAll);
+    //     setData(dataAll.filter(item => (item.Type === "computer")));
+    // }, [])
+    
+    // const [itemOffset, SetOffset] = useState({ offset: 0, current: 0 })
+    // const itemPerPage = 9
+    // const endOffset = itemOffset.offset + itemPerPage
+    // const countPage = Math.ceil(dataAll?.length / itemPerPage)
     return (
         <div className="HomePage">
             <div className="content-main">
@@ -30,7 +50,7 @@ function Home() {
             <div className="content-product">
                 <div className="grid">
                     <div className="product__heading">MÁY TÍNH</div>
-                    <ListItem type='computer' minPrice={0} maxPrice={0} company=""/>
+                    <ListItem type='computer'/>
                 </div>
                 
                 
@@ -38,13 +58,13 @@ function Home() {
             <div className="content-accessory">
                 <div className="grid">
                     <div className="accessory__heading">ĐIỆN THOẠI</div>
-                    <ListItem type='Phone' minPrice={0} maxPrice={0} company=""/>
+                    <ListItem type='Phone'/>
                 </div>
             </div>
             <div className="content-accessory">
                 <div className="grid">
                     <div className="accessory__heading">PHỤ KIỆN</div>
-                    <ListItem type='accessory' minPrice={0} maxPrice={0} company=""/>
+                    <ListItem type='accessory'/>
                 </div>
             </div>
         </div>

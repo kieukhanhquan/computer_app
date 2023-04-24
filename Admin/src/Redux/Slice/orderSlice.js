@@ -23,6 +23,7 @@ export const filterOrder = createAsyncThunk(
             const response = await axios.post("http://localhost/WebApp/Server/index.php/order?filter=true", {
                filter: data
             })
+            
             return response.data
         }
         catch (err) {

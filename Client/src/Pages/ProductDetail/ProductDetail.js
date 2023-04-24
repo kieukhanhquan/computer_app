@@ -2,6 +2,7 @@ import React, { Fragment } from 'react';
 import Header from '../../Components/Header/Header'
 import Footer from '../../Components/Footer/Footer'
 import { Link } from 'react-router-dom';
+import { useCookies } from 'react-cookie';
 import { Nav } from 'rsuite';
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from 'react-redux'
@@ -9,6 +10,7 @@ import {fetchProduct} from "../../Redux/Slice/productSlice"
 import 'rsuite/dist/rsuite.min.css'
 import { useParams } from 'react-router-dom';
 import { fetchcomments } from '../../Redux/Slice/commentsSlice';
+import { addtoCart } from '../../Redux/Slice/cartSlice';
 import "./ProductDetail.css"
 
 const items = [
@@ -19,6 +21,8 @@ const items = [
   ];
 
 function ProductDetail() {
+
+    const [cookies, setCookie,removeCookies] = useCookies(['user']);
     const [activeKey, setActiveKey] = React.useState('A');
     const dataAll = useSelector((state) => state.product.product)
     const dispatch = useDispatch()
@@ -28,32 +32,38 @@ function ProductDetail() {
     }
     useEffect(() => {
         fetchData()
-
     }, [])
     const dispatch1 = useDispatch()
     const fetchData1 = async () => {
         await dispatch1(fetchcomments(0))
     }
+
+    const { id } = useParams(); 
+    const product = dataAll.find(item => item.ID === id);
+    const comment = datacomments.find(item => item.ProductID === id);
+    const typeProduct = dataAll.filter(item => item.Type === product.Type);
+
+
+
+    const handleAddToCart = async (product,user) =>{    
+        await dispatch(addtoCart(product,user))
+    }
+
+
     useEffect(() => {
         fetchData1()
         
     }, [])
     
-    const { id } = useParams(); 
-    const product = dataAll.find(item => item.ID === id);
-    const comment = datacomments.find(item => item.ProductID === id);
-    const typeProduct = dataAll.filter(item => item.Type === product.Type);
+    
     return (
         <Fragment>
-            <div className="ProfileProduct" style={{marginTop:'5%'}}>
-                <div className="pathUrl">
-                    <a href="./index.php" className="path1">
-                    <i className=" home-icon fa-solid fa-house-chimney"></i>
-                    </a>
-                </div>
-            <div className="contentProduct">
+            <div className="ProfileProduct" >
+                
+            <div className="contentProduct" >
                 <div className="grid">
-                <form className="grid__row" action='./index.php?url=Cart/insert' method='POST'>
+
+                <div className="grid__row">
                 <div className="grid__column-60 m-7 c-12">
                     <div className="product__listImg">  
                             <button className="left-btn" type='button'>
@@ -114,13 +124,16 @@ function ProductDetail() {
                                 </ul>
                             </div>
                             <div className="product__detail-submit">
-                                <button className="cart-btn">Thêm vào giỏ hàng</button>
+                                <button className="cart-btn" onClick={() => handleAddToCart(product,cookies.user)}>Thêm vào giỏ hàng</button>
                                  <button className="buy-btn">Mua ngay</button> 
                             </div>
                         </div>
 
                     </div>
                 </div>
+                </div>
+                <form className="grid__row" action='./index.php?url=Cart/insert' method='POST'>
+                
             </form>
         </div>
 

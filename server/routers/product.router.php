@@ -36,6 +36,12 @@
                 }
 
             }
+            if ($queryParam[0] == "filter"){
+                // echo($data["Type"]);
+                $result = $product->filterProduct($server->db, $data);
+                echo($result);
+
+            }
         }
     }
 

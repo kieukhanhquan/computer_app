@@ -1,4 +1,4 @@
-import { Fragment, useLayoutEffect, useState } from "react"
+import { Fragment, useLayoutEffect, useState, useEffect } from "react"
 import { useLocation } from "react-router-dom"
 import logo from "../../Assets/avatar.png";
 import { Dropdown } from 'rsuite';
@@ -12,15 +12,41 @@ import MenuIcon from '@rsuite/icons/Menu';
 import TrendIcon from '@rsuite/icons/Trend';
 import TextImageIcon from '@rsuite/icons/TextImage';
 import { Whisper, Avatar, Popover } from 'rsuite';
-
-
+import { useDispatch } from "react-redux";
+import { setAdmin } from "../../Redux/Slice/adminSlice";
 import { Link } from "react-router-dom"
+import { useNavigate } from "react-router-dom";
+import {  useSelector } from "react-redux";
+import { getInfor, updateInfor } from "../../Redux/Slice/inforSlice";
+import ModifyAdmin from "./viewInfo";
 function Header() {
+    // console.log(JSON.parse(localStorage.getItem('admin')))
+    let ID = sessionStorage.getItem("admin")
+    let admin = useSelector(state => state.infor.adminInfo)
+    const dispatch = useDispatch()
+    let navigate = useNavigate()
     const location = useLocation()
     const [icons, setIcon] = useState(<MenuIcon />)
     const [title, setTitle] = useState("")
     const [showMenu, setShowMenu] = useState(false);
     const [showLayout, setShowLayout] = useState(false);
+
+    const handelLogout = async () => {
+        sessionStorage.clear();
+        dispatch(setAdmin())
+        navigate("/")
+    }
+
+    const getData = async() => {
+        await dispatch(getInfor({ID: ID}))
+    }
+    useEffect(() => {
+        getData()
+    },[])
+    if (admin == null) {
+        getData()
+    }
+
     useLayoutEffect(() => {
         switch (location.pathname) {
             case '/':
@@ -112,17 +138,18 @@ function Header() {
             speaker={
                 <Popover>
                     <Dropdown.Menu>
-                        <Dropdown.Item as={Link} to="/">Xem thông tin</Dropdown.Item>
-                        <Dropdown.Item as={Link} to="/" >Đăng xuất</Dropdown.Item>
+                        <Dropdown.Item >{<ModifyAdmin admin={admin} />}</Dropdown.Item>
+                      <button style={{backgroundColor: "white"}} onClick={handelLogout}> <Dropdown.Item  >Đăng xuất</Dropdown.Item> </button> 
                     </Dropdown.Menu>
                 </Popover>
             }>
-            <Avatar circle src={logo} alt="log" />
+            <Avatar circle sizes={70} src={admin.Avatar} alt="log" />
         </Whisper>
         )
     }
     return (
         <Fragment>
+
             {!showLayout && <div className="header-bar position-fixed shadow-sm d-flex justify-content-between align-items-center py-2 px-4 bg-white"
                 style={{ backgroundColor: "white", height: "var(--header-height)", width: "calc(100% - var(--sidebar-width))" }}>
                 {showMenu && tab()}

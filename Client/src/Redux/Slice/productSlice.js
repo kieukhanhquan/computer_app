@@ -14,17 +14,27 @@ async (data, { dispatch }) => {
 });
 export const filterProduct = createAsyncThunk(
   "filterProduct",
-async (data, { dispatch }) => {
-    try {
-        const response = await axios.post("http://localhost/WebApp/Server/index.php/product?filter=true",{
-          filter: data
-        })
-        return response.data
-    }
-    catch (err) {
-        alert(err.response.data)
-    }
+  async (data, { dispatch }) => {
+      try {
+          const response = await axios.post("http://localhost/WebApp/Server/index.php/product?filter=true",data)
+          return response.data
+      }
+      catch (err) {
+          alert(err.response.data)
+      }
 });
+export const searchProduct = createAsyncThunk(
+  "searchProduct",
+  async (data, { dispatch }) => {
+      try {
+          const response = await axios.post(`http://localhost/WebApp/Server/index.php/product?search=${data}`)
+          return response.data
+      }
+      catch (err) {
+          alert(err.response.data)
+      }
+  }
+)
 const productSlice = createSlice({
   name: 'productSlice',
   initialState: {
@@ -60,7 +70,17 @@ const productSlice = createSlice({
       .addCase(filterProduct.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message;
-      });
+      })
+      .addCase(searchProduct.pending, (state, action) => {
+        state.loader = true
+      })
+      .addCase(searchProduct.fulfilled, (state, action) => {
+          state.loader = false
+          state.order = action.payload
+      })
+      .addCase(searchProduct.rejected, (state, action) => {
+          state.order = false
+      })
   },
 });
 

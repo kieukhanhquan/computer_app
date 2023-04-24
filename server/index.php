@@ -36,7 +36,23 @@
     elseif($pathName == "order") {
         include_once "./routers/order.router.php";
     }
-    elseif($pathName == "voucher") {
+    elseif($pathName == "auth") {
+        include_once "./routers/auth.router.php";
+    }
+    elseif($pathName == "admin") {
+        include_once "./routers/admin.router.php";
+    }
+    elseif($pathName == "cart"){
+        include_once "./routers/cart.router.php";
+    }
+    elseif($pathName == "possess"){
+        include_once "./routers/possess.router.php";
+    }
+    elseif($pathName == "statistic"){
+        include_once "./routers/statistic.router.php";
+    }
+    
+        elseif($pathName == "voucher") {
         include_once "./routers/voucher.router.php";
     }
     elseif($pathName == "contact") {

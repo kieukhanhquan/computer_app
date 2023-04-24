@@ -8,8 +8,12 @@ import News from "../Pages/News/News";
 import Home from "../Pages/Home/Home";
 import Payment from "../Pages/Payment/Payment";
 import Login from "../Pages/Login/Login";
+import ForgetPassword from "../Pages/ForgetPassword/ForgetPassword";
 import MainLayout from "../Layouts/MainLayout/MainLayout";
 import LoginLayout from "../Layouts/LoginLayout/LoginLayout";
+import NewsDetail from "../Pages/NewsDetail/NewsDetail";
+import Cart from "../Pages/Cart/Cart";
+import StatusOrder from "../Pages/StatusOrder/StatusOrder";
 
 
 export const routes = [
@@ -18,6 +22,9 @@ export const routes = [
     },
     {
         path: "/Login", component: Login, layout: MainLayout
+    },
+    {
+        path: "/ForgetPassword", component: ForgetPassword, layout: MainLayout
     },
     {
         path: "/AboutUs", component: AboutUs, layout: MainLayout
@@ -39,6 +46,15 @@ export const routes = [
     },
     {
         path: '/Payment', component: Payment, layout: MainLayout
+    },
+    {
+        path: '/NewsDetail/:id', component: NewsDetail, layout: MainLayout
+    },
+    {
+        path: '/Cart', component: Cart, layout: MainLayout
+    },
+    {
+        path: '/StatusOrder', component: StatusOrder, layout: MainLayout
     },
     
 ]

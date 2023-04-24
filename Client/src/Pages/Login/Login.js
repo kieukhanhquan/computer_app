@@ -1,20 +1,46 @@
-import { useState } from "react";
-import {Link} from "react-router-dom";
+import { useState,useEffect } from "react";
+import {Link,useNavigate} from "react-router-dom";
+import { useCookies } from 'react-cookie';
+import { useDispatch, useSelector} from 'react-redux'
+import { loginClient } from "../../Redux/Slice/clientSlice"
 
 
-
-const Login = ({ handleSubmitLogin, messageLogin ,props}) => {
+const Login = ({  messageLogin ,props}) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-
+  const [cookies, setCookie,removeCookies] = useCookies(['user']);
+  let navigate = useNavigate()
+  let dispatch = useDispatch()
+  const client = useSelector(state => state.client.clientInfor)
   const handleBlur = (event) => {
     if (event.target.value === "") {
-      event.target.parentElement.classList.add("alert-validate");
+      event.target.cparentElement.classList.add("alert-validate");
     }
   };
   const handleFocus = (event) => {
     event.target.parentElement.classList.remove("alert-validate");
   };
+  const handleSubmitLogin=async (event) => {
+    event.preventDefault()
+        let UserName = username
+        let Password = password
+        // let checker = validData({UserName: UserName, Password: Password})
+        // if(true) {
+          await dispatch(loginClient({UserName: UserName, Password: Password}))
+            
+        // }
+
+  }
+  useEffect(() => {
+    if (client != null) {
+      removeCookies();
+      console.log(client.ID)
+      setCookie('user', client, { path: '/' });
+      sessionStorage.setItem("client", client.ID);
+      // localStorage.setItem('client', JSON.stringify(client));
+      navigate("/")
+    }
+  });
   return (
     <div className="limiter">
       <div className="container-Login100">
@@ -25,7 +51,7 @@ const Login = ({ handleSubmitLogin, messageLogin ,props}) => {
 
           <form
             name="form"
-            onSubmit={(event) => handleSubmitLogin(event, username, password)}
+            onSubmit={handleSubmitLogin}
             className="Login100-form validate-form"
           >
             <span className="Login100-form-title">ĐĂNG NHẬP</span>
@@ -72,21 +98,15 @@ const Login = ({ handleSubmitLogin, messageLogin ,props}) => {
               </span>
             </div>
             
-            <Link href="/forget_password">Quên mật khẩu</Link>
-            <Link href="/workers">
+            <Link to ={"/ForgetPassword"}>Quên mật khẩu</Link>
+            {/* <Link to ="/"> */}
             <div className="container-Login100-form-btn">
             
-              <button className="Login100-form-btn">Đăng nhập</button>
+              <button type="submit" className="Login100-form-btn">Đăng nhập</button>
               
             </div>
-            </Link>
-            <Link href="/workers">
-            <div className="container-Login100-form-btn">
-            
-              <button className="Login100-form-btn">Đăng Kí</button>
-              
-            </div>
-            </Link>
+            <Link to='../Register'>Đăng kí</Link>
+            {/* </Link> */}
             {/* <div className="container-Login100-form-btn">
               <Link to='../Register' className="Login100-form-btn" >Đăng Kí</Link>
             </div> */}

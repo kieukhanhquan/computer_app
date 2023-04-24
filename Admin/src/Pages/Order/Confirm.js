@@ -18,12 +18,12 @@ const Confirm = ({data}) => {
     const handelSubmit = async (event) => {
         event.preventDefault()
         const date = new Date();
-
+        let admin = sessionStorage.getItem("admin")
         let day = date.getDate();
         let month = date.getMonth() + 1;
         let year = date.getFullYear();
         let currentDate = `${year}-${month}-${day}`;
-        let dataUpdate = {id: data.ID, status: "Đã xác nhận", date: currentDate, admin: 1000001}
+        let dataUpdate = {id: data.ID, status: "Đã xác nhận", date: currentDate, admin: admin}
         
         await dispatch(updateStatus(dataUpdate))
         dispatch(updateGrade({ID: data.CientID, Grade: parseFloat(data.OrderShip) + parseFloat(data.OrderFee), type:2 }))

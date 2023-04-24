@@ -9,7 +9,7 @@ import Footer from '../../Components/Footer/Footer'
 import { Form, ButtonToolbar, Button, Input } from 'rsuite';
 import { AvatarGroup, Avatar } from 'rsuite';
 import UserIcon from '@rsuite/icons/legacy/User';
-
+import { Link } from "react-router-dom"
 
 import 'rsuite/dist/rsuite.min.css'
 import { Fragment } from 'react';
@@ -18,12 +18,10 @@ import './UserInfor.css'
 const Textarea = React.forwardRef((props, ref) => <Input {...props} as="textarea" ref={ref} />);
 
 function UserInfor() {
+
     return (
         <Fragment >
             <div className='body'>
-                <div >
-                    
-                </div>
                 
                 <div className='content' >
                     <div className='Sidenav' style={{ width: 325 }}>
@@ -33,10 +31,14 @@ function UserInfor() {
                             <Nav.Item eventKey="1" icon={<DashboardIcon />}>
                                 Thông tin cá nhân
                             </Nav.Item>
+                            
                             <Nav.Item eventKey="2" icon={<GroupIcon />}>
+                            <Link to={"/StatusOrder"}>
                                 Đơn hàng của tôi
+                            </Link>
                             </Nav.Item>
-                            <Nav.Menu eventKey="3" title="Thông báo" icon={<MagicIcon />}>
+
+                            {/* <Nav.Menu eventKey="3" title="Thông báo" icon={<MagicIcon />}>
                                 <Nav.Item eventKey="3-1">Cập nhập đơn hàng</Nav.Item>
                                 <Nav.Item eventKey="3-2">Khuyến mãi</Nav.Item>
                                 <Nav.Item eventKey="3-3">Hoạt động</Nav.Item>
@@ -50,7 +52,7 @@ function UserInfor() {
                                 <Nav.Item eventKey="4-5-1">Action Name</Nav.Item>
                                 <Nav.Item eventKey="4-5-2">Action Params</Nav.Item>
                                 </Nav.Menu>
-                            </Nav.Menu>
+                            </Nav.Menu> */}
                             </Nav>
                         </Sidenav.Body>
                         </Sidenav>

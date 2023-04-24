@@ -1,24 +1,33 @@
 import React from 'react';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Pie } from 'react-chartjs-2';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+
+import { useDispatch, useSelector } from 'react-redux';
+import { getProduct } from '../../Redux/Slice/statisSlice';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-let data = [65, 59, 80, 81, 56, 55, 40]
-let product = ["Máy tính PC", "Laptop",
-    "Màn hình",
-    "Chuột",
-    "Dây sạc",
-    "Tai nghe",
-    "Bàn phím",]
+// let data = [0,0,0]
+let product = ["Máy tính", "Phụ kiện",
+    "Điện thoại"]
 
 const TypeSale = () => {
+
     const [year, setYear] = useState('2023')
+    const dispatch = useDispatch()
+    let data = useSelector(state=>state.statis.typeValue)
 
     const handleChange = (event) => {
         setYear(event.target.value)
     }
+    const getData = async () => {
+        await dispatch(getProduct({year: year}))
+    }
+    useEffect(()=> {
+        getData()
+    }, [year])
+
     return (
         <>
             <div className='d-flex flex-wrap mb-2'>
@@ -74,13 +83,8 @@ const TypeSale = () => {
 
                             data={{
                                 labels: [
-                                    "Máy tính PC",
-                                    "Laptop",
-                                    "Màn hình",
-                                    "Chuột",
-                                    "Dây sạc",
-                                    "Tai nghe",
-                                    "Bàn phím",
+                                    "Máy tính", "Phụ kiện",
+                                    "Điện thoại"
 
                                 ],
                                 datasets: [{
@@ -89,21 +93,15 @@ const TypeSale = () => {
                                     backgroundColor: [
                                         'rgba(255, 99, 132, 0.2)',
                                         'rgba(255, 159, 64, 0.2)',
-                                        'rgba(255, 205, 86, 0.2)',
                                         'rgba(75, 192, 192, 0.2)',
-                                        'rgba(54, 162, 235, 0.2)',
-                                        'rgba(153, 102, 255, 0.2)',
-                                        'rgba(201, 203, 207, 0.2)'
+                                     
 
                                     ],
                                     borderColor: [
                                         'rgb(255, 99, 132)',
                                         'rgb(255, 159, 64)',
-                                        'rgb(255, 205, 86)',
                                         'rgb(75, 192, 192)',
-                                        'rgb(54, 162, 235)',
-                                        'rgb(153, 102, 255)',
-                                        'rgb(201, 203, 207)'
+                                
                                     ],
                                     borderWidth: 1
                                 }]
