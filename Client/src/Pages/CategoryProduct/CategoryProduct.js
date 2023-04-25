@@ -7,7 +7,7 @@ import { fetchProduct } from "../../Redux/Slice/productSlice"
 import { filterProduct } from "../../Redux/Slice/productSlice"
 import { Link } from "react-router-dom"
 import { useLocation } from 'react-router-dom';
-import ResponsivePagination from "react-responsive-pagination";
+import ResponsivePagination from 'react-responsive-pagination';
 function CategoryProduct() {
     const [type, setType] = useState('');
     const [minPrice, setMinPrice] = useState(0);
