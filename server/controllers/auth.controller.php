@@ -24,9 +24,7 @@
                             if ($Password != $checker->Password) {
                                 return json_encode("Mật khẩu không chính xác");
                             }
-                            if(strcmp("Cấm", $checker->Status) == 0) {
-                                return json_encode("Tài khoản của bạn tạm thời đang bị cấm");
-                            }
+            
                         }
                         return $result;
                     }

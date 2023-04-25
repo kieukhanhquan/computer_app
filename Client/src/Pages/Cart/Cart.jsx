@@ -18,7 +18,6 @@ const Cart = () => {
     let quantity = parseInt(product.quantity);
     total += price * quantity;
     }
-    console.log(total);
     return (
     <Fragment >
     

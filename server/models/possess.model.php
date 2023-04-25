@@ -29,6 +29,15 @@
                 return json_encode("fail");
             }
         }
+        
+        public function deleteCartItem($db,$query){
+            if(mysqli_query($db, $query)) {
+                return json_encode("Success");
+            }
+            else {
+                return json_encode("fail");
+            }
+        }
     }
 
 ?>

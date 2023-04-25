@@ -46,5 +46,14 @@
             return $this->model->addtoCart($db, $query);
             }
         }
+        public function deleteCartItem($db,$data){
+            
+            $ProductID = $data["ProductID"];
+            
+            $ClientID = $data["ClientID"];
+            $query =   "DELETE FROM possess 
+                        WHERE ProductID = $ProductID AND ClientID = $ClientID";
+            return $this->model->deleteCartItem($db,$query);
+        }
     }
 ?>

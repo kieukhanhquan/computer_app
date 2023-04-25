@@ -83,6 +83,27 @@ export const updateQuantity = createAsyncThunk(
     }
   )
 
+  export const deleteCartItem = createAsyncThunk(
+    "deleteCartItem",
+    async (data, {dispatch}) => {
+        try {
+            const ProductID = data.ProductID;
+            const ClientID = data.user.ID;
+            await axios.delete('http://localhost/WebApp/Server/index.php/possess',
+            { data:{
+              ProductID: ProductID,
+              ClientID: ClientID,
+              }
+          });
+            
+            await dispatch(fetchCart(data.user))
+        }
+        catch (err) {
+            alert(err.response.data)
+        }
+    }
+  )
+
 
 
 const cartSlice = createSlice({
@@ -131,6 +152,15 @@ const cartSlice = createSlice({
       .addCase(addtoCart.rejected, (state, action) => {
         state.loader = false;
         state.error = action.error.message;
+      })
+      .addCase(deleteCartItem.pending, (state, action) => {
+        state.loader = true
+      })
+      .addCase(deleteCartItem.fulfilled, (state, action) => {
+          state.loader = false
+      })
+      .addCase(deleteCartItem.rejected, (state, action) => {
+          state.loader = false
       })
   },
 });

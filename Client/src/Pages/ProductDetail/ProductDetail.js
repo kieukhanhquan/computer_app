@@ -52,7 +52,7 @@ function ProductDetail() {
         await dispatch(addtoCart({product,user,quantity}))
     }
 
-
+    
 
     useEffect(() => {
         fetchData()

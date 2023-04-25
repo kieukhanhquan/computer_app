@@ -18,6 +18,7 @@
 }
 .cart-wrapper {
     margin: 0 auto;
+    margin-top: 10%;
     display: flex;
     flex-direction: row;
     padding: 30px 20px 30px 20px;
@@ -78,6 +79,7 @@
 /* Điện thoại thông minh */
 @media (max-width: 768px) {
    .cart-wrapper {
+        margin-top: 15%;
         display: flex;
         flex-direction: column;
         padding: 10px;
@@ -107,6 +109,7 @@
         padding: 0;
    }
    .cart-wrapper {
+        margin-top: 15%;
         width: 100%;
         padding: 0;
         margin: 0;
@@ -124,6 +127,9 @@
    .cart {
         padding: 0;
         width: 65%;
+   }
+   .content1{
+    margin-top: 20%;
    }
    .cart-wrapper {
         width: 100%;

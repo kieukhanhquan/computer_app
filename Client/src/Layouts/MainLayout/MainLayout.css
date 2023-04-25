@@ -1,3 +1,13 @@
 .content1{
     margin-top: 50px;    
 }
+@media (min-width:768px) and (max-width:992px) {
+    .content1{
+        margin-top: 20%;
+    }
+}
+@media  (max-width:515px) {
+    .content1{
+        margin-top: 20%;
+    }
+}
