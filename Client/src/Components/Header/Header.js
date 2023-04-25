@@ -56,11 +56,11 @@ function Header(){
     return (
         <header className="header">
             <div className="navbar">
-                <Link to='/' className="navbar_logo">LOGO</Link>
-                <div className="categories">
-                    <div className="categories_wrap_link">
+                <Link to='/' className="categories_link">LOGO</Link>
+                <div className="categories_wrap_link">
                         <Link to='/CategoryProduct' className="categories_link">Sản phẩm</Link>
-                    </div>
+                </div>
+                <div className="categories">
                     <div className="categories_wrap_link">
                         <Link to ='/News'className="categories_link">News</Link>
                     </div>
