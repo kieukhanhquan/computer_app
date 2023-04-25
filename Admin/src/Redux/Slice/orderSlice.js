@@ -94,6 +94,19 @@ export const updateStatus = createAsyncThunk(
     }
 )
 
+export const updateProduct = createAsyncThunk(
+    "updateproduct",
+    async (data, {dispatch}) => {
+        try {
+            await axios.put(`http://localhost/WebApp/Server/index.php/order?order=${data.ID}`, {
+            })
+        }
+        catch (err) {
+            alert(err.response.data)
+        }
+    }
+)
+
 const orderSlice = createSlice({
     name: 'userSlice',
     initialState: {
