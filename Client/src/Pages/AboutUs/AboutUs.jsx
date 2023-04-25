@@ -12,126 +12,146 @@ const AboutUs = () => {
     
     <div class="aboutus-wrap">
     <div class="img-header-wrap">
-        <img class="head-img" src="https://juliansherman.net/wp-content/uploads/2017/07/Shoe-Store.png" alt="title-img"></img>
+        <img class="head-img" src="https://jobsgo.vn/blog/wp-content/uploads/2021/07/staff-la-gi-2.jpg" alt="title-img"></img>
     </div>
     <div class="main-box">
         <div class='flex-container'>
             <img class="logo"
-                src="https://www.shoeshowmega.com/on/demandware.static/-/Library-Sites-ShoeShowSharedLibrary/default/dw66a97e53/images/logos/logo-shoe-show.svg"
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Dell_logo_2016.svg/2048px-Dell_logo_2016.svg.png"
                 alt="logo"></img>
-            <div>Được thành lập vào năm 1960 tại Kannapolis, NC, thành công của SHOE SHOW, INC. dựa trên một công thức
-                đơn giản là cung cấp các sản phẩm, dịch vụ và giá trị chất lượng. SHOE SHOW, INC. là công ty hàng đầu về
-                giày dép, túi xách và phụ kiện có thương hiệu cho cả gia đình với hơn 62 năm kinh nghiệm.</div>
+            <div>Chúng tôi là một nhóm đa dạng với quan điểm độc đáo. Đoàn kết trong mục đích, chiến lược và văn hóa của chúng tôi. 
+                Được thúc đẩy bởi tham vọng của chúng tôi và sức mạnh của công nghệ để thúc đẩy sự tiến bộ của con người. 
+                Kiên định trong cam kết bình đẳng, tin tưởng và ủng hộ lẫn nhau.</div>
         </div>
         <br></br>
         <div class='flex-container flex-column'>
             <div style={{fontWeight:'bold'}}>CHÚNG TÔI <span style={{color:'red'}}>ĐẠI DIỆN CHO</span></div>
             <br></br>
-            <div style={{textAlign:'center'}}>Tại Famous Footwear, chúng tôi biết rằng đôi khi cách tốt nhất để thể hiện
-                bản thân là thông qua đôi giày của bạn. Xét cho cùng, một đôi giày mới có thể nói lên rất nhiều điều.
-                Chúng là thứ làm cho bạn nổi bật. Giúp bạn đi nhanh hơn. Hoặc chỉ cần thêm một chút màu sắc nó sẽ thể
-                hiện cá tính của bạn. Chúng là những gì cần cho . Vì vậy, bất kể bạn nổi bật về thứ gì, chúng tôi đều có
-                những thương hiệu nổi tiếng hoàn toàn phù hợp với bạn</div>
+            <div style={{textAlign:'center'}}>Câu chuyện của chúng tôi bắt đầu với niềm tin và niềm đam mê:
+             rằng mọi người đều có thể dễ dàng tiếp cận với công nghệ tốt nhất ở mọi nơi trên thế giới. 
+            Đó là vào năm 1984 trong phòng ký túc xá của Đại học Texas của Michael Dell. 
+            Ngày nay, Dell Technologies là công cụ thay đổi bối cảnh kỹ thuật số trên toàn thế giới.
+
+            Chúng tôi là một trong những công ty công nghệ hàng đầu thế giới giúp thay đổi cuộc sống của mọi người 
+            bằng những khả năng phi thường. Từ các giải pháp đám mây lai đến điện toán hiệu năng cao đến các sáng
+             kiến bền vững và tác động xã hội đầy tham vọng, những gì chúng tôi làm đều tác động đến mọi người, 
+             ở mọi nơi.</div>
         </div>
         <br></br>
          <div class='flex-container'>
-            <div id='hinh1' class='flex-container flex-column'>
-                <img src="https://www.famousfootwear.com/-/media/project/tenant/famous-footwear/famous-footwear/misc-landing-pages/about-us-lp/about_us_famous_brands.jpg"
-                    alt="hinh1"   style={{ zIndex: selectedImageIndex === 0 ? 1 : 0 }} 
-                    onMouseOver = {() => handleImageClick(0)}
+            <div id='hinh1' class='flex-container flex-column'
+            style={{ zIndex: selectedImageIndex === 0 ? 1 : 0 }} 
+                    onMouseOver = {() => handleImageClick(0)}>
+                <img src="https://i.dell.com/is/image/DellContent/content/dam/delltechnologies/assets/corporate/images/about-us/who-we-are/our-purpose-text-image-lg-xxl-940x600.jpg?wid=1600&fit=constrain"
+                    alt="hinh1"   
                     />
                 <div class='flex-item1'>
-                    <p class="element_vetical" style={{color:'white', fontWeight:'bold'}}>THƯƠNG HIỆU NỔI TIẾNG</p>
+                    <p class="element_vetical" style={{color:'white', fontWeight:'bold'}}>MANG ĐẾN TƯƠNG LAI</p>
                 </div>
                 <div class='flex-item2'>
-                    <p class="element_vetical">Chúng tôi có các thương hiệu bạn biết và yêu thích với đầy đủ các phong
-                        cách và xu hướng được dành cho bạn và gia đình bạn.</p>
+                    <p class="element_vetical">Nâng cao tính bền vững, nuôi dưỡng sự hòa nhập, 
+                    thay đổi cuộc sống và đề cao đạo đức cũng như quyền riêng tư được đưa vào mọi 
+                    việc chúng tôi làm. Được hỗ trợ bởi một lực lượng lao động coi trọng và tôn
+                     vinh các nền tảng khác nhau, chúng tôi tạo ra các giải pháp khai thác và 
+                     khuếch đại công nghệ theo những cách có ý nghĩa nhất. Từ chăm sóc sức khỏe 
+                     đến giáo dục đến nền kinh tế kỹ thuật số, chúng tôi tin tưởng vào sức mạnh của công nghệ để giúp giải quyết các thách thức xã hội phức tạp.</p>
                 </div>
             </div><br></br>
             <br></br>
-            <div id='hinh2' class='flex-container flex-column'>
-                <img src="https://www.famousfootwear.com/-/media/project/tenant/famous-footwear/famous-footwear/misc-landing-pages/about-us-lp/about_us_winning_associates.jpg"
-                    alt="hinh2"   style={{ zIndex: selectedImageIndex === 1 ? 1 : 0 }}
-                    onMouseOver = {() => handleImageClick(1)}
+            <div id='hinh2' class='flex-container flex-column' style={{ zIndex: selectedImageIndex === 1 ? 1 : 0 }}
+                    onMouseOver = {() => handleImageClick(1)}>
+                <img src="https://i.dell.com/is/image/DellContent/content/dam/delltechnologies/assets/corporate/images/about-us/who-we-are/our-leadership-text-image-lg-xxl-940x600.jpg"
+                    alt="hinh2"   
                     />
                 <div class='flex-item1'>
-                    <p class="element_vetical" style={{color:'white', fontWeight:'bold'}}>NHÂN VIÊN TẬN TÂM</p>
+                    <p class="element_vetical" style={{color:'white', fontWeight:'bold'}}>DẪN ĐẦU XU THẾ</p>
                 </div>
                 <div class='flex-item2'>
-                    <p class="element_vetical">Chúng tôi tự hào có những cộng sự hiểu biết và thân thiện nhất trong lĩnh
-                        vực bán lẻ. Họ được đào tạo về công nghệ giày dép, xu hướng thời trang và thương hiệu mới nhất,
-                        đồng thời có niềm đam mê thực sự trong việc giúp đỡ khách hàng.</p>
+                    <p class="element_vetical">Tại Dell Technologies, chúng tôi là 
+                    những người tiên phong đổi mới thúc đẩy cuộc cách mạng kỹ thuật số tiến lên.
+                      Bằng cách chấp nhận sự khác biệt của chúng tôi và đầu tư thời gian vào
+                       sự đa dạng của chúng tôi, các nhà lãnh đạo của chúng tôi thúc đẩy văn
+                        hóa đổi mới và hòa nhập cho phép chúng tôi tạo ra công nghệ đảm bảo 
+                    khả năng tiếp cận rộng rãi 
+                    và những cải tiến có tác động đối với cuộc sống hàng ngày..</p>
                 </div>
             </div><br></br>
-            <div id='hinh3' class='flex-container flex-column'>
-                <img src="https://www.famousfootwear.com/-/media/project/tenant/famous-footwear/famous-footwear/misc-landing-pages/about-us-lp/about_us_communities.jpg"
-                    alt="hinh3"   style={{ zIndex: selectedImageIndex === 2 ? 1 : 0 }}
-                    onMouseOver = {() => handleImageClick(2)}
+            <div id='hinh3' class='flex-container flex-column'
+            style={{ zIndex: selectedImageIndex === 2 ? 1 : 0 }}
+            onMouseOver = {() => handleImageClick(2)}>
+                <img src="https://i.dell.com/is/image/DellContent/content/dam/delltechnologies/assets/corporate/images/about-us/who-we-are/our-code-text-image-lg-xxl-940x600.jpg?wid=1600&fit=constrain"
+                    alt="hinh3"   
                 />
                 <div class='flex-item1'>
-                    <p class="element_vetical" style={{color:'white', fontWeight:'bold'}}>CỘNG ĐỒNG</p>
+                    <p class="element_vetical" style={{color:'white', fontWeight:'bold'}}>NHỮNG GÌ CHÚNG TÔI TIN</p>
                 </div>
                 <div class='flex-item2'>
-                    <p class="element_vetical">Chúng tôi tại khu của bạn - ngay gần đó hoặc chỉ với một cú nhấp chuột,
-                        tùy theo cách bạn muốn mua sắm. Và chúng tôi cam kết củng cố cộng đồng của mình thông qua các tổ
-                        chức từ thiện và xã hội địa phương.</p>
+                    <p class="element_vetical">“How We Win” không chỉ là tên của Quy tắc Ứng xử của chúng ta. 
+                    Nó phản ánh những tiêu chuẩn cao mà chúng ta đặt ra cho chính mình. Niềm tin chung của chúng tôi là có thể đạt được sự thay đổi hữu hình, 
+                    tích cực bằng sự đổi mới và hành động. 
+                    Cam kết kiên định của chúng tôi đối với sự bình đẳng,
+                    tin tưởng và ủng hộ lẫn nhau đã trao quyền cho chúng tôi. 
+                    Mục đích, chiến lược và văn hóa của chúng tôi thúc đẩy chúng tôi đạt được những điều không thể. 
+                    Mã của chúng tôi hướng dẫn chúng tôi.</p>
                 </div>
             </div>
         </div>
         <br></br> 
         <div class='flex-container flex-column'>
-            <div style={{fontWeight:'bold'}}><span style={{color:'red'}}>ĐIỀU QUAN TRỌNG</span> VỚI CHÚNG TÔI</div>
+            <div style={{fontWeight:'bold'}}><span style={{color:'red'}}>VỚI CHÚNG TÔI</span> DOANH NGHIỆP CỦA BẠN LUÔN SẴN SÀNG TIẾN VỀ PHÍA TRƯỚC</div>
             <br></br>
             <div class='flex-container'>
                 <img class="flex-item3" id="hinh4"
-                    src="https://www.famousfootwear.com/-/media/project/tenant/famous-footwear/famous-footwear/misc-landing-pages/about-us-lp/about_us_our_people_1.jpg"
+                    src="https://i.dell.com/is/image/DellContent/content/dam/web-resources/cross-project/images/lifestyle/what-we-do-1600x600.jpg?wid=1600&fit=constrain"
                     alt="hinh4" />
 
                 <div class="flex-item3 flex-column flex-container text-item3">
                     <div style={{fontWeight:'bold'}}>
-                        <span style={{color:'red'}}>CON NGƯỜI</span> CỦA CHÚNG TÔI
+                        <span style={{color:'red'}}>SỰ SÁNG TẠO</span> KHÔNG GIỚI HẠN
                     </div>
                     <br></br>
                     <div>
-                        Chúng tôi tin rằng sự phù hợp hoàn hảo là khi một môi trường hòa nhập và hợp tác tôn vinh mọi
-                        người. Chúng tôi tin rằng công ty của chúng tôi phải đa dạng như những người và cộng đồng mà
-                        chúng tôi phục vụ, đồng thời chúng tôi tìm kiếm và thu hút những cá nhân tài năng từ mọi nền
-                        tảng, sắc tộc, giới tính, lối sống và hệ thống niềm tin.
+                    Hãy biến những ý tưởng tươi sáng của bạn thành hiện thực và thúc đẩy sự đổi mới liên tục với công nghệ thông minh. 
+                    Chuyển đổi từ ý tưởng thành kết quả nhanh hơn với một trải nghiệm đám mây 
+                    đơn giản và nhất quán, các máy tính dựa trên trí tuệ nhân tạo, 
+                    các giải pháp lưu trữ chủ động và các máy chủ tự động hóa đánh bại 
+                    các mối đe dọa.
                     </div>
                 </div>
 
                 <div class="flex-item3 flex-column flex-container text-item3">
                     <div style={{fontWeight:'bold'}}>
-                        HỖ TRỢ <span style={{color:'red'}}>HÀNH ĐỘNG Ý NGHĨA</span>
+                        KHÁCH HÀNG <span style={{color:'red'}}>LÀ NGUỒN CẢM HỨNG</span>
                     </div>
                     <br></br>
                     <div>
-                        Chúng tôi đã hợp tác với Tổ chức Ticket to Dream để đảm bảo rằng những đứa trẻ được nhận nuôi
-                        dưỡng có nhu yếu phẩm hàng ngày, hỗ trợ đi học, giày dép và quan trọng nhất là đảm bảo chúng có
-                        niềm vui thời thơ ấu. Chúng tôi tự hào chia sẻ rằng kể từ khi bắt đầu hợp tác vào năm 2020,
-                        chúng tôi đã quyên góp được hơn 6 triệu đô la cho trẻ em nuôi dưỡng.
+                    Khách hàng luôn là nguồn cảm hứng quan trọng nhất đối với các sản phẩm công nghệ. 
+                    Chính họ là người sử dụng cuối cùng và đánh giá sản phẩm của chúng ta. 
+                    Việc nghiên cứu và hiểu rõ nhu cầu của khách hàng là yếu tố đầu tiên và quan 
+                    trọng nhất để chúng ta có thể phát triển những sản phẩm thông minh và đáp ứng
+                     được những yêu cầu ngày càng cao của thị trường.
                     </div>
                 </div>
 
                 <img class="flex-item3" id="hinh5"
-                    src="https://www.famousfootwear.com/-/media/project/tenant/famous-footwear/famous-footwear/misc-landing-pages/about-us-lp/about_us_causes.jpg"
+                    src="https://i.dell.com/is/image/DellContent/content/dam/delltechnologies/assets/corporate/images/about-us/who-we-are/customer-stories-promo-bg-980x366.jpg?wid=1600&fit=constrain"
                     alt="hinh5" />
 
                 <img class="flex-item3" id="hinh6"
-                    src="https://www.famousfootwear.com/-/media/project/tenant/famous-footwear/famous-footwear/misc-landing-pages/about-us-lp/about_us_eco_effort.jpg"
+                    src="https://www.dell.com/wp-uploads/2023/04/iStock-1284372242-640x360.jpg"
                     alt="hinh6" />
 
                 <div class="flex-item3 flex-column flex-container text-item3">
                     <div style={{fontWeight:'bold'}}>
-                        NỔ LỰC <span style={{color:'red'}}>VỀ MÔI TRƯỜNG</span> CỦA CHÚNG TÔI
+                        THỰC HIỆN <span style={{color:'red'}}>TƯƠNG LAI</span> KỸ THUẬT SỐ
                     </div>
                     <br></br>
                     <div>
-                        Chúng tôi đang trên hành trình cùng với các đối tác thương hiệu của mình để cung cấp cho bạn
-                        nhiều sản phẩm thân thiện với môi trường hơn - từ chất liệu làm nên sản phẩm cho đến bao bì vận
-                        chuyển đến các quy trình được sử dụng để thiết kế và phát triển chúng. Hãy tìm biểu tượng Ý thức
-                        sinh thái của chúng tôi trên khắp trang web và trong các cửa hàng của chúng tôi để mua các mặt
-                        hàng được tạo ra với lưu ý đến tính bền vững.
+                    Tại Dell Technologies, chúng tôi cam kết giúp khách hàng của mình thực hiện toàn bộ tiềm 
+                    năng của tương lai số này. Cho dù bạn đang tìm cách tối ưu hóa 
+                    quy trình kinh doanh, nâng cao năng suất hoặc cải thiện trải 
+                    nghiệm khách hàng của mình, chúng tôi có các giải pháp bạn cần 
+                    để đạt được mục tiêu của mình.  
                     </div>
                 </div>
             </div>
