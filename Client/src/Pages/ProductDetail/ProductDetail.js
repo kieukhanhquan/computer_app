@@ -11,7 +11,13 @@ import 'rsuite/dist/rsuite.min.css'
 import { useParams } from 'react-router-dom';
 import { fetchcomments } from '../../Redux/Slice/commentsSlice';
 import { addtoCart } from '../../Redux/Slice/cartSlice';
+import { ToastContainer, toast } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
+
 import "./ProductDetail.css"
+
+
+
 
 const items = [
     { eventKey: 'A', label: 'Mô tả sản phẩm',data:'' },
@@ -21,7 +27,6 @@ const items = [
   ];
 
 function ProductDetail() {
-
     const [cookies, setCookie,removeCookies] = useCookies(['user']);
     const [activeKey, setActiveKey] = React.useState('A');
     const dataAll = useSelector((state) => state.product.product)
@@ -30,34 +35,34 @@ function ProductDetail() {
     const fetchData = async () => {
         await dispatch(fetchProduct(0))
     }
-    useEffect(() => {
-        fetchData()
-    }, [])
+    
     const dispatch1 = useDispatch()
     const fetchData1 = async () => {
         await dispatch1(fetchcomments(0))
     }
-
+    // Lọc ra sản phẩm theo ID đã fetch lên, lọc comment theo ID, lọc các sản phẩm theo Type
     const { id } = useParams(); 
     const product = dataAll.find(item => item.ID === id);
     const comment = datacomments.find(item => item.ProductID === id);
     const typeProduct = dataAll.filter(item => item.Type === product.Type);
+    // state số lượng sản phẩm muốn thêm vào giỏ hàng
+    const [quantity, setQuantity] = useState(1);
 
-
-
-    const handleAddToCart = async (product,user) =>{    
-        await dispatch(addtoCart(product,user))
+    const handleAddToCart = async (product,user,quantity) =>{  
+        await dispatch(addtoCart({product,user,quantity}))
     }
 
 
+
+    useEffect(() => {
+        fetchData()
+    }, [])
     useEffect(() => {
         fetchData1()
-        
     }, [])
-    
-    
     return (
         <Fragment>
+            
             <div className="ProfileProduct" >
                 
             <div className="contentProduct" >
@@ -92,8 +97,7 @@ function ProductDetail() {
                                 <span>
                                     
                                 </span>
-                                <input type="text" name="ProductID" 
-                                    value={id}></input>
+                                
                             </div>
                         </div>
                         <div className="product__detail-price">
@@ -105,7 +109,9 @@ function ProductDetail() {
                             <div className="product__detail-amount">
                                 <span className="amount-heading">SỐ LƯỢNG</span>
                                 <div className="amount-bottom">
-                                    <input type="number" className="amount" name="Amount" min="1" max="10" vVlue='1' step = '1' ></input>
+                                    <input type="number" className="amount" name="Amount" min="1" max="10" value={quantity} step = '1'
+                                            onChange={(e) => setQuantity(e.target.value)}        
+                                    ></input>
                                 </div>
                             </div>
                             <div className="product__detail-addtional">
@@ -124,17 +130,16 @@ function ProductDetail() {
                                 </ul>
                             </div>
                             <div className="product__detail-submit">
-                                <button className="cart-btn" onClick={() => handleAddToCart(product,cookies.user)}>Thêm vào giỏ hàng</button>
-                                 <button className="buy-btn">Mua ngay</button> 
+                                <ToastContainer/>
+                                <button className="cart-btn" onClick={() => handleAddToCart(product,cookies.user,quantity)}>Thêm vào giỏ hàng</button>
+                                <button className="buy-btn">Mua ngay</button> 
                             </div>
                         </div>
 
                     </div>
                 </div>
                 </div>
-                <form className="grid__row" action='./index.php?url=Cart/insert' method='POST'>
                 
-            </form>
         </div>
 
     </div>

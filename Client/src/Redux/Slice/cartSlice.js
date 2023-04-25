@@ -1,6 +1,11 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { toast, ToastContainer } from 'react-toastify';
+  import "react-toastify/dist/ReactToastify.css";
 
+
+
+  
 export const fetchCart = createAsyncThunk(
   "fetchCart",
 async (data, { dispatch }) => {
@@ -22,7 +27,6 @@ export const updateQuantity = createAsyncThunk(
               quantity : data.quantity
           })
           await dispatch(fetchCart(data.user));
-
       }
       catch (err) {
           alert(err.response.data)
@@ -30,28 +34,54 @@ export const updateQuantity = createAsyncThunk(
   }
 )
 
-export const addtoCart = createAsyncThunk(
-  "addtoCart",
-  async (data, { dispatch, getState }) => {
-    try {
-        const existItem = getState().cart.find(item => item.ProductID = data.ID);
-        if(existItem){
-          const newquantity = getState().cart.quantity + 1;
-          const ID = data.product.ID;
-          const cart = getState().cart;
-            await dispatch(updateQuantity({}))
-
+  export const addtoCart = createAsyncThunk(
+    "addtoCart",
+    async (data, { dispatch, getState }) => {
+      
+      try {
+        await dispatch(fetchCart(data.user));
+        const existItem = getState().cart.cart.find(item => item.ProductID === data.product.ID);
+          if(existItem){
+            const quantity = parseInt(existItem.quantity) + parseInt(data.quantity);
+            const ProductID = data.product.ID;
+            const user = data.user;
+            await dispatch(updateQuantity({ProductID,quantity,user}))
+          }
+          else{
+            const cartID = getState().cart.cart[0].CartID;
+            const newquantity = data.quantity;
+            const ID = data.product.ID;
+            const ClientID = data.user.ID;
+            await axios.post('http://localhost/WebApp/Server/index.php/possess', {
+              ProductID: ID,
+              CartID: cartID,
+              ClientID: ClientID,
+              quantity: newquantity,
+          })
         }
-        else{
-
-        }
-       
+        toast.success(`Sản phẩm đã được thêm vào giỏ hàng! Số lượng thêm:${data.quantity}`, {
+          position: "top-right",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      }
+      catch (err) {
+        toast.error(err.response.data, {
+          position: "top-right",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      }
     }
-    catch (err) {
-        alert(err.response.data)
-    }
-  }
-)
+  )
 
 
 
@@ -87,6 +117,18 @@ const cartSlice = createSlice({
         state.error = null;
       })
       .addCase(updateQuantity.rejected, (state, action) => {
+        state.loader = false;
+        state.error = action.error.message;
+      })
+      .addCase(addtoCart.pending, (state) => {
+        state.loader = true;
+        state.error = null;
+      })
+      .addCase(addtoCart.fulfilled, (state, action) => {
+        state.loader = false;
+        state.error = null;
+      })
+      .addCase(addtoCart.rejected, (state, action) => {
         state.loader = false;
         state.error = action.error.message;
       })
