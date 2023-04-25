@@ -97,9 +97,26 @@ export const updateQuantity = createAsyncThunk(
           });
             
             await dispatch(fetchCart(data.user))
+            toast.success(`Sản phẩm  đã được xóa khỏi giỏ hàng`, {
+              position: "top-right",
+              autoClose: 2000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+            });
         }
         catch (err) {
-            alert(err.response.data)
+          toast.error(err.response.data, {
+            position: "top-right",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
         }
     }
   )

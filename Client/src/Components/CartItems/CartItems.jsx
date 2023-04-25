@@ -6,7 +6,8 @@ import { useCookies } from 'react-cookie';
 import { fetchCart } from '../../Redux/Slice/cartSlice';
 import { updateQuantity } from '../../Redux/Slice/cartSlice';
 import { deleteCartItem } from '../../Redux/Slice/cartSlice';
-
+import { ToastContainer, toast } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
 
 const CartItem = () => {
 
@@ -34,8 +35,8 @@ const CartItem = () => {
         
       };
     // handle when click on delete button
-    const handleCartDelete = (ProductID,user) => {
-        if (window.confirm('Bạn có chắc chắn muốn xóa khỏi giỏ hàng?')) {
+    const handleCartDelete = (ProductID,user,name) => {
+        if (window.confirm(`Bạn có chắc chắn muốn xóa sản phẩm ${name} khỏi giỏ hàng?`)) {
             deleteData(ProductID,user);
           } else {
             // Không thực hiện gì cả
@@ -67,8 +68,9 @@ const CartItem = () => {
                         {item.Company}
                     </span>
                     <div>
+                        <ToastContainer/>
                         <button type="submit" className="cart-delete"
-                            onClick={() => handleCartDelete(item.ProductID,cookies.user)}>Xóa</button>
+                            onClick={() => handleCartDelete(item.ProductID,cookies.user,item.Name)}>Xóa</button>
                     </div>
                 </div>
                     <div className="cart-row-col3">
