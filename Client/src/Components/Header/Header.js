@@ -46,6 +46,7 @@ function Header(){
     const location = useLocation()
     const handelLogout = async () => {
        await sessionStorage.setItem("checker", "")
+       sessionStorage.setItem("client", "")
        navigate('/Login')
     }
     const handelLogin = async () => {
@@ -75,7 +76,7 @@ function Header(){
                     </button>
                 </form>
                 {
-                    checker != "" ?
+                    checker != "" && checker != null?
                     <div className="route_wrap">
                     <Link to={linkUser()} className="route-icon">
                         <PersonIcon height= "90%" fontSize="50px"/>

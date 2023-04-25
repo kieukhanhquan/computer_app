@@ -46,7 +46,7 @@ const Login = ({  messageLogin ,props}) => {
     console.log(Password)
     let checker = validData({UserName: UserName, Password: Password})
         if(checker) {
-          sessionStorage.setItem("checker", UserName);
+          // sessionStorage.setItem("checker", UserName);
           await dispatch(loginClient({UserName: UserName, Password: Password}))
             
         }

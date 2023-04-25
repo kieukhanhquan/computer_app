@@ -6,6 +6,7 @@ export const loginClient = createAsyncThunk(
     async (data, { dispatch }) => {
         try {
             let response = await axios.get(`http://localhost/WebApp/Server/index.php/auth?UserName=${data.UserName}&Password=${data.Password}&Type=2000000`)
+            sessionStorage.setItem("checker", data.UserName);
             return response.data
         }
         catch (err) {
