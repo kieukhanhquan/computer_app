@@ -37,7 +37,7 @@ const AboutUs = () => {
          <div class='flex-container'>
             <div id='hinh1' class='flex-container flex-column'>
                 <img src="https://www.famousfootwear.com/-/media/project/tenant/famous-footwear/famous-footwear/misc-landing-pages/about-us-lp/about_us_famous_brands.jpg"
-                    alt="hinh1" height="400px"  style={{ zIndex: selectedImageIndex === 0 ? 1 : 0 }} 
+                    alt="hinh1"   style={{ zIndex: selectedImageIndex === 0 ? 1 : 0 }} 
                     onMouseOver = {() => handleImageClick(0)}
                     />
                 <div class='flex-item1'>
@@ -51,7 +51,7 @@ const AboutUs = () => {
             <br></br>
             <div id='hinh2' class='flex-container flex-column'>
                 <img src="https://www.famousfootwear.com/-/media/project/tenant/famous-footwear/famous-footwear/misc-landing-pages/about-us-lp/about_us_winning_associates.jpg"
-                    alt="hinh2" height="400px"  style={{ zIndex: selectedImageIndex === 1 ? 1 : 0 }}
+                    alt="hinh2"   style={{ zIndex: selectedImageIndex === 1 ? 1 : 0 }}
                     onMouseOver = {() => handleImageClick(1)}
                     />
                 <div class='flex-item1'>
@@ -65,7 +65,7 @@ const AboutUs = () => {
             </div><br></br>
             <div id='hinh3' class='flex-container flex-column'>
                 <img src="https://www.famousfootwear.com/-/media/project/tenant/famous-footwear/famous-footwear/misc-landing-pages/about-us-lp/about_us_communities.jpg"
-                    alt="hinh3" height="400px"  style={{ zIndex: selectedImageIndex === 2 ? 1 : 0 }}
+                    alt="hinh3"   style={{ zIndex: selectedImageIndex === 2 ? 1 : 0 }}
                     onMouseOver = {() => handleImageClick(2)}
                 />
                 <div class='flex-item1'>
