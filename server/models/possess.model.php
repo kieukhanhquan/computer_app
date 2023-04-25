@@ -20,6 +20,15 @@
                 return json_decode("fail");
             }
         }
+
+        public function addtoCart($db,$query){
+            if(mysqli_query($db, $query)) {
+                return json_encode("Success");
+            }
+            else {
+                return json_encode("fail");
+            }
+        }
     }
 
 ?>

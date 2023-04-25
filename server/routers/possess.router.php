@@ -17,17 +17,20 @@
             $result = $possess->filterPossess($server->db, $queryParam[1]);
             echo($result);
             http_response_code(200);
+            
         }
     }
 
     if($method == "POST"){
-        if($queryValue == null){
-            
+        $data = json_decode(file_get_contents('php://input'),true);
+        $result = $possess->addtoCart($server->db,$data);
+        if(strcmp(json_decode($result), "Success") == 0) {
+            echo($result);
+            http_response_code(200);
         }
-        else{
-            $queryParam = explode('=',$queryValue);
-            $data = json_decode(file_get_contents('php://input'),true);
-            
+        else {
+            echo($result);
+            http_response_code(400);
         }
     }
     if($method =="PUT"){

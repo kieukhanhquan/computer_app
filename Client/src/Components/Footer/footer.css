@@ -818,6 +818,13 @@ body {
     .footer{
         font-size: 10px;
     }
+    .grid__row{
+        display: flex;
+        flex-direction: column;
+    }
+    .grid__column-25{
+        display: inline;
+    }
     .footer__list-item_link {
 
         font-size: 8px !important;
