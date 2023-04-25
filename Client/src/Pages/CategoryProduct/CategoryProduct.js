@@ -14,7 +14,9 @@ function CategoryProduct() {
     const [company, setCompany] = useState('');
     const location = useLocation();
     const dataAll = location.state;
-    let data=useSelector((state) => state.product.product);
+    
+    let filter=useSelector((state) => state.product.product);
+    let data=filter;
     // useEffect(() => {
     //     data=useSelector((state) => state.product.product);
     // },[]);
@@ -22,7 +24,9 @@ function CategoryProduct() {
         data=dataAll
     }
     let dispatch = useDispatch()
-    
+    useEffect(()=>{
+        data = filter;
+    },[]);
 
     const handleSelectTypeChange = (event) => {
         setType(event.target.value);
@@ -54,7 +58,6 @@ function CategoryProduct() {
     const handleSubmit=async (event) => {
         event.preventDefault()
         let Type = type;
-
         let MinPrice = minPrice;
         let MaxPrice = maxPrice;
         let Company = company;
@@ -101,7 +104,7 @@ function CategoryProduct() {
                                         <option className="optionSelect" value='Phone'>Điện thoại</option>
                                         <option className="optionSelect" value='accessory'>Phụ kiện</option>
                                     </select>
-                                    <input className='Type' name='Type' value=''/>
+                                    {/* <input className='Type' name='Type' value=''/> */}
                                     <button className="filter-btn">
                                         Lọc
                                     </button>

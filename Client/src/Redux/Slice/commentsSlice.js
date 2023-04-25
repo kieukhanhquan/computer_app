@@ -1,12 +1,26 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-export const fetchcomments = createAsyncThunk(
-  "fetchcomments",
+export const fetchComments = createAsyncThunk(
+  "fetchComments",
 async (data, { dispatch }) => {
     try {
-        const response = await axios.get("http://localhost/WebApp/Server/index.php/comment")
+        const response = await axios.get(`http://localhost/WebApp/Server/index.php/comment?productID=${data}`)
         return response.data
+    }
+    catch (err) {
+        alert(err.response.data)
+    }
+});
+export const addComment = createAsyncThunk(
+  "addComment",
+async (data_post, { dispatch }) => {
+    try {
+        await axios.post("http://localhost/WebApp/Server/index.php/comment?add", {
+          clientID: data_post.ClientID,
+          productID: data_post.ProductID,
+          content: data_post.Content,
+      })
     }
     catch (err) {
         alert(err.response.data)
@@ -23,16 +37,28 @@ const commentsSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(fetchcomments.pending, (state) => {
+      .addCase(fetchComments.pending, (state) => {
         state.loader = true;
         state.error = null;
       })
-      .addCase(fetchcomments.fulfilled, (state, action) => {
+      .addCase(fetchComments.fulfilled, (state, action) => {
         state.comments = action.payload;
         state.loading = false;
         state.error = null;
       })
-      .addCase(fetchcomments.rejected, (state, action) => {
+      .addCase(fetchComments.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
+      })
+      .addCase(addComment.pending, (state) => {
+        state.loader = true;
+        state.error = null;
+      })
+      .addCase(addComment.fulfilled, (state, action) => {
+        state.loading = false;
+        state.error = null;
+      })
+      .addCase(addComment.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message;
       });
