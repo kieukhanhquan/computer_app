@@ -3,7 +3,7 @@
 
     $queryValue = parse_url($_SERVER['REQUEST_URI'], PHP_URL_QUERY); // get query param If any 
     $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);  // get uri
-
+    
     $method = $_SERVER['REQUEST_METHOD'];
     $server = $GLOBALS['server'];
     $voucher = new VoucherController();

@@ -65,7 +65,7 @@ const CartItem = () => {
                         {item.Name}
                     </h3>
                     <span>
-                        {item.Company}
+                        Thương hiệu: {item.Company}
                     </span>
                     <div>
                         <ToastContainer/>
@@ -89,7 +89,7 @@ const CartItem = () => {
                     </div>
                     <div className="cart-row-col4">
                         <span className="cart-item-price" id=''>
-                            {item.Price*item.quantity}
+                            {(item.Price*item.quantity).toLocaleString()}
                         </span>
                         <span>₫</span>
                         </div>

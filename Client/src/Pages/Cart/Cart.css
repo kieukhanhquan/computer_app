@@ -76,6 +76,32 @@
 .cart-totalprice span {
     font-weight: 700;
 }
+
+.cart-header-item{
+    display: flex;
+    flex-direction: row;
+    font-weight: 600;
+}
+.cart-item-img{
+    width: 20%;
+    padding: 10px;
+}
+.cart-item-name{
+    width: 30%;
+    padding: 10px;
+    justify-content: center;
+}
+.cart-item-price{
+    width: 15%;
+}
+.cart-item-quantity{
+    width: 10%;
+    padding: 10px;
+}
+.cart-item-total{
+    width: 20%;
+    padding: 10px;
+}
 /* Điện thoại thông minh */
 @media (max-width: 768px) {
    .cart-wrapper {
