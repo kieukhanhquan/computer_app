@@ -48,7 +48,13 @@
                     return $this->model->changeStatus($db, $query);
                 }
 
-                
+                public function updateProduct($db, $data) {
+                    $orderID = $data;
+                    $query = "UPDATE product 
+                                INNER JOIN belong ON product.ID = belong.ProductID and belong.OrderID = '$orderID' 
+                                SET product.Quantity =  product.Quantity - belong.Quantity";
+                    return $this->model->updateProduct($db, $query);
+                }
 
             }
 
