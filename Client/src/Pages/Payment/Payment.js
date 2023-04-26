@@ -11,6 +11,8 @@ import { useState, useEffect } from "react";
 import { fetchUsev } from "../../Redux/Slice/usevSlice";
 import Typography from '@mui/material/Typography';
 import OrderItems from "../../Components/OrderItems/OrderItems";
+import { addOrder } from "../../Redux/Slice/orderSlice";
+import moment from 'moment';    
 
 function Payment(listItem) {
     const [Voucher, setVoucher] = useState('0');
@@ -35,6 +37,9 @@ function Payment(listItem) {
     }
     const shipFee = Number(100000);
 
+    const addData = async (user) =>{
+        await dispatch(addOrder(user))
+    }
 
 
     // Handle khi thay đổi tên
@@ -46,9 +51,18 @@ function Payment(listItem) {
         setVoucher(event.target.value);
       };
     // handle khi ấn xác nhận
-    const handleSubmit = () =>{
+    const handleSubmit = (user) =>{
         if (window.confirm("Xác nhận đặt hàng?")) {
-            console.log(cookies.user)
+                // Lay ra Time hien tai 
+                const currentDate = new Date();
+                const day = currentDate.getDate();
+                const month = currentDate.getMonth() + 1;
+                const year = currentDate.getFullYear();
+                
+                // Format ngày tháng năm thành chuỗi
+                const formattedDate = `${year}-${month}-${day}`;
+                console.log(formattedDate);
+                
           } else {
             // Không thực hiện gì cả
           }
@@ -62,9 +76,11 @@ function Payment(listItem) {
         }))
         
     }
+
+    
+
     // handle khi chọn paytype
     const handlePayType = (e) =>{
-   
         setPayType(e.target.value);
     }
 
@@ -191,7 +207,7 @@ function Payment(listItem) {
         </div>
         <div className='direction'>
             <Link to='/Cart'>Trở lại giỏ hàng</Link>
-            <button className='orderbutton' onClick={() => handleSubmit()}>Xác Nhận</button>
+            <button className='orderbutton' onClick={(user) => handleSubmit(user)}>Xác Nhận</button>
         </div>
         </div>
     </div>
