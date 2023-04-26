@@ -18,7 +18,6 @@ const Cart = () => {
     let quantity = parseInt(product.quantity);
     total += price * quantity;
     }
-    console.log(total);
     return (
     <Fragment >
     
@@ -40,8 +39,9 @@ const Cart = () => {
                 <p className="cart-infor-2">
                     <span className="titleorder"><b>Tổng tiền:</b></span>
                     <span className="cart-totalprice">
-                        <input className="totalprice" type="text" name="" id=""
-                            value={total}></input>
+                        <div className='totalprice'>
+                        {total.toLocaleString()}
+                        </div>
                         <span>₫</span>
                     </span>
                 </p>

@@ -1,191 +1,93 @@
-import { useState,useEffect } from "react";
-import {Link,useNavigate} from "react-router-dom";
-import { registerClient, setRegister } from "../../Redux/Slice/clientSlice";
+import { useState } from "react";
+import {Link} from "react-router-dom";
+import { resetPassword } from "../../Redux/Slice/clientSlice";
 import { useDispatch, useSelector } from "react-redux"
-import { colors } from "@mui/material";
-
-
-const Register = ({  messageLogin ,props}) => {
+import { useNavigate } from "react-router-dom"
+import { useEffect } from "react"
+const Reset = () => {
     let dispatch = useDispatch()
-    let register = useSelector(state => state.client.register)
+    let userName = useSelector(state => state.client.userName)
     let navigate = useNavigate()
 
     const validData = (data) => {
         let checker = true
-        let userPattern = /[a-zA-Z\_](\w)*/
-        let emailPattern = /[a-zA-Z\_](\w)+@(\w)+(([.])(\w)+)+/
-        let namePattern = /([a-zA-Z])+/
-        let phonePattern = /(\d)+/
-    
-        if (data.FullName.length == 0) {
-            alert("Vui lòng điền họ và tên của bạn")
+        if (data.Password.length == 0) {
+            alert("Vui lòng điền mật khẩu mới của bạn")
             checker = false
         }
-    
-        else if (data.FullName.match(userPattern) == null) {
-            alert("Họ và tên của bạn không hợp lệ")
-            checker = false
-        }
-
-        else if (data.PhoneNumber.match(phonePattern) == null) {
-            alert("Số điện thoại không hợp lệ")
-            checker = false
-        }
-    
-        else if (data.PhoneNumber.length != 10) {
-            alert("Số điện thoại phải có 10 số")
-            checker = false
-        }
-
-        else if (data.UserName.length == 0) {
-            alert("Vui lòng điền tên đăng nhập của bạn")
-            checker = false
-        }
-    
-        else if (data.UserName.match(userPattern) == null) {
-            alert("Tên đăng nhập phải bắt đầu bằng kí tự")
-            checker = false
-        }
-    
-        else if (data.UserName.length < 7) {
-            alert("Độ dài tối thiểu của tên đăng nhập là 7")
-            checker = false
-        }
-    
-        else if (data.Password.length == 0) {
-            alert("Vui lòng điền mật khẩu của bạn")
-            checker = false
-        }
-
         else if(data.Confirm.length == 0) {
             alert("Vui lòng xác nhận lại mật khẩu")
             checker = false
         }
-    
         return checker
-    
     }
 
-    const handelSubmit = async(event) => {
+    const handelSubmit = async (event) => {
         event.preventDefault()
-        let FullName = event.target.fulname.value
-        let UserName = event.target.username.value
+        let UserName = userName
         let Password = event.target.password.value
-        let PhoneNumber = event.target.phone.value
         let Confirm = event.target.confirm.value
-        let checker = validData({FullName:FullName,UserName: UserName, Password: Password, PhoneNumber: PhoneNumber , Confirm: Confirm})
+        let checker = validData({UserName: UserName, Password:Password,Confirm: Confirm })
         if (checker) {
-           await dispatch(registerClient({FullName:FullName,UserName: UserName, Password: Password, PhoneNumber: PhoneNumber , Confirm: Confirm}))
+            dispatch(resetPassword({UserName: UserName, Password:Password,Confirm: Confirm }))
         }
     }
-
     useEffect(() => {
-        if (register != null) {
-            dispatch(setRegister(null))
-            navigate('/')
+        if (userName==null) {
+            navigate('/Login')
+
         }
     })
 
+
   return (
-    <div >
-      <div className="container-Login100">
-        <div className="wrap-Login100">
-          <div className="Login100-pic js-tilt" data-tilt>
-          <img src="https://media.timeout.com/images/105555383/750/562/image.jpg" style={{border: "0", borderRadius: "0", height: "100%"}} alt="Submit" />
+    <div className="limiter">
+      <div className="container-ForgetPassword100">
+        <div className="wrap-ForgetPassword100">
+          <div className="ForgetPassword100-pic js-tilt" data-tilt>
+          <img src="https://i0.wp.com/stanzaliving.wpcomstaging.com/wp-content/uploads/2022/05/Malls-in-Mumbai.jpg?fit=1000%2C678&ssl=1" style={{border: "0", borderRadius: "0", height: "100%"}} alt="Submit" />
           </div>
 
           <form
             name="form"
             onSubmit={handelSubmit}
-            className="Login100-form"
+            className="ForgetPassword100-form"
           >
-            <span className="Login100-form-title">Đăng ký tài khoản ngay thôi !</span>
-            {messageLogin && (
-              <div className="error-message">{messageLogin}</div>
-            )}
+            <span className="ForgetPassword100-form-title">Đặt lại mật khẩu</span>
+            {/* {messageForgetPassword && (
+              <div className="error-message">{messageForgetPassword}</div>
+            )} */}
+  
             <div
-              className="wrap-input100 validate-input"
-              data-validate="Username is required"
             >
-            <p>Họ và tên</p>
+             <p>Mật khẩu</p>
+                <input
+                className="input100"
+                type="password"
+                name="password"
+                id="password"
+                placeholder="Password"
+               
+              />
+               <p>Xác nhận mật khẩu</p>
               <input
                 className="input100"
-                type="text"
-                id="fullname" name="fulname"
-                placeholder="Fullname"
+                type="password"
+                name="confirm"
+                id="confirm"
+                placeholder="Confirm"
+
               />
               <span className="focus-input100"></span>
               <span className="symbol-input100">
                 <i className="fa fa-user" aria-hidden="true"></i>
               </span>
             </div>
-
-            <div
-            >
-            <p>Số điện thoại</p>
-              <input
-                className="input100"
-                type="password"
-                id="phone" name="phone"
-                placeholder="Phonenumber"
-              />
-              <span className="focus-input100"></span>
-              <span className="symbol-input100">
-                <i className="fa fa-lock" aria-hidden="true"></i>
-              </span>
+            <div className="container-ForgetPassword100-form-btn">
+              <button type="submit" className="ForgetPassword100-form-btn">Tiếp theo</button>
             </div>
-
-            <div
-            >
-            <p>Tên đăng nhập</p>
-              <input
-                className="input100"
-                type="text"
-                id="userName" name="username"
-                placeholder="Username"
-              />
-              <span className="focus-input100"></span>
-              <span className="symbol-input100">
-                <i className="fa fa-lock" aria-hidden="true"></i>
-              </span>
-            </div>
-            <div
-            >
-            <p>Mật khẩu</p>
-              <input
-                className="input100"
-                id="passWord" type="password" name="password"
-                placeholder="Password"
-              />
-              <span className="focus-input100"></span>
-              <span className="symbol-input100">
-                <i className="fa fa-lock" aria-hidden="true"></i>
-              </span>
-            </div>
-            <div
-            >
-            <p>Xác nhận mật khẩu</p>
-              <input
-                className="input100"
-                id="confirm" type="password" name="confirm"
-                placeholder="Confirm"
-              />
-              <span className="focus-input100"></span>
-              <span className="symbol-input100">
-                <i className="fa fa-lock" aria-hidden="true"></i>
-              </span>
-            </div>
-            {/* <Link to ="/"> */}
-            <div className="container-Login100-form-btn">
+           <p style={{marginTop: "30px", display:"flex", justifyContent: "center"}}> Bạn đã có tài khoản?  <Link to="/login">Đăng nhập</Link> </p>
             
-              <button type="submit" className="Login100-form-btn">Đăng kí</button>
-              
-            </div>
-            <p style={{marginTop: "30px", display:"flex", justifyContent: "center"}}> Bạn đã có tài khoản?  <span className="textLogin"><Link to='/Login'>  Đăng nhập</Link> </span> </p> 
-            {/* </Link> */}
-            {/* <div className="container-Login100-form-btn">
-              <Link to='../Register' className="Login100-form-btn" >Đăng Kí</Link>
-            </div> */}
           </form>
         </div>
       </div>
@@ -194,7 +96,29 @@ const Register = ({  messageLogin ,props}) => {
                     /*//////////////////////////////////////////////////////////////////
                     [ FONT ]*/
                     
-                   
+                    @font-face {
+                      font-family: Poppins-Regular;
+                      src: url("./fonts/poppins/Poppins-Regular.ttf");
+                    }
+                    
+                    @font-face {
+                      font-family: Poppins-Bold;
+                      src: url("./fonts/poppins/Poppins-Bold.ttf");
+                    }
+                    
+                    @font-face {
+                      font-family: Poppins-Medium;
+                      src: url("./fonts/poppins/Poppins-Medium.ttf");
+                    }
+                    
+                    @font-face {
+                      font-family: Montserrat-Bold;
+                      src: url("./fonts/montserrat/Montserrat-Bold.ttf");
+                    }
+                    
+                    /*//////////////////////////////////////////////////////////////////
+                      [ RESTYLE TAG ]*/
+                    
                     * {
                       margin: 0px;
                       padding: 0px;
@@ -353,14 +277,14 @@ const Register = ({  messageLogin ,props}) => {
                     }
                     
                     /*//////////////////////////////////////////////////////////////////
-                      [ Login ]*/
+                      [ ForgetPassword ]*/
                     
                     .limiter {
                       width: 100%;
                       margin: 0 auto;
                     }
                     
-                    .container-Login100 {
+                    .container-ForgetPassword100 {
                       width: 100%;
                       min-height: 100vh;
                       display: -webkit-box;
@@ -379,7 +303,7 @@ const Register = ({  messageLogin ,props}) => {
                       background: linear-gradient(-135deg, #c850c0, #4158d0); */
                     }
                     
-                    .wrap-Login100 {
+                    .wrap-ForgetPassword100 {
                       width: 960px;
                       background: #fff;
                       border-radius: 10px;
@@ -397,22 +321,22 @@ const Register = ({  messageLogin ,props}) => {
                     
                     /*------------------------------------------------------------------
                       [  ]*/
-                    .Login100-pic {
+                    .ForgetPassword100-pic {
                       width: 316px;
                     }
                     
-                    .Login100-pic img {
+                    .ForgetPassword100-pic img {
                       max-width: 100%;
                     }
                     
                     /*------------------------------------------------------------------
                       [  ]*/
-                    .Login100-form {
+                    .ForgetPassword100-form {
                       width: 290px;
                     }
                     
-                    .Login100-form-title {
-                      
+                    .ForgetPassword100-form-title {
+                    
                       font-size: 29px;
                       color: #333333;
                       line-height: 1.2;
@@ -431,10 +355,6 @@ const Register = ({  messageLogin ,props}) => {
                       margin-bottom: 10px;
                     }
                     
-                    .textLogin {
-                      color: blue;
-                    }
-
                     .input100 {
                       font-family: Poppins-Medium;
                       font-size: 15px;
@@ -515,21 +435,19 @@ const Register = ({  messageLogin ,props}) => {
                     
                     /*------------------------------------------------------------------
                       [ Button ]*/
-                    .container-Login100-form-btn {
+                    .container-ForgetPassword100-form-btn {
                       width: 100%;
-                      
                       display: -webkit-box;
                       display: -webkit-flex;
                       display: -moz-box;
                       display: -ms-flexbox;
                       display: flex;
                       flex-wrap: wrap;
-                    
                       justify-content: center;
                       padding-top: 20px;
                     }
                     
-                    .Login100-form-btn {
+                    .ForgetPassword100-form-btn {
                       font-weight: bold;
                       font-size: 15px;
                       line-height: 1.5;
@@ -555,7 +473,7 @@ const Register = ({  messageLogin ,props}) => {
                       transition: all 0.4s;
                     }
                     
-                    .Login100-form-btn:hover {
+                    .ForgetPassword100-form-btn:hover {
                       background: #333333;
                     }
                     
@@ -563,35 +481,35 @@ const Register = ({  messageLogin ,props}) => {
                       [ Responsive ]*/
                     
                     @media (max-width: 992px) {
-                      .wrap-Login100 {
+                      .wrap-ForgetPassword100 {
                         padding: 177px 90px 33px 85px;
                       }
                     
-                      .Login100-pic {
+                      .ForgetPassword100-pic {
                         width: 35%;
                       }
                     
-                      .Login100-form {
+                      .ForgetPassword100-form {
                         width: 50%;
                       }
                     }
                     
                     @media (max-width: 768px) {
-                      .wrap-Login100 {
+                      .wrap-ForgetPassword100 {
                         padding: 100px 80px 33px 80px;
                       }
                     
-                      .Login100-pic {
+                      .ForgetPassword100-pic {
                         display: none;
                       }
                     
-                      .Login100-form {
+                      .ForgetPassword100-form {
                         width: 100%;
                       }
                     }
                     
                     @media (max-width: 576px) {
-                      .wrap-Login100 {
+                      .wrap-ForgetPassword100 {
                         padding: 100px 15px 33px 15px;
                       }
                     }
@@ -684,16 +602,17 @@ const Register = ({  messageLogin ,props}) => {
                       margin-left: 5px;
                     }
                     
-                    /* tự bổ sung*/
-                    .ForgetPass
+                    /* bổ sung*/
+                    .BackLogin
                     {
                       text-decoration: none;
                       color: black;
                     }
+                    
                 `}
             </style>
     </div>
   );
 };
 
-export default Register;
+export default Reset;

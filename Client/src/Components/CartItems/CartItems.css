@@ -37,7 +37,10 @@
     -webkit-appearance: none;
 }
 .cart-delete {
+     color: white;
+     background-color: red;
     border: 1px solid #ededed;
+    margin: 5px;
     padding: 5px;
     border-radius: 5px;
 }

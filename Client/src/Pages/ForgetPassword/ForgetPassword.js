@@ -1,48 +1,101 @@
 import { useState } from "react";
 import {Link} from "react-router-dom";
+import { validInfo } from "../../Redux/Slice/clientSlice";
+import { useDispatch, useSelector } from "react-redux"
+import { useEffect } from "react"
+import { useNavigate } from "react-router-dom"
+const ForgetPassword = () => {
+  let dispatch = useDispatch()
+  let userName = useSelector(state => state.client.userName)
+  let navigate = useNavigate()
 
-const ForgetPassword = ({ handleSubmitForgetPassword, messageForgetPassword,props }) => {
-  const [phonenumber, setPhonenumber] = useState("");
+  useEffect(() => {
+    if (userName!=null) {
+        navigate('/reset')
 
-  const handleBlur = (event) => {
-    if (event.target.value === "") {
-      event.target.parentElement.classList.add("alert-validate");
     }
-  };
-  const handleFocus = (event) => {
-    event.target.parentElement.classList.remove("alert-validate");
-  };
+})
+
+  const validData = (data) => {
+    let checker = true
+    let userPattern = /[a-zA-Z\_](\w)*/
+    let phonePattern = /(\d)+/
+    if (data.UserName.length == 0) {
+        alert("Vui lòng điền tên đăng nhập của bạn")
+        checker = false
+    }
+
+    else if (data.UserName.match(userPattern) == null) {
+        alert("Tên đăng nhập phải bắt đầu bằng kí tự")
+        checker = false
+    }
+
+    else if (data.UserName.length < 7) {
+        alert("Độ dài tối thiểu của tên đăng nhập là 7")
+        checker = false
+    }
+    else if (data.PhoneNumber.match(phonePattern) == null) {
+        alert("Số điện thoại không hợp lệ")
+        checker = false
+    }
+
+    else if (data.PhoneNumber.length != 10) {
+        alert("Số điện thoại phải có 10 số")
+        checker = false
+    }
+
+    return checker
+}
+
+const handelSubmit = async (event) => {
+  event.preventDefault()
+  let UserName = event.target.username.value
+  let PhoneNumber = event.target.phone.value
+  let checker = validData({UserName: UserName, PhoneNumber:PhoneNumber})
+  if (checker) {
+      await dispatch(validInfo({UserName: UserName, PhoneNumber:PhoneNumber}))
+  }
+}
+
+
   return (
     <div className="limiter">
       <div className="container-ForgetPassword100">
         <div className="wrap-ForgetPassword100">
           <div className="ForgetPassword100-pic js-tilt" data-tilt>
-            <img src={require("../../Assets/LoginP.png")} alt="IMG" />
+          <img src="https://i0.wp.com/stanzaliving.wpcomstaging.com/wp-content/uploads/2022/05/Malls-in-Mumbai.jpg?fit=1000%2C678&ssl=1" style={{border: "0", borderRadius: "0", height: "100%"}} alt="Submit" />
           </div>
 
           <form
             name="form"
-            onSubmit={(event) => handleSubmitForgetPassword(event, phonenumber)}
-            className="ForgetPassword100-form validate-form"
+            onSubmit={handelSubmit}
+            className="ForgetPassword100-form"
           >
             <span className="ForgetPassword100-form-title">QUÊN MẬT KHẨU</span>
-            {messageForgetPassword && (
+            <p style={{paddingBottom: "10px", fontWeight: "bold"}}>Cung cấp thông tin của bạn để đặt lại mật khẩu</p>
+            {/* {messageForgetPassword && (
               <div className="error-message">{messageForgetPassword}</div>
-            )}
-            <div>nhập số điện thoại để nhận lại mật khẩu</div>
+            )} */}
+  
             <div
-              className="wrap-input100 validate-input"
-              data-validate="Phonenumber is required"
             >
+             <p>Tên đăng nhập</p>
+                <input
+                className="input100"
+                type="text"
+                name="username"
+                id="username"
+                placeholder="Username"
+               
+              />
+               <p>Số điện thoại</p>
               <input
                 className="input100"
                 type="text"
-                name="phonenumber"
-                value={phonenumber}
-                placeholder="phone_number"
-                onFocus={handleFocus}
-                onBlur={handleBlur}
-                onChange={(event) => setPhonenumber(event.target.value)}
+                name="phone"
+                id="phone"
+                placeholder="Phonenumber"
+
               />
               <span className="focus-input100"></span>
               <span className="symbol-input100">
@@ -50,9 +103,9 @@ const ForgetPassword = ({ handleSubmitForgetPassword, messageForgetPassword,prop
               </span>
             </div>
             <div className="container-ForgetPassword100-form-btn">
-              <button className="ForgetPassword100-form-btn">Hoàn tất</button>
+              <button type="submit" className="ForgetPassword100-form-btn">Tiếp theo</button>
             </div>
-            <Link href="/login">login here</Link>
+           <p style={{marginTop: "30px", display:"flex", justifyContent: "center"}}> Bạn đã có tài khoản?  <Link to="/login">Đăng nhập</Link> </p>
             
           </form>
         </div>

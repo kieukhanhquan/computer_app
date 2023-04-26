@@ -14,6 +14,8 @@ import LoginLayout from "../Layouts/LoginLayout/LoginLayout";
 import NewsDetail from "../Pages/NewsDetail/NewsDetail";
 import Cart from "../Pages/Cart/Cart";
 import StatusOrder from "../Pages/StatusOrder/StatusOrder";
+import Reset from "../Pages/ForgetPassword/reset";
+import Register from "../Pages/Register/Register";
 
 
 export const routes = [
@@ -22,6 +24,12 @@ export const routes = [
     },
     {
         path: "/Login", component: Login, layout: MainLayout
+    },
+    {
+        path: "/reset", component: Reset, layout: MainLayout
+    },
+    {
+        path: "/Register", component: Register, layout: MainLayout
     },
     {
         path: "/ForgetPassword", component: ForgetPassword, layout: MainLayout

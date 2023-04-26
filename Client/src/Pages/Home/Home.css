@@ -134,6 +134,9 @@
    .main__beside{
     display: none;
    }
+   .grid__column-25{
+     width: 100%;
+   }
    .grid__column-65 {
     width: 100%;
 }

@@ -740,7 +740,6 @@ body {
     background-color: var(--primary2-color);
     padding: 80px;
     padding-bottom: 5px;
-    
 }
 .footer__heading
 {
@@ -814,9 +813,15 @@ body {
 }
 @media only screen and (max-width: 740px){
    
-
+    .grid__column-25{
+        display: block;
+    }
     .footer{
         font-size: 10px;
+    }
+    .grid__row{
+        display: flex;
+        flex-direction: column;
     }
     .footer__list-item_link {
 

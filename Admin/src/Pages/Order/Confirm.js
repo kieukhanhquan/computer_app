@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { useSelector, useDispatch } from 'react-redux'
-import {updateStatus } from '../../Redux/Slice/orderSlice';
+import {updateStatus, updateProduct } from '../../Redux/Slice/orderSlice';
 import { updateGrade } from '../../Redux/Slice/userSlice';
 
 const Confirm = ({data}) => {
@@ -27,6 +27,8 @@ const Confirm = ({data}) => {
         
         await dispatch(updateStatus(dataUpdate))
         dispatch(updateGrade({ID: data.CientID, Grade: parseFloat(data.OrderShip) + parseFloat(data.OrderFee), type:2 }))
+        console.log(data)
+        dispatch(updateProduct({ID: data.ID}))
         setShow(false)
 
     }

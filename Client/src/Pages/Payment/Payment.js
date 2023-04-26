@@ -1,9 +1,98 @@
+import { Link } from "react-router-dom";
 import "./Payment.css"
 import { useCookies } from 'react-cookie';
+import { useSelector, useDispatch } from "react-redux";
+import Box from '@mui/material/Box';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
+import { useState, useEffect } from "react";
+import { fetchUsev } from "../../Redux/Slice/usevSlice";
+import Typography from '@mui/material/Typography';
+import OrderItems from "../../Components/OrderItems/OrderItems";
+import { addOrder } from "../../Redux/Slice/orderSlice";
+import moment from 'moment';    
+
 function Payment(listItem) {
+    const [Voucher, setVoucher] = useState('0');
+    
+    const [cookies, setCookie,removeCookies] = useCookies(['user']);
+    const [payType,setPayType] = useState('');
+    const [user,setUser] = useState(cookies.user);
+    let dispatch = useDispatch()
+    const dataCart = useSelector(state => state.cart.cart) || []
+    let total = 0;
+    // Tính tổng giá tiền trong gio hang
+    for (let i = 0; i < dataCart.length; i++) {
+        let product = dataCart[i];
+        let price = parseFloat(product.Price);
+        let quantity = parseInt(product.quantity);
+        total += price * quantity;
+    }
+    // fetch những Voucher của ClientID
+    const dataUsev = useSelector(state => state.usev.usev) ;
+    const fetchData = async () => {
+        await dispatch(fetchUsev(cookies.user))
+    }
+    const shipFee = Number(100000);
+
+    const addData = async (user) =>{
+        await dispatch(addOrder(user))
+    }
+
+
+    // Handle khi thay đổi tên
+    const handleName = (e) => {
+        
+    };
+    // handle khi chọn voucher
+    const handleChange = (event) => {
+        setVoucher(event.target.value);
+      };
+    // handle khi ấn xác nhận
+    const handleSubmit = (user) =>{
+        if (window.confirm("Xác nhận đặt hàng?")) {
+                // Lay ra Time hien tai 
+                const currentDate = new Date();
+                const day = currentDate.getDate();
+                const month = currentDate.getMonth() + 1;
+                const year = currentDate.getFullYear();
+                
+                // Format ngày tháng năm thành chuỗi
+                const formattedDate = `${year}-${month}-${day}`;
+                console.log(formattedDate);
+                
+          } else {
+            // Không thực hiện gì cả
+          }
+    }
+    // handle khi thay đổi địa chỉ
+    const handleAddress = (e) => {
+        const value = e.target.value;
+        setUser(prevUser => ({
+            ...prevUser, 
+            ['Address']:value
+        }))
+        
+    }
+
+    
+
+    // handle khi chọn paytype
+    const handlePayType = (e) =>{
+        setPayType(e.target.value);
+    }
+
+    useEffect(() => {
+        if (cookies.user) {
+            fetchData(); // Gọi API để lấy thông tin những voucher và lưu nó vào redux
+        }
+    }, [dispatch, cookies.user]);
+
     return(
     <div className='payment-wrapper'>
-    <form className='cus-infor' method='post' action="./index.php?url=Pay/insert">
+    <div className="cus-infor">
         <div className='pay-wrap'>
             <div className='pay-col1'>
 
@@ -12,39 +101,25 @@ function Payment(listItem) {
                     </div>
                     <div className='customer-name'>
                         <label className='cus-name-label'>Họ và tên</label>
-                        <input className='cus-name' placeholder='VD: Nguyễn Văn A' type='text' name='fullname'></input>
+                        
+                        <input className='cus-name' placeholder='VD: Nguyễn Văn A' type='text' value={user.LastName+' '+user.FirstName} onChange={(e) => handleName(e)}></input>
                     </div>
                     <div className='customer-mail-phone'>
                         <div className='customer-mail'>
                             <label className='cus-mail-label'>Email</label>
-                            <input className='cus-mail' placeholder='VD: nguyenvana@gmail.com' type='text' name='email'></input>
+                            <input className='cus-mail' placeholder='VD: nguyenvana@gmail.com' type='text' value = {user.Email}></input>
                         </div>
                         <div className='space-mail-phone'></div>
                         <div className='customer-phone'>
                             <label className='cus-phone-label'>Số điện thoại</label>
-                            <input className='cus-phone' placeholder='VD: 0xxxxxxxxx' type='text' name='phonenumber'></input>
+                            <input className='cus-phone' placeholder='VD: 0xxxxxxxxx' type='text' value = {'0'+user.PhoneNumber}></input>
                         </div>
                     </div>
                     <div className='customer-address'>
-                        <label className='cus-address-label'>Số nhà, tên đường</label>
-                        <input className='cus-address' placeholder='Nhà số xxx, Đường xxxxx' type='text' name='address'></input>
+                        <label className='cus-address-label'>Địa chỉ</label>
+                        <input className='cus-address' placeholder='Nhà số xxx, Đường xxxxx' type='text' value = {user.Address} onChange={(e) => handleAddress(e)}></input>
                     </div>
-                    <div className='address-order'>
-                        <label className='order-address-label'>Địa chỉ</label>
-                        <div className='order-address-wrapper'>
-                            <select className="order-address" id="city" aria-label=".form-select-sm" name='city'>
-                                <option value="" selected>Chọn tỉnh thành</option>
-                            </select>
-    
-                            <select className="order-address" id="district" aria-label=".form-select-sm" name='district'>
-                                <option value="" selected>Chọn quận huyện</option>
-                            </select>
-    
-                            <select className="order-address" id="ward" aria-label=".form-select-sm" name='ward'>
-                                <option value="" selected>Chọn phường xã</option>
-                            </select>
-                        </div>
-                    </div>
+                    
                     <div className='customer-note'>
                         <label className='cus-mail-label'>Ghi chú</label>
                         <textarea className='cus-note' placeholder='Ghi chú' name='note'></textarea>
@@ -54,14 +129,14 @@ function Payment(listItem) {
                         <div className='customer-pay'>
                             <div className='customer-radio1'>
                                 <div className='radio-input'>
-                                    <input type='radio' name='paytype' value='Cash'></input>
+                                    <input type='radio' name='paytype' value='Thanh toán khi nhận hàng' onChange={(e) => handlePayType(e)}></input>
                                 </div>
                                 <div className='radio-title'>Thanh toán khi nhận hàng</div>
                             </div>
                             <div className='customer-radio2'>
                                 <div className='cus-radio2'>
                                     <div className='radio-input' id='radio2'>
-                                        <input className='radio2' type='radio' name='paytype' value='ATM'></input>
+                                        <input className='radio2' type='radio' name='paytype' value='Thanh toán online' onChange={(e) => handlePayType(e)}></input>
                                     </div>
                                     <div className='radio-title'>ATM Card/ Internet Banking</div>
                                 </div>
@@ -86,19 +161,43 @@ function Payment(listItem) {
                     <h2>Thông tin đơn hàng</h2>
                     <div className='order-id'>
                     </div>
-                    
+                    <OrderItems></OrderItems>
                     <div className='order-fee'>
                         <div className='ship-fee'>
                             <h2>Phí vận chuyển</h2>
                             <span className='ship'>
-                                
+                                {shipFee.toLocaleString()}
+                            </span>
+                            <span>đ</span>
+                        </div>
+                        <div className='voucher'>
+                            <h2>Voucher</h2>
+                            <Box sx={{ minWidth: 120, maxWidth:200, ml:2 }}>
+                                <FormControl fullWidth>
+                                    <Select
+                                    value={Voucher}
+                                    onChange={handleChange}
+                                    displayEmpty
+                                    inputProps={{ 'aria-label': 'Without label' }}
+                                    >
+                                        <MenuItem value="0"><Typography variant="h4" >None</Typography></MenuItem>
+                                        {dataUsev.map((item) =>{
+                                            return(
+                                                <MenuItem key={item.VoucherID} value={item.Rate}><Typography variant="h4" >Voucher {item.Rate}%</Typography></MenuItem>
+                                            )
+                                        } )}
+                                    </Select>
+                                </FormControl>
+                                </Box>
+                            <span className='ship'>
+                                -{(parseInt(Voucher) * total / 100).toLocaleString()}
                             </span>
                             <span>đ</span>
                         </div>
                         <div className='total-fee'>
                             <h2>Tổng cộng</h2>
                             <span className='total'>
-                                
+                                {(((100 - parseInt(Voucher)) * total / 100) - shipFee).toLocaleString()}
                             </span>
                             <span>đ</span>
                         </div>
@@ -107,10 +206,10 @@ function Payment(listItem) {
             </div>
         </div>
         <div className='direction'>
-            <a href="">Trở lại giỏ hàng</a>
-            <button className='orderbutton' type='submit'>Xác Nhận</button>
+            <Link to='/Cart'>Trở lại giỏ hàng</Link>
+            <button className='orderbutton' onClick={(user) => handleSubmit(user)}>Xác Nhận</button>
         </div>
-        </form>
+        </div>
     </div>
 )
 }

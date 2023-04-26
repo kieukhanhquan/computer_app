@@ -50,7 +50,7 @@ function Home() {
             <div className="content-product">
                 <div className="grid">
                     <div className="product__heading">MÁY TÍNH</div>
-                    <ListItem type='computer'/>
+                    <ListItem type='Máy tính'/>
                 </div>
                 
                 
@@ -58,13 +58,13 @@ function Home() {
             <div className="content-accessory">
                 <div className="grid">
                     <div className="accessory__heading">ĐIỆN THOẠI</div>
-                    <ListItem type='Phone'/>
+                    <ListItem type='Điện Thoại'/>
                 </div>
             </div>
             <div className="content-accessory">
                 <div className="grid">
                     <div className="accessory__heading">PHỤ KIỆN</div>
-                    <ListItem type='accessory'/>
+                    <ListItem type='Phụ kiện'/>
                 </div>
             </div>
         </div>

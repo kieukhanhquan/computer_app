@@ -14,7 +14,10 @@
                 }
 
                 public function filterComment($db, $data) {
-                    $query = "SELECT * FROM comment WHERE ProductID='$data'";
+                    $query = "SELECT client.FirstName, client.Avatar, comment.Content, comment.Time
+                    FROM comment
+                    INNER JOIN client ON comment.ClientID = client.ID
+                    WHERE comment.ProductID = ". $data . "";
                     return $this->model->filterComment($db, $query);
                 }
 
@@ -34,6 +37,17 @@
                     WHERE Content LIKE '%". $data . "%' OR ClientID LIKE '%". $data . "%' OR ProductID LIKE '%". $data . "%'";
                     return $this->model->searchComment($db, $query);
                     }
+                
+                public function addComment($db, $data) {
+                    $ClientID = $data["clientID"];
+                    $ProductID = $data["productID"];
+                    $Content = $data["content"];
+                    
+                    $query = "INSERT INTO comment (ClientID, ProductID, Content, Time)
+                    VALUES('$ClientID','$ProductID','$Content',current_timestamp())";
+                    return $this->model->addComment($db, $query);
+                        
+                }
             }
             
 

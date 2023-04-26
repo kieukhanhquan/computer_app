@@ -14,8 +14,13 @@
             http_response_code(200);
         } else {
             $queryParam = explode( '=', $queryValue );
-            if($queryParam[0] == "search" ) {
+            if ($queryParam[0] == "search") {
                 $result = $comment->searchComment($server->db, $params["search"]);
+                echo($result);
+                http_response_code(200);
+            } 
+            if ($queryParam[0] == "productID") {
+                $result = $comment->filterComment($server->db, $params["productID"]);
                 echo($result);
                 http_response_code(200);
             }
@@ -33,6 +38,17 @@
                 $result = $comment->filterComment($server->db, $data["filter"]);
                 echo($result);
                 http_response_code(200);
+            }
+            else if($queryParam[0] == "add" ) {
+                $result = $comment->addComment($server->db, $data);
+                if(strcmp(json_decode($result), "Success") == 0) {
+                    echo($result);
+                    http_response_code(200);
+                }
+                else {
+                    echo($result);
+                    http_response_code(400);
+                }
             }
         }
     }
