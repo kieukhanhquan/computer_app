@@ -30,8 +30,8 @@ const items = [
 
 function ProductDetail() {
     const [cookies] = useCookies(['user']);
-    let curUser;
-    if (cookies.user!=null){curUser={userName: cookies.user.FirstName};}
+    let curUser={ID:0,Avatar:"",userName:"Khách"};
+    if (cookies.user!=null){curUser={ID:cookies.user.ID,Avatar:cookies.user.Avatar, userName: cookies.user.FirstName};}
     const [activeKey, setActiveKey] = React.useState('A');
     const dataAll = useSelector((state) => state.product.product)
     const dispatch = useDispatch()
@@ -68,13 +68,18 @@ function ProductDetail() {
         await dispatch(addtoCart({product,user,quantity}))
     }
     function handleSubmit(data) {
-        let data_post = {}
-        data_post.ClientID = cookies.user.ID;
-        data_post.ProductID =id;
-        data_post.Content = data.text;
-        dispatch(addComment(data_post));
+        if (cookies.user!=null){
+            let data_post = {}
+            data_post.ClientID = cookies.user.ID;
+            data_post.ProductID =id;
+            data_post.Content = data.text;
+            dispatch(addComment(data_post));
 
-        console.log('đây là chỗ bình luận ', data_post)
+            console.log('đây là chỗ bình luận ', data_post)
+        }
+        else {
+            alert("Bạn cần đăng nhập để sử dụng tính năng bình luận!");
+        }
         // Lưu bình luận vào CSDL hoặc gửi đến server
     }
 
@@ -206,13 +211,13 @@ function ProductDetail() {
         </div>
         <CommentSection
           currentUser={{
-            currentUserId:cookies.user.ID ,
-            currentUserImg:cookies.user.Avatar,
+            currentUserId:curUser.ID ,
+            currentUserImg:curUser.Avatar,
             currentUserFullName: curUser.userName,
           }}
           commentData={comment}
           onSubmitAction={(data={
-            userID: cookies.user.ID,
+            userID: curUser.ID,
           }) => handleSubmit(data)}
           logIn={{
             loginLink: 'http://localhost:3000/Login',

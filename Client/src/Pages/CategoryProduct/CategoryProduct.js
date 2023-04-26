@@ -7,7 +7,7 @@ import { fetchProduct } from "../../Redux/Slice/productSlice"
 import { filterProduct } from "../../Redux/Slice/productSlice"
 import { Link } from "react-router-dom"
 import { useLocation } from 'react-router-dom';
-import ResponsivePagination from 'react-responsive-pagination';
+import ResponsivePagination from "react-responsive-pagination";
 function CategoryProduct() {
     const [type, setType] = useState('');
     const [minPrice, setMinPrice] = useState(0);
@@ -73,7 +73,7 @@ function CategoryProduct() {
 
 
     const [itemOffset, SetOffset] = useState({ offset: 0, current: 0 });
-    const itemPerPage = 9;
+    const itemPerPage = 20;
     const endOffset = itemOffset.offset + itemPerPage;
     const product = data.slice(itemOffset.offset, endOffset);
     const countPage = Math.ceil(data.length / itemPerPage);
@@ -84,7 +84,7 @@ function CategoryProduct() {
     return(
         <div className="CategoryProduct" >
                 <div className="grid">
-                    <div className="grid__row CategoryProduct-row">
+                    <div className="CategoryProduct-row">
                         {/* <div className="grid__column-1667 m-2">
                             <nav className="category">
                                 <h3 className="category__heading">
@@ -93,7 +93,7 @@ function CategoryProduct() {
                                 </h3>
                             </nav>
                         </div> */}
-                        <div className="grid__column100 m-10">
+                        <div className="grid__column100">
                             <div className="home-filter">
                                 <span className="home-filter__label"> Sắp xếp theo</span>
         
