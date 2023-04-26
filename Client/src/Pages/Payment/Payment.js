@@ -16,6 +16,7 @@ function Payment(listItem) {
     const [Voucher, setVoucher] = useState('0');
     
     const [cookies, setCookie,removeCookies] = useCookies(['user']);
+    const [payType,setPayType] = useState('');
     const [user,setUser] = useState(cookies.user);
     let dispatch = useDispatch()
     const dataCart = useSelector(state => state.cart.cart) || []
@@ -32,9 +33,14 @@ function Payment(listItem) {
     const fetchData = async () => {
         await dispatch(fetchUsev(cookies.user))
     }
-    
     const shipFee = Number(100000);
 
+
+
+    // Handle khi thay đổi tên
+    const handleName = (e) => {
+        
+    };
     // handle khi chọn voucher
     const handleChange = (event) => {
         setVoucher(event.target.value);
@@ -46,6 +52,20 @@ function Payment(listItem) {
           } else {
             // Không thực hiện gì cả
           }
+    }
+    // handle khi thay đổi địa chỉ
+    const handleAddress = (e) => {
+        const value = e.target.value;
+        setUser(prevUser => ({
+            ...prevUser, 
+            ['Address']:value
+        }))
+        
+    }
+    // handle khi chọn paytype
+    const handlePayType = (e) =>{
+   
+        setPayType(e.target.value);
     }
 
     useEffect(() => {
@@ -65,7 +85,8 @@ function Payment(listItem) {
                     </div>
                     <div className='customer-name'>
                         <label className='cus-name-label'>Họ và tên</label>
-                        <input className='cus-name' placeholder='VD: Nguyễn Văn A' type='text' value={user.LastName+' '+user.FirstName}></input>
+                        
+                        <input className='cus-name' placeholder='VD: Nguyễn Văn A' type='text' value={user.LastName+' '+user.FirstName} onChange={(e) => handleName(e)}></input>
                     </div>
                     <div className='customer-mail-phone'>
                         <div className='customer-mail'>
@@ -80,7 +101,7 @@ function Payment(listItem) {
                     </div>
                     <div className='customer-address'>
                         <label className='cus-address-label'>Địa chỉ</label>
-                        <input className='cus-address' placeholder='Nhà số xxx, Đường xxxxx' type='text' value = {user.Address}></input>
+                        <input className='cus-address' placeholder='Nhà số xxx, Đường xxxxx' type='text' value = {user.Address} onChange={(e) => handleAddress(e)}></input>
                     </div>
                     
                     <div className='customer-note'>
@@ -92,14 +113,14 @@ function Payment(listItem) {
                         <div className='customer-pay'>
                             <div className='customer-radio1'>
                                 <div className='radio-input'>
-                                    <input type='radio' name='paytype' value='Cash'></input>
+                                    <input type='radio' name='paytype' value='Thanh toán khi nhận hàng' onChange={(e) => handlePayType(e)}></input>
                                 </div>
                                 <div className='radio-title'>Thanh toán khi nhận hàng</div>
                             </div>
                             <div className='customer-radio2'>
                                 <div className='cus-radio2'>
                                     <div className='radio-input' id='radio2'>
-                                        <input className='radio2' type='radio' name='paytype' value='ATM'></input>
+                                        <input className='radio2' type='radio' name='paytype' value='Thanh toán online' onChange={(e) => handlePayType(e)}></input>
                                     </div>
                                     <div className='radio-title'>ATM Card/ Internet Banking</div>
                                 </div>
