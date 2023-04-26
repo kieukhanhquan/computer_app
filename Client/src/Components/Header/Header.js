@@ -3,11 +3,11 @@ import { useLocation } from "react-router-dom"
 import SearchIcon from '@rsuite/icons/Search';
 import PersonIcon from '@mui/icons-material/Person';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import { AiOutlineLogout } from "react-icons/ai";
 import { Link, useNavigate } from "react-router-dom";
 import { useCookies } from 'react-cookie';
 import { CiLogin } from "react-icons/ci";
+import { Dropdown } from 'react-bootstrap';
 import axios from 'axios';
 // import { Whisper, Avatar, Popover } from 'rsuite';
 import "./header.css";
@@ -17,6 +17,7 @@ import "./header.css";
 function Header(){
     const [cookies] = useCookies(['user']);
     const [searchTerm, setSearchTerm] = useState('');
+    const [suggestions, setSuggestions] = useState([]);
     const [data, setData] = useState([]);
     const checker = sessionStorage.getItem("checker")
     let navigate = useNavigate()
@@ -42,6 +43,19 @@ function Header(){
             console.log(error);
           });
         
+    }
+    useEffect(() => {
+        // Call RESTful API to get suggestions based on searchTerm
+        axios.get(`http://localhost/WebApp/Server/index.php/keysearch`)
+          .then(response => {
+            setSuggestions(response.data);
+          })
+          .catch(error => {
+            console.error(error);
+          });
+      }, [searchTerm]);
+    function handleSelectSuggestion(suggestion) {
+        setSearchTerm(suggestion);
     }
     const location = useLocation()
     const handelLogout = async () => {
@@ -74,6 +88,15 @@ function Header(){
                     <button type="submit" className="navbar__search-icon">
                         <SearchIcon height= "90%" fontSize= "18px"/>
                     </button>
+                    {/* {
+                                    suggestions.map((item) => {return (
+                                   
+                                                
+                                        <div className="item__price">{item.Name}</div>                 
+                                        
+                           
+                                        )
+                                    })} */}
                 </form>
                 {
                     checker != "" && checker != null?

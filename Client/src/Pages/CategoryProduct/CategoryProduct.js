@@ -7,15 +7,15 @@ import { fetchProduct } from "../../Redux/Slice/productSlice"
 import { filterProduct } from "../../Redux/Slice/productSlice"
 import { Link } from "react-router-dom"
 import { useLocation } from 'react-router-dom';
+
 import ResponsivePagination from "react-responsive-pagination";
 function CategoryProduct() {
     const [type, setType] = useState('');
-    const [minPrice, setMinPrice] = useState(0);
-    const [maxPrice, setMaxPrice] = useState(0);
+    const [order, setOrder] = useState('1');
     const [company, setCompany] = useState('');
     const location = useLocation();
     const dataAll = location.state;
-    
+    const [dataAllexampleState, setExampleState] = useState(location.state);
     let filter=useSelector((state) => state.product.product);
     let data=filter;
     // useEffect(() => {
@@ -23,6 +23,8 @@ function CategoryProduct() {
     // },[]);
     if(dataAll!=null){
         data=dataAll
+
+        // location.state=null;
     }
     let dispatch = useDispatch()
     useEffect(()=>{
@@ -31,27 +33,11 @@ function CategoryProduct() {
 
     const handleSelectTypeChange = (event) => {
         setType(event.target.value);
+        console.log(type)
     };
     const handleSelectPriceChange = (event) => {
-        if (event.target.value==='1'){
-            setMaxPrice(2000000)
-        }
-        else if (event.target.value==='2'){
-            setMaxPrice(10000000);
-            setMinPrice(2000000)
-        }
-        else if (event.target.value==='3'){
-            setMaxPrice(17000000);
-            setMinPrice(10000000)
-        }
-        else if (event.target.value==='4'){
-            setMinPrice(17000000);
-            setMaxPrice(250000000)
-        }
-        else {
-            setMinPrice(0);
-            setMaxPrice(0);
-        }
+        setOrder(event.target.value);
+        console.log(order)
     }
     const handleSelectCompanyChange = (event) => {
         setCompany(event.target.value);
@@ -59,12 +45,11 @@ function CategoryProduct() {
     const handleSubmit=async (event) => {
         event.preventDefault()
         let Type = type;
-        let MinPrice = minPrice;
-        let MaxPrice = maxPrice;
+        let Order=order;
         let Company = company;
             // let checker = validData({UserName: UserName, Password: Password})
             // if(true) {
-            await dispatch(filterProduct({Type: Type, MinPrice: MinPrice, MaxPrice: MaxPrice, Company: Company}))
+            await dispatch(filterProduct({Type: Type,Order: Order, Company: Company}))
             // }
             // dispatch(filterProduct())
     }
@@ -98,12 +83,11 @@ function CategoryProduct() {
                                 <span className="home-filter__label"> Sắp xếp theo</span>
         
                                 <form name="form" onSubmit={handleSubmit} className="filter-form">
-                                    <select className="select-input" name='selectPrice'>
-                                        <option className="optionSelect" value='0' onChange={handleSelectPriceChange}> Giá</option> 
-                                        <option className="optionSelect" value='1'>400.000đ - 2000.000đ</option>
-                                        <option className="optionSelect" value='2'>2000.000đ - 10.000.000đ</option>
-                                        <option className="optionSelect" value='3'>10.000.000đ - 17.000.000đ</option>
-                                        <option className="optionSelect" value='4'>17.000.000đ-25.000.000đ</option>
+                                    <select className="select-input" name='selectPrice' onChange={handleSelectPriceChange}>
+                                        <option className="optionSelect" value='1' > Giá</option> 
+                                        <option className="optionSelect" value='1'>Tăng dần</option>
+                                        <option className="optionSelect" value=''>Giảm dần</option>
+                                       
                                     </select>
                                     <select className="select-input" name='selectCompany' onChange={handleSelectCompanyChange}>
                                         <option className="optionSelect" value=''>Hãng</option> 
