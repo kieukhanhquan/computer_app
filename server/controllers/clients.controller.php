@@ -13,6 +13,13 @@
             return $this->model->viewAll($db, $query);
         }
 
+        
+        public function getClient($db, $data) {
+            $query = "SELECT * FROM client
+            WHERE ID=".$data."";
+            return $this->model->getClient($db, $query);
+        }
+
         public function changeStatus($db , $data) {
             $query = "UPDATE client SET Status= '" . $data["Status"] . "' WHERE ID='" . $data["ID"] ."'";
             return $this->model->changeStatus($db, $query);

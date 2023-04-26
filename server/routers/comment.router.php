@@ -13,9 +13,12 @@
             echo($result);
             http_response_code(200);
         } else {
-            $result = $comment->searchComment($server->db, $params["search"]);
-            echo($result);
-            http_response_code(200);
+            $queryParam = explode( '=', $queryValue );
+            if($queryParam[0] == "search" ) {
+                $result = $comment->searchComment($server->db, $params["search"]);
+                echo($result);
+                http_response_code(200);
+            }
         }
     }
 

@@ -25,6 +25,11 @@
                 echo($result);
                 http_response_code(200);
             }
+            if ($queryParam[0] == "getByID"){
+                $result = $client->getClient($server->db, $queryParam[1]);
+                echo($result);
+                http_response_code(200);
+            }
         }
     }
 
