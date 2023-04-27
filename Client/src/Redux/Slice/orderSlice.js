@@ -117,7 +117,7 @@ export const addOrder = createAsyncThunk(
             const PayType = data.payType;
             const OrderShip = "100000"
             const OrderFee = data.total;
-            const OrderState = "Chưa xác nhận";
+            const OrderState = "Đang đợi";
             const TimeCreate = data.currentDate;
             
             await axios.post('http://localhost/WebApp/Server/index.php/order?add=true',{
