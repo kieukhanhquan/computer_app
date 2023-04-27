@@ -107,20 +107,21 @@ export const updateProduct = createAsyncThunk(
     }
 )
 
+
 export const addOrder = createAsyncThunk(
     "addOrder",
     async (data,{dispatch}) => {
         try {
-            
+
             const ClientID = data.user.ID;
             const Address = data.user.Address;
             const PayType = data.payType;
             const OrderShip = "100000"
             const OrderFee = data.total;
-            const OrderState = "Chưa xác nhận";
+            const OrderState = "Đang đợi";
             const TimeCreate = data.currentDate;
             
-            await axios.post('http://localhost/WebApp/Server/index.php/order?add=true',{
+            const response = await axios.post('http://localhost/WebApp/Server/index.php/order?add=true',{
                 ClientID: ClientID,
                 Address: Address,
                 PayType: PayType,
@@ -129,6 +130,13 @@ export const addOrder = createAsyncThunk(
                 OrderShip: OrderShip,
                 TimeCreate: TimeCreate,
             })
+            console.log(data.dataCart);
+            await axios.post('http://localhost/WebApp/Server/index.php/order?belong=true',{
+                OrderID: response.data,
+                product: data.dataCart
+            })
+
+            
             toast.success(`Đơn hàng đã được tạo thành công`, {
                 position: "top-right",
                 autoClose: 2000,
@@ -138,6 +146,8 @@ export const addOrder = createAsyncThunk(
                 draggable: true,
                 progress: undefined,
               });
+              
+            return response.data;
         }
         catch(err){
             toast.error(err.response.data, {
@@ -159,7 +169,8 @@ const orderSlice = createSlice({
         order: [],
         product: [] ,
         detail: [],
-        loader: false
+        loader: false,
+        OrderID: null,
     },
     reducers: {
 
@@ -229,6 +240,8 @@ const orderSlice = createSlice({
                 state.loader = true
             })
             .addCase(addOrder.fulfilled, (state, action) => {
+                state.OrderID = action.payload;
+                
                 state.loader = false
             })
             .addCase(addOrder.rejected, (state, action) => {

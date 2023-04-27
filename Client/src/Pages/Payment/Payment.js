@@ -16,6 +16,7 @@ import moment from 'moment';
 import { toast, ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 import { clearCart } from "../../Redux/Slice/cartSlice";
+import axios from "axios";
 
 
 function Payment(listItem) {
@@ -26,7 +27,8 @@ function Payment(listItem) {
     const [payType,setPayType] = useState('');
     const [user,setUser] = useState(cookies.user);
     let dispatch = useDispatch()
-    const dataCart = useSelector(state => state.cart.cart) || []
+    const dataCart = useSelector(state => state.cart.cart) || [];
+    const OrderID = useSelector(state => state.order.OrderID);
     let total = 0;
     // Tính tổng giá tiền trong gio hang
     for (let i = 0; i < dataCart.length; i++) {
@@ -42,6 +44,7 @@ function Payment(listItem) {
     }
     const shipFee = Number(100000);
 
+    console.log(dataCart);
     const addData = async (data) =>{
         await dispatch(addOrder(data))
     }
@@ -57,7 +60,14 @@ function Payment(listItem) {
     const handleChange = (event) => {
         setVoucher(event.target.value);
       };
-
+    
+      const addOrderItem = async (OrderID) => {
+        
+        await axios.post('http://localhost/WebApp/Server/index.php/order?belong=true', {
+        
+        })
+    }
+    
     // handle khi ấn xác nhận
     const handleSubmit = (e,user,payType,total) =>{
        
@@ -79,11 +89,17 @@ function Payment(listItem) {
                 // Lay ra Time hien tai 
                 const currentDate= moment().format("YYYY-MM-DD");
 
-                addData({user,currentDate,payType,total});
+                addData({user,currentDate,payType,total,dataCart});
+                
+                
+                
+                
+
                 clearData(cookies.user);
-                setTimeout(() => {
-                    window.location.href = "/";
-                }, 2000);
+
+                // setTimeout(() => {
+                //     window.location.href = "/";
+                // }, 2000);
           } else {
             // Không thực hiện gì cả
           }
