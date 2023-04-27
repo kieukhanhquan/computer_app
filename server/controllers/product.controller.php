@@ -58,18 +58,34 @@
             return $this->model->searchProduct($db, $query);
         }
         public function filterProduct($db, $data) {
-            $query = "SELECT * FROM product WHERE ".($data["Type"] == '' ? "" : "Type = '".$data["Type"]."'")."".($data["Company"] == '' ? "" : "AND company = '".$data["Company"]."'")."";
-
-            // echo($query);
+            
+            if($data["Type"] != ''){
+                if($data["Order"] != '1'){
+                    $query = "SELECT * FROM product WHERE ".($data["Type"] == '' ? "" : "Type = '".$data["Type"]."'")."
+                    ".($data["Company"] == '' ? "" : "AND company = '".$data["Company"]."'")." ORDER BY Price DESC";
+                }
+                else{
+                    $query = "SELECT * FROM product WHERE ".($data["Type"] == '' ? "" : "Type = '".$data["Type"]."'")."
+                    ".($data["Company"] == '' ? "" : "AND company = '".$data["Company"]."'")." ORDER BY Price ASC";
+                }
+            }
+            else if($data["Company"] != ''){
+                if($data["Order"] != '1'){
+                    $query = "SELECT * FROM product WHERE  ".($data["Company"] == '' ? "" : "company = '".$data["Company"]."'")." ORDER BY Price DESC";
+                }
+                else{
+                    $query = "SELECT * FROM product WHERE  ".($data["Company"] == '' ? "" : "company = '".$data["Company"]."'")." ORDER BY Price ASC";
+                }
+            }
+            else {
+                if($data["Order"] != '1'){
+                    $query = "SELECT * FROM product ORDER BY Price DESC";
+                }
+                else {
+                    $query = "SELECT * FROM product ORDER BY Price ASC";
+                }
+            }
             return $this->model->filterProduct($db,$query);
-            // if (empty($data)){
-            //     $query = "SELECT * FROM product"
-            // } 
-            // if($data["type"]!="") {
-            //     $type=$data["type"]
-            //     $query = "SELECT * FROM product WHERE Type=$type";
-            // }
-            // return $this->model->filterProduct($db, $query);
         }
     }
 ?>
