@@ -1,14 +1,35 @@
 
+import { useEffect, useState } from 'react';
 import LocationIcon from '@rsuite/icons/Location';
 import PhoneIcon from '@rsuite/icons/Phone';
 import EmailIcon from '@rsuite/icons/Email';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFacebook, faGithub, faLinkedin, faYoutube } from '@fortawesome/free-brands-svg-icons'
-
+import axios from 'axios';
 
 import "./footer.css";
 
 function Footer () {
+    const [infor, SetInfor] = useState([
+        {
+          ID: "",
+          Name: "",
+          Address: "",
+          Phone: "",
+          Facebook: "",
+          Instagram: "",
+          Twitter: "",
+          Youtube: "",  
+        }
+      ]);
+    const getInfo = async () => {
+        await axios.get("http://localhost/WebApp/Server/index.php/contact").then((response) => {
+          SetInfor(response.data[0]);
+        });
+      };
+      useEffect(() => {
+        getInfo();
+      }, []);
     return (
         <footer className="footer">
             <div className="grid">
@@ -32,23 +53,22 @@ function Footer () {
                         <ul className="footer__list">
                             <li className="footer__list-item">
                                 <PhoneIcon fontSize="2em"/>
-                                <span className="footer__list-item_link">091424543</span>
+                                <span className="footer__list-item_link">{infor.Phone}</span>
                             </li>
                             <li className="footer__list-item">
                                 <EmailIcon fontSize="2em"/>
-                                <span className="footer__list-item_link">kieukhanhquan@gmail.com</span>
+                                <span className="footer__list-item_link">{infor.Email}</span>
                             </li>
                             <li className="footer__list-item">
                                 <LocationIcon fontSize="2em" />
-                                <span className="footer__list-item_link">268 Lý Thường Kiệt, Phường 14<br />, Quận 10, Tp Hồ
-                                    Chí Minh</span>
+                                <span className="footer__list-item_link">{infor.Address}</span>
                             </li>
                             <li className="footer__list-item">
                                 <div className="list_icon">
-                                    <a href=""><FontAwesomeIcon icon={faGithub} fontSize="40px" /></a>
-                                    <a href=""><FontAwesomeIcon icon={faFacebook} fontSize="40px" /></a>
-                                    <a href=""><FontAwesomeIcon icon={faYoutube} fontSize="40px"/></a>
-                                    <a href=""><FontAwesomeIcon icon={faLinkedin} fontSize="40px"/></a>
+                                    <a href={infor.Twitter} target="_blank"><FontAwesomeIcon icon={faGithub} fontSize="40px" /></a>
+                                    <a href={infor.Facebook} target="_blank"><FontAwesomeIcon icon={faFacebook} fontSize="40px" /></a>
+                                    <a href={infor.Youtube} target="_blank"><FontAwesomeIcon icon={faYoutube} fontSize="40px"/></a>
+                                    <a href={infor.Instagram} target="_blank"><FontAwesomeIcon icon={faLinkedin} fontSize="40px"/></a>
                                 </div>
                             </li>
                         </ul>

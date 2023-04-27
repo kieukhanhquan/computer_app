@@ -25,6 +25,11 @@
             return $this->model->changeStatus($db, $query);
         }
 
+        public function changePassword($db , $data) {
+            $query = "UPDATE client SET Password= '" . $data["Password"] . "' WHERE ID='" . $data["ID"] ."'";
+            return $this->model->changePassword($db, $query);
+        }
+
         public function addClient($db, $data) {
             $UserName = $data["UserName"];
             $Password = $data["Password"];

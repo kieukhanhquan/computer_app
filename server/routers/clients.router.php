@@ -46,7 +46,10 @@
         if ($data["type"] == 2) {
             $result = $client->updateGrade($server->db, $data);
         }
-
+        
+        if ($data["type"] == 3) {
+            $result = $client->changePassword($server->db, $data);
+        }
         if(strcmp(json_decode($result), "Success") == 0) {
             echo($result);
             http_response_code(200);
