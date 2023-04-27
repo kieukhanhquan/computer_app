@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link,useHistory } from "react-router-dom";
 import "./Payment.css"
 import { useCookies } from 'react-cookie';
 import { useSelector, useDispatch } from "react-redux";
@@ -17,7 +17,9 @@ import { toast, ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 import { clearCart } from "../../Redux/Slice/cartSlice";
 
+
 function Payment(listItem) {
+    
     const [Voucher, setVoucher] = useState('0');
     
     const [cookies, setCookie,removeCookies] = useCookies(['user']);
@@ -76,9 +78,12 @@ function Payment(listItem) {
             if (window.confirm("Xác nhận đặt hàng?")) {
                 // Lay ra Time hien tai 
                 const currentDate= moment().format("YYYY-MM-DD");
-                
+
                 addData({user,currentDate,payType,total});
                 clearData(cookies.user);
+                setTimeout(() => {
+                    window.location.href = "/";
+                }, 2000);
           } else {
             // Không thực hiện gì cả
           }

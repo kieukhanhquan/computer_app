@@ -14,6 +14,7 @@ import { addComment } from '../../Redux/Slice/commentsSlice';
 import { addtoCart } from '../../Redux/Slice/cartSlice';
 import { ToastContainer, toast } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
+
 import { CommentSection} from 'react-comments-section'
 import 'react-comments-section/dist/index.css'
 import "./ProductDetail.css"
