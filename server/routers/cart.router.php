@@ -13,34 +13,19 @@
             echo($result);
             http_response_code(200);
         }
+        else{
+            $queryParam = explode( '=', $queryValue );
+            if($queryParam[0] == "viewCartID" ){
+                $result = $cart->viewCartID($server->db, $queryParam[1]);
+                echo($result);
+                http_response_code(200);
+            }
+        }
         
     }
 
     
-    elseif($method == "POST") {
-        $data = json_decode(file_get_contents('php://input'), true) ;
-        $result = $cart->addCart($server->db, $data);
-        if(strcmp(json_decode($result), "Success") == 0) {
-            echo($result);
-            http_response_code(200);
-        }
-        else {
-            echo($result);
-            http_response_code(400);
-        }
-    }
-
-    elseif($method == "DELETE"){
-        $data = json_decode(file_get_contents('php://input'), true) ;
-        $result = $cart->deleteCart($server->db, $data);
-        if(strcmp(json_decode($result), "Success") == 0) {
-            echo($result);
-            http_response_code(200);
-        }
-        else {
-            echo($result);
-            http_response_code(400);
-        }
-    }
+    
+    
 
 ?>

@@ -39,19 +39,22 @@ export const updateQuantity = createAsyncThunk(
     async (data, { dispatch, getState }) => {
       
       try {
+        
         await dispatch(fetchCart(data.user));
         const existItem = getState().cart.cart.find(item => item.ProductID === data.product.ID);
           if(existItem){
+            
             const quantity = parseInt(existItem.quantity) + parseInt(data.quantity);
             const ProductID = data.product.ID;
             const user = data.user;
             await dispatch(updateQuantity({ProductID,quantity,user}))
           }
           else{
-            const cartID = getState().cart.cart[0].CartID;
             const newquantity = data.quantity;
             const ID = data.product.ID;
             const ClientID = data.user.ID;
+            const data1 = await axios.get(`http://localhost/WebApp/Server/index.php/cart?viewCartID=${ClientID}`)
+            const cartID = data1.data[0].ID;
             await axios.post('http://localhost/WebApp/Server/index.php/possess', {
               ProductID: ID,
               CartID: cartID,

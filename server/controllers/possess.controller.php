@@ -36,15 +36,13 @@
             $checker = "SELECT * FROM possess WHERE ProductID = '$ProductID'";
             $result = $this->model->viewAll($db, $checker);
             
-            if (count(json_decode($result)) != 0) {
-                return json_encode("Sản phẩm đã tồn tại trong giỏ hàng");
-            }
             
-            else {
+            
+            
             $query = "INSERT INTO possess (ProductID, CartID, ClientID, quantity)
             VALUES('$ProductID','$CartID','$ClientID','$quantity')";
             return $this->model->addtoCart($db, $query);
-            }
+            
         }
         public function deleteCartItem($db,$data){
             

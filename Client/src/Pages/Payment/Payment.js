@@ -76,6 +76,7 @@ function Payment(listItem) {
             if (window.confirm("Xác nhận đặt hàng?")) {
                 // Lay ra Time hien tai 
                 const currentDate= moment().format("YYYY-MM-DD");
+                
                 addData({user,currentDate,payType,total});
                 clearData(cookies.user);
           } else {
