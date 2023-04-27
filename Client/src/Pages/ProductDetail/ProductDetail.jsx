@@ -14,7 +14,8 @@ import { addComment } from '../../Redux/Slice/commentsSlice';
 import { addtoCart } from '../../Redux/Slice/cartSlice';
 import { ToastContainer, toast } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
-
+import { CommentSection} from 'react-comments-section'
+import 'react-comments-section/dist/index.css'
 import "./ProductDetail.css"
 
 
@@ -29,8 +30,8 @@ const items = [
 
 function ProductDetail() {
     const [cookies] = useCookies(['user']);
-    let curUser={ID:0,Avatar:"",userName:"Khách"};
-    if (cookies.user!=null){curUser={ID:cookies.user.ID,Avatar:cookies.user.Avatar, userName: cookies.user.FirstName};}
+    let curUser;
+    if (cookies.user!=null){curUser={userName: cookies.user.FirstName};}
     const [activeKey, setActiveKey] = React.useState('A');
     const dataAll = useSelector((state) => state.product.product)
     const dispatch = useDispatch()
@@ -38,7 +39,7 @@ function ProductDetail() {
     const fetchData = async () => {
         await dispatch(fetchProduct(0))
     }
-    
+
     // Lọc ra sản phẩm theo ID đã fetch lên, lọc comment theo ID, lọc các sản phẩm theo Type
     const { id } = useParams(); 
     const dispatch1 = useDispatch()
@@ -67,18 +68,13 @@ function ProductDetail() {
         await dispatch(addtoCart({product,user,quantity}))
     }
     function handleSubmit(data) {
-        if (cookies.user!=null){
-            let data_post = {}
-            data_post.ClientID = cookies.user.ID;
-            data_post.ProductID =id;
-            data_post.Content = data.text;
-            dispatch(addComment(data_post));
+        let data_post = {}
+        data_post.ClientID = cookies.user.ID;
+        data_post.ProductID =id;
+        data_post.Content = data.text;
+        dispatch(addComment(data_post));
 
-            console.log('đây là chỗ bình luận ', data_post)
-        }
-        else {
-            alert("Bạn cần đăng nhập để sử dụng tính năng bình luận!");
-        }
+        console.log('đây là chỗ bình luận ', data_post)
         // Lưu bình luận vào CSDL hoặc gửi đến server
     }
 
@@ -90,9 +86,9 @@ function ProductDetail() {
     }, [])
     return (
         <Fragment>
-            
+
             <div className="ProfileProduct" >
-                
+
             <div className="contentProduct" >
                 <div className="grid">
 
@@ -108,7 +104,7 @@ function ProductDetail() {
                             <button className="right-btn" type='button'>
                                 <i className="right-icon fa-solid fa-angle-right"></i>
                             </button>
-                       
+
                     </div>
                 </div>
                 <div className="grid__column-40 m-5 c-12">
@@ -123,16 +119,16 @@ function ProductDetail() {
                             <div className="product-code">
                                 <span className="code">Mã sản phẩm:</span>
                                 <span>
-                                    
+
                                 </span>
-                                
+
                             </div>
                         </div>
                         <div className="product__detail-price">
                             {product?.Price} đ
                         </div>
                         <div className="product__detail-size">
-                            
+
 
                             <div className="product__detail-amount">
                                 <span className="amount-heading">SỐ LƯỢNG</span>
@@ -167,7 +163,7 @@ function ProductDetail() {
                     </div>
                 </div>
                 </div>
-                
+
         </div>
 
     </div>
@@ -179,9 +175,9 @@ function ProductDetail() {
                                     {item.label}
                                 </Nav.Item>
                     )
-                    
+
                 })}
-                
+
             </Nav>
             {activeKey === 'A' && (
                 <div>{product?.Description}</div>
@@ -198,7 +194,7 @@ function ProductDetail() {
                                 <img src={item.Image} className="img-thumbnail" alt="Cinque Terre"/>
                                 <div className="item__price">{item.Name}</div>
                             </Link>
-                            
+
                             <div className="item__price">1.999.000đ</div>
                         </div>
                 )
@@ -206,8 +202,23 @@ function ProductDetail() {
                     </div>
                 )
             }
-            
+
         </div>
+        <CommentSection
+          currentUser={{
+            currentUserId:cookies.user.ID ,
+            currentUserImg:cookies.user.Avatar,
+            currentUserFullName: curUser.userName,
+          }}
+          commentData={comment}
+          onSubmitAction={(data={
+            userID: cookies.user.ID,
+          }) => handleSubmit(data)}
+          logIn={{
+            loginLink: 'http://localhost:3000/Login',
+            signupLink: 'http://localhost:3000/Register'
+          }}
+        />
         </div>
         </Fragment> 
     )
