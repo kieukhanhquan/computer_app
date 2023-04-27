@@ -28,10 +28,9 @@ function Home() {
                     <div className="grid__row">
                         <div className="grid__column-65">
                             <div className="main__commercial">                  
-                                <img className="commercial-img img--active" src=" <?php echo $listImg[0] ?>"/>
-                                <img className="commercial-img"  src=" <?php echo $listImg[1] ?>"/>
-                                <img className="commercial-img"  src=" <?php echo $listImg[2] ?>"/>
-                                <img className="commercial-img"  src=" <?php echo $listImg[3] ?>"/>
+                            <div className="main__beside-3">
+                                    <img className="beside-2-img" src='https://cdn.tgdd.vn/hoi-dap/1275494/Thumbnail/video-cach-doi-cai-hinh-nen-may-tinh-windows-7-8-10-don-thumb-1.jpg'/>
+                                </div>
                             </div>
                         </div>
                         <div className="grid__column-35">
@@ -40,7 +39,7 @@ function Home() {
                                     <img className="beside-1-img" src='https://bucket.nhanh.vn/04f7ff-92233/bn/20221208_LSyzLXiH2IqpYJJY.jpg'/>
                                 </div>
                                 <div className="main__beside-2">
-                                    <img className="beside-2-img" src='https://bucket.nhanh.vn/04f7ff-92233/bn/20221117_DhsyxB9AnDmC0zvuV8gY9gXs.jpg'/>
+                                    <img className="beside-2-img" src='https://giaophannhatrang.org/uploads/news/2022_05/thiet-bi-dien-tu-la-gi.jpg'/>
                                 </div>
                             </div>
                         </div>
@@ -58,7 +57,7 @@ function Home() {
             <div className="content-accessory">
                 <div className="grid">
                     <div className="accessory__heading">ĐIỆN THOẠI</div>
-                    <ListItem type='Điện Thoại'/>
+                    <ListItem type='Điện thoại'/>
                 </div>
             </div>
             <div className="content-accessory">
