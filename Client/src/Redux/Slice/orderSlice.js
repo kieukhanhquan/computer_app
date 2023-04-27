@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios'
-
+import { toast, ToastContainer } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
 
 export const fetchOrder = createAsyncThunk(
     "fetchOrder",
@@ -111,16 +112,49 @@ export const addOrder = createAsyncThunk(
     async (data,{dispatch}) => {
         try {
             
-            await axios.post('http://localhost/WebApp/Server/index.php/order?')
+            const ClientID = data.user.ID;
+            const Address = data.user.Address;
+            const PayType = data.payType;
+            const OrderShip = "100000"
+            const OrderFee = data.total;
+            const OrderState = "Chưa xác nhận";
+            const TimeCreate = data.currentDate;
+            
+            await axios.post('http://localhost/WebApp/Server/index.php/order?add=true',{
+                ClientID: ClientID,
+                Address: Address,
+                PayType: PayType,
+                OrderFee: OrderFee,
+                OrderState: OrderState,
+                OrderShip: OrderShip,
+                TimeCreate: TimeCreate,
+            })
+            toast.success(`Đơn hàng đã được tạo thành công`, {
+                position: "top-right",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+              });
         }
         catch(err){
-
+            toast.error(err.response.data, {
+                position: "top-right",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+              });
         }
     }
 )
 
 const orderSlice = createSlice({
-    name: 'userSlice',
+    name: 'orderSlice',
     initialState: {
         order: [],
         product: [] ,
@@ -191,6 +225,16 @@ const orderSlice = createSlice({
             .addCase(updateStatus.rejected, (state, action) => {
                 state.order = false
             })
+            .addCase(addOrder.pending, (state, action) => {
+                state.loader = true
+            })
+            .addCase(addOrder.fulfilled, (state, action) => {
+                state.loader = false
+            })
+            .addCase(addOrder.rejected, (state, action) => {
+                state.order = false
+            })
+            
     }
 }
 )

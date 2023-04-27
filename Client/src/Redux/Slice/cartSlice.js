@@ -120,6 +120,24 @@ export const updateQuantity = createAsyncThunk(
         }
     }
   )
+  
+  export const clearCart = createAsyncThunk(
+    "clearCart",
+    async (data, {dispatch}) => {
+      try {
+        const ClientID = data.ID;
+        await axios.delete('http://localhost/WebApp/Server/index.php/possess?clear=true',
+            { data:{
+              ClientID: ClientID,
+              }
+          })
+      }
+      catch (err){
+        alert(err.response.data);
+      }
+    }
+
+  )
 
 
 

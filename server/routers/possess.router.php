@@ -46,16 +46,34 @@
         }
     }
     elseif($method =="DELETE"){
-        $data = json_decode(file_get_contents('php://input'),true);
-        $result = $possess->deleteCartItem($server->db,$data);
-        if(strcmp(json_decode($result), "Success") == 0) {
-            echo($result);
-            http_response_code(200);
+        if($queryValue == null){
+            $data = json_decode(file_get_contents('php://input'),true);
+            $result = $possess->deleteCartItem($server->db,$data);
+            if(strcmp(json_decode($result), "Success") == 0) {
+                echo($result);
+                http_response_code(200);
+            }
+            else {
+                echo($result);
+                http_response_code(400);
+            }
         }
-        else {
-            echo($result);
-            http_response_code(400);
+        else{
+            $queryParam = explode( '=', $queryValue );
+            $data = json_decode(file_get_contents('php://input'), true) ;
+            if($queryParam[0] == "clear"){
+                $result = $possess->clearCart($server->db,$data);
+                if(strcmp(json_decode($result), "Success") == 0) {
+                    echo($result);
+                    http_response_code(200);
+                }
+                else {
+                    echo($result);
+                    http_response_code(400);
+                }
+            }
         }
+        
     }
 
 ?>

@@ -13,6 +13,9 @@ import Typography from '@mui/material/Typography';
 import OrderItems from "../../Components/OrderItems/OrderItems";
 import { addOrder } from "../../Redux/Slice/orderSlice";
 import moment from 'moment';    
+import { toast, ToastContainer } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
+import { clearCart } from "../../Redux/Slice/cartSlice";
 
 function Payment(listItem) {
     const [Voucher, setVoucher] = useState('0');
@@ -37,35 +40,49 @@ function Payment(listItem) {
     }
     const shipFee = Number(100000);
 
-    const addData = async (user) =>{
-        await dispatch(addOrder(user))
+    const addData = async (data) =>{
+        await dispatch(addOrder(data))
     }
 
-
+    // Xoa het gio hang khi dat hang thanh cong
+    const clearData = async (user) =>{
+        await dispatch(clearCart(user))
+    }
     // Handle khi thay đổi tên
     const handleName = (e) => {
-        
     };
     // handle khi chọn voucher
     const handleChange = (event) => {
         setVoucher(event.target.value);
       };
+
     // handle khi ấn xác nhận
-    const handleSubmit = (user) =>{
-        if (window.confirm("Xác nhận đặt hàng?")) {
+    const handleSubmit = (e,user,payType,total) =>{
+       
+        if(payType === ''){ 
+            toast.error('Vui lòng chọn phương thức thanh toán', {
+                position: "top-center",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+                });
+            return ;
+        }
+        else{
+            if (window.confirm("Xác nhận đặt hàng?")) {
                 // Lay ra Time hien tai 
-                const currentDate = new Date();
-                const day = currentDate.getDate();
-                const month = currentDate.getMonth() + 1;
-                const year = currentDate.getFullYear();
-                
-                // Format ngày tháng năm thành chuỗi
-                const formattedDate = `${year}-${month}-${day}`;
-                console.log(formattedDate);
-                
+                const currentDate= moment().format("YYYY-MM-DD");
+                addData({user,currentDate,payType,total});
+                clearData(cookies.user);
           } else {
             // Không thực hiện gì cả
           }
+        }
+        
     }
     // handle khi thay đổi địa chỉ
     const handleAddress = (e) => {
@@ -77,7 +94,6 @@ function Payment(listItem) {
         
     }
 
-    
 
     // handle khi chọn paytype
     const handlePayType = (e) =>{
@@ -91,6 +107,7 @@ function Payment(listItem) {
     }, [dispatch, cookies.user]);
 
     return(
+        
     <div className='payment-wrapper'>
     <div className="cus-infor">
         <div className='pay-wrap'>
@@ -129,14 +146,14 @@ function Payment(listItem) {
                         <div className='customer-pay'>
                             <div className='customer-radio1'>
                                 <div className='radio-input'>
-                                    <input type='radio' name='paytype' value='Thanh toán khi nhận hàng' onChange={(e) => handlePayType(e)}></input>
+                                    <input type='radio' name='paytype' value='Thanh toán khi nhận hàng' onChange={(e) => handlePayType(e)} ></input>
                                 </div>
                                 <div className='radio-title'>Thanh toán khi nhận hàng</div>
                             </div>
                             <div className='customer-radio2'>
                                 <div className='cus-radio2'>
                                     <div className='radio-input' id='radio2'>
-                                        <input className='radio2' type='radio' name='paytype' value='Thanh toán online' onChange={(e) => handlePayType(e)}></input>
+                                        <input className='radio2' type='radio' name='paytype' value='Thanh toán online' onChange={(e) => handlePayType(e)} ></input>
                                     </div>
                                     <div className='radio-title'>ATM Card/ Internet Banking</div>
                                 </div>
@@ -207,7 +224,8 @@ function Payment(listItem) {
         </div>
         <div className='direction'>
             <Link to='/Cart'>Trở lại giỏ hàng</Link>
-            <button className='orderbutton' onClick={(user) => handleSubmit(user)}>Xác Nhận</button>
+            <ToastContainer/>
+            <button className='orderbutton' onClick={(e) => handleSubmit(e, user, payType,total)}>Xác Nhận</button>
         </div>
         </div>
     </div>

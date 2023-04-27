@@ -55,7 +55,24 @@
                                 SET product.Quantity =  product.Quantity - belong.Quantity";
                     return $this->model->updateProduct($db, $query);
                 }
-
+                
+                public function addOrder($db,$data){
+                    $ClientID = $data["ClientID"];
+                    $Address1 = mysqli_real_escape_string($db, $data["Address"]);
+                    $PayType = $data["PayType"];
+                    $OrderFee = $data["OrderFee"];
+                    $OrderState = $data["OrderState"];
+                    $OrderShip = $data["OrderShip"];
+                    $TimeCreate = $data["TimeCreate"];
+                    $TimeCreate = date_create($TimeCreate);
+                    $TimeCreate = date_format($TimeCreate, "Y-m-d H:i:s");
+                    
+                    $query = "INSERT INTO orderp (ClientID, Address, PayType,
+                                                OrderFee, OrderState, OrderShip, TimeCreate) 
+                                    VALUES ('$ClientID','$Address1','$PayType',
+                                            '$OrderFee','$OrderState','$OrderShip','$TimeCreate')";
+                    return $this->model->addOrder($db, $query);
+                }
             }
 
 ?>

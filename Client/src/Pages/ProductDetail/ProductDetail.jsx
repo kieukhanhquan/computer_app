@@ -14,8 +14,7 @@ import { addComment } from '../../Redux/Slice/commentsSlice';
 import { addtoCart } from '../../Redux/Slice/cartSlice';
 import { ToastContainer, toast } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
-import { CommentSection} from 'react-comments-section'
-import 'react-comments-section/dist/index.css'
+
 import "./ProductDetail.css"
 
 
@@ -209,21 +208,6 @@ function ProductDetail() {
             }
             
         </div>
-        <CommentSection
-          currentUser={{
-            currentUserId:curUser.ID ,
-            currentUserImg:curUser.Avatar,
-            currentUserFullName: curUser.userName,
-          }}
-          commentData={comment}
-          onSubmitAction={(data={
-            userID: curUser.ID,
-          }) => handleSubmit(data)}
-          logIn={{
-            loginLink: 'http://localhost:3000/Login',
-            signupLink: 'http://localhost:3000/Register'
-          }}
-        />
         </div>
         </Fragment> 
     )

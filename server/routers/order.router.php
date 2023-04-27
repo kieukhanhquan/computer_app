@@ -27,7 +27,7 @@
 
     if ($method == "POST") {
         if ($queryValue == null) {
-
+            
         }
         else {
             $queryParam = explode( '=', $queryValue );
@@ -46,6 +46,19 @@
                 $result = $order->orderDetail($server->db, $data);
                 echo($result);
                 http_response_code(200);   
+            }
+            if($queryParam[0] == "add") {
+                $result = $order->addOrder($server->db, $data);
+                
+                if(strcmp(json_decode($result), "Success") == 0) {
+                    return $result;
+                    echo($result);
+                    http_response_code(200);
+                }
+                else {
+                    echo($result);
+                    http_response_code(400);
+                }  
             }
         }
     }

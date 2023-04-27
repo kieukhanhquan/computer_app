@@ -55,5 +55,11 @@
                         WHERE ProductID = $ProductID AND ClientID = $ClientID";
             return $this->model->deleteCartItem($db,$query);
         }
+
+        public function clearCart($db,$data){
+            $ClientID = $data["ClientID"];
+            $query = "DELETE FROM possess WHERE ClientID = '$ClientID'" ;
+            return $this->model->clearCart($db,$query);
+        }
     }
 ?>
