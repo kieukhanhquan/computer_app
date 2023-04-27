@@ -66,7 +66,13 @@ function ProductDetail() {
     const [quantity, setQuantity] = useState(1);
 
     const handleAddToCart = async (product,user,quantity) =>{  
-        await dispatch(addtoCart({product,user,quantity}))
+        if(cookies.user==null){
+            alert("Bạn cần đăng nhập để thêm vào giỏ hàng");
+        }
+        else{
+            await dispatch(addtoCart({product,user,quantity}))
+        }
+        
     }
     function handleSubmit(data) {
         let data_post = {}

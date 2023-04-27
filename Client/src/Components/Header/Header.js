@@ -34,7 +34,7 @@ function Header(){
     const handleSearch=(event)=>{
         event.preventDefault();
 
-        axios.get(`http://localhost/WebApp/Server/index.php/product?search=${searchTerm}`)
+        axios.get(`http://localhost/WebApp/Server/index.php/product?search=${searchTerm}&sortby=&type=`)
           .then(response => {
             // lưu dữ liệu trả về vào state data
             setData(response.data);
@@ -85,7 +85,7 @@ function Header(){
                     </div>
                 </div>
                 
-                <form name="form" onSubmit={handleSearch} className="navbar_search">
+                <form name="form" onSubmit={(e) => {handleSearch(e)}} className="navbar_search">
                 <div className="dropdown">
                     
                     <input type="text" className="navbar__search-text" placeholder='Nhập từ khóa tìm kiếm' onChange={(event) => setSearchTerm(event.target.value)} />

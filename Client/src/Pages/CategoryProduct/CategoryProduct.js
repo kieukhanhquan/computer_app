@@ -51,7 +51,7 @@ function CategoryProduct() {
             // }
             // dispatch(filterProduct())
     }
-
+    console.log(data)
 
 
 
@@ -133,7 +133,7 @@ function CategoryProduct() {
                                 <div className="grid__row">
                                 <div className="list-item">
                                     {
-                                    product.map((item) => {return (
+                                    product?.map((item) => {return (
                                         <div className="item-wrap">
                                             <Link to={`/ProductDetail/${item.ID}`}>
                                                 <img src={item.Image} className="img-thumbnail" alt="Cinque Terre"/>
