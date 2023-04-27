@@ -33,11 +33,9 @@ function CategoryProduct() {
 
     const handleSelectTypeChange = (event) => {
         setType(event.target.value);
-        console.log(type)
     };
     const handleSelectPriceChange = (event) => {
         setOrder(event.target.value);
-        console.log(order)
     }
     const handleSelectCompanyChange = (event) => {
         setCompany(event.target.value);

@@ -9,6 +9,7 @@ import { useCookies } from 'react-cookie';
 import { CiLogin } from "react-icons/ci";
 import { Dropdown } from 'react-bootstrap';
 import axios from 'axios';
+import { InputPicker } from 'rsuite';
 // import { Whisper, Avatar, Popover } from 'rsuite';
 import "./header.css";
 
@@ -54,8 +55,9 @@ function Header(){
             console.error(error);
           });
       }, [searchTerm]);
-    function handleSelectSuggestion(suggestion) {
-        setSearchTerm(suggestion);
+    function handleSelectSuggestion(event) {
+        setSearchTerm(event.target.value);
+        console.log(searchTerm)
     }
     const location = useLocation()
     const handelLogout = async () => {
@@ -84,19 +86,21 @@ function Header(){
                 </div>
                 
                 <form name="form" onSubmit={handleSearch} className="navbar_search">
+                <div className="dropdown">
+                    
                     <input type="text" className="navbar__search-text" placeholder='Nhập từ khóa tìm kiếm' onChange={(event) => setSearchTerm(event.target.value)} />
+                    <ol className="dropdown-content">
+                        {suggestions.map((item) => (
+                    
+                            <div onClick={handleSelectSuggestion} key={item.ID}>{item.Name}</div>
+
+                            ))}
+                    </ol>
+                    </div>
                     <button type="submit" className="navbar__search-icon">
                         <SearchIcon height= "90%" fontSize= "18px"/>
                     </button>
-                    {/* {
-                                    suggestions.map((item) => {return (
-                                   
-                                                
-                                        <div className="item__price">{item.Name}</div>                 
-                                        
-                           
-                                        )
-                                    })} */}
+                    
                 </form>
                 {
                     checker != "" && checker != null?
