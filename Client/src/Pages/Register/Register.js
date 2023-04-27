@@ -125,7 +125,7 @@ const Register = ({  messageLogin ,props}) => {
             <p>Số điện thoại</p>
               <input
                 className="input100"
-                type="password"
+                type="text"
                 id="phone" name="phone"
                 placeholder="Phonenumber"
               />
