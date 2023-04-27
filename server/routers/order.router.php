@@ -20,6 +20,11 @@
                 echo($result);
                 http_response_code(200);
             }
+            if($queryParam[0]=="orderID"){
+                $result = $order->orderCurrentID($server->db, $queryParam[1]);
+                echo($result);
+                http_response_code(200);
+            }
         }
        
 
@@ -50,15 +55,27 @@
             if($queryParam[0] == "add") {
                 $result = $order->addOrder($server->db, $data);
                 
-                if(strcmp(json_decode($result), "Success") == 0) {
-                    return $result;
-                    echo($result);
-                    http_response_code(200);
-                }
-                else {
+                if(strcmp(json_decode($result), "fail") == 0) {
                     echo($result);
                     http_response_code(400);
+                }
+                else {
+                    
+                    echo($result);
+                    http_response_code(200);
                 }  
+            }
+            if($queryParam[0] == "belong"){
+                $result = $order->addOrderItem($server->db, $data);
+                echo($result);
+                // if(strcmp(json_decode($result), "fail") == 0) {
+                //     echo($result);
+                //     http_response_code(200);
+                // }
+                // else {
+                //     echo($result);
+                //     http_response_code(400);
+                // }  
             }
         }
     }

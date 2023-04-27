@@ -73,6 +73,24 @@
                                             '$OrderFee','$OrderState','$OrderShip','$TimeCreate')";
                     return $this->model->addOrder($db, $query);
                 }
+
+                public function addOrderItem($db,$data){
+                    $OrderID = $data["OrderID"];
+                    $product = $data["product"];
+                    $count = count($product);
+                   
+                    for ($i=0; $i<$count; $i++) {
+                        $ProductID = $product[$i]["ProductID"];
+                        $Quantity =  $product[$i]["quantity"];
+                        $query = "INSERT INTO belong (OrderID, ProductID, Quantity)
+                        VALUES ('$OrderID', '$ProductID', '$Quantity') ";
+                        $this->model->addOrderItem($db, $query);
+                    }
+                }
+
+                public function orderCurrentID($db,$data){
+                    
+                }
             }
 
 ?>
