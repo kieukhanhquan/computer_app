@@ -65,8 +65,10 @@ export const registerClient = createAsyncThunk(
                 Password: data.Password,
                 PhoneNumber: data.PhoneNumber,
                 Confirm: data.Confirm,
+                DateOfBirth: "", 
+                Avatar: "",
                 Type: 2000000
-            })
+            }).then((res)=>{console.log(res)})
             dispatch(setRegister(true))
         }
         catch (err) {

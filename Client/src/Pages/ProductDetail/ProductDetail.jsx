@@ -31,8 +31,8 @@ const items = [
 
 function ProductDetail() {
     const [cookies] = useCookies(['user']);
-    let curUser;
-    if (cookies.user!=null){curUser={userName: cookies.user.FirstName};}
+    let curUser={userName:"Khách",UserID: "0", Avatar: ""};
+    if (cookies.user!=null){curUser={userName: cookies.user.FirstName,UserID: cookies.user.ID, Avatar: cookies.user.Avatar};}
     const [activeKey, setActiveKey] = React.useState('A');
     const dataAll = useSelector((state) => state.product.product)
     const dispatch = useDispatch()
@@ -66,11 +66,17 @@ function ProductDetail() {
     const [quantity, setQuantity] = useState(1);
 
     const handleAddToCart = async (product,user,quantity) =>{  
-        await dispatch(addtoCart({product,user,quantity}))
+        if(cookies.user==null){
+            alert("Bạn cần đăng nhập để thêm vào giỏ hàng");
+        }
+        else{
+            await dispatch(addtoCart({product,user,quantity}))
+        }
+        
     }
     function handleSubmit(data) {
         let data_post = {}
-        data_post.ClientID = cookies.user.ID;
+        data_post.ClientID =curUser.UserID;
         data_post.ProductID =id;
         data_post.Content = data.text;
         dispatch(addComment(data_post));
@@ -207,8 +213,8 @@ function ProductDetail() {
         </div>
         <CommentSection
           currentUser={{
-            currentUserId:cookies.user.ID ,
-            currentUserImg:cookies.user.Avatar,
+            currentUserId:curUser.UserID ,
+            currentUserImg:curUser.Avatar,
             currentUserFullName: curUser.userName,
           }}
           commentData={comment}

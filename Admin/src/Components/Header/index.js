@@ -143,7 +143,7 @@ function Header() {
                     </Dropdown.Menu>
                 </Popover>
             }>
-            <Avatar circle sizes={70} src={admin.Avatar} alt="log" />
+            <Avatar circle sizes={70} src="https://www.w3schools.com/howto/img_avatar.png" alt="log" />
         </Whisper>
         )
     }
